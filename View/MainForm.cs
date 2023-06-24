@@ -10,13 +10,20 @@ namespace View
         private Enemy enemy;
         private System.Windows.Forms.Timer timer;
         private int tickInterval = 1000; // Thời gian giữa các tick của Timer (ms)
+        private List<Player> playerTeam;
+        private List<Enemy> enemyTeam;
+        private Random random = new Random();
+        private Player player1, player2, player3, player4, player5;
+        private Enemy enemy1, enemy2, enemy3, enemy4, enemy5;
 
-        public MainForm(Player player, Enemy enemy)
+        public MainForm(List<Player> playerTeam, List<Enemy> enemyTeam)
         {
             InitializeComponent();
 
             this.player = player;
             this.enemy = enemy;
+            this.playerTeam = playerTeam;
+            this.enemyTeam = enemyTeam;
 
             timer = new System.Windows.Forms.Timer();
             timer.Interval = tickInterval;
@@ -35,58 +42,310 @@ namespace View
             timer.Start();
         }
 
-        private void Timer_Tick(object sender, EventArgs e)
+        private void PlayerStrike(Player player, ProgressBar timerbar)
         {
-            // Tăng giá trị hiện tại của ProgressBar người chơi lên 1
-            playerTimerBar.Value += (int)(6000 / (player.attackSpeed));
-            enemyTimerBar.Value += (int)(6000 / (enemy.attackSpeed));
-
-            // Nếu ProgressBar đã đạt giá trị tối đa
-            if (playerTimerBar.Value >= playerTimerBar.Maximum)
+            if (player.curHealth <= 0)
+            {
+                // Người chơi đã chết, không thể tấn công nữa
+                timerbar.Enabled = false;
+                return;
+            }
+            int bonus = 0;
+            if ((timerbar.Value + (6000 / (player.attackSpeed))) > 6000)
+            {
+                bonus = (int)((timerbar.Value + (6000 / (player.attackSpeed))) - 6000);
+                timerbar.Value = 6000;
+            }
+            else
+            {
+                timerbar.Value += (int)(6000 / (player.attackSpeed));
+            }
+            if (timerbar.Value >= timerbar.Maximum)
             {
                 // Reset giá trị ProgressBar về 0
-                playerTimerBar.Value = 0;
+                timerbar.Value = 0 + bonus;
 
-                // Thực hiện hành động tấn công của người chơi
-                player.Attack(enemy);
+                // Lựa chọn ngẫu nhiên một đối thủ từ danh sách địch
+                Enemy targetEnemy = GetRandomEnemy();
+                while (targetEnemy.curHealth <= 0)
+                {
+                    // Đối thủ đã chết, chọn một đối thủ khác
+                    targetEnemy = GetRandomEnemy();
+                }
+                // Thực hiện hành động tấn công của người chơi lên đối thủ được chọn
+                player.Attack(targetEnemy);
 
                 // Cập nhật thông tin hiển thị
                 UpdatePlayerInfo();
                 UpdateEnemyInfo();
             }
-            if (enemyTimerBar.Value >= enemyTimerBar.Maximum)
+        }
+        private void EnemyStrike(Enemy enemy, ProgressBar timerbar)
+        {
+            if (enemy.curHealth <= 0)
+            {
+                // Người chơi đã chết, không thể tấn công nữa
+                timerbar.Enabled = false;
+                return;
+            }
+            int bonus = 0;
+            if ((timerbar.Value + (6000 / (enemy.attackSpeed))) > 6000)
+            {
+                bonus = (int)((timerbar.Value + (6000 / (enemy.attackSpeed))) - 6000);
+            }
+            else
+            {
+                timerbar.Value += (int)(6000 / (enemy.attackSpeed));
+            }
+            if (timerbar.Value >= timerbar.Maximum)
             {
                 // Reset giá trị ProgressBar về 0
-                enemyTimerBar.Value = 0;
+                timerbar.Value = 0 + bonus;
 
-                // Thực hiện hành động tấn công của người chơi
-                enemy.Attack(player);
+                // Lựa chọn ngẫu nhiên một đối thủ từ danh sách đồng minh
+                Player targetPlayer = GetRandomPlayer();
+                while (targetPlayer.curHealth <= 0)
+                {
+                    // Đối thủ đã chết, chọn một đối thủ khác
+                    targetPlayer = GetRandomPlayer();
+                }
+                // Thực hiện hành động tấn công của địch lên đồng minh được chọn
+                enemy.Attack(targetPlayer);
 
                 // Cập nhật thông tin hiển thị
                 UpdatePlayerInfo();
                 UpdateEnemyInfo();
+            }
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            // Tăng giá trị hiện tại của ProgressBar người chơi lên 1
+            if (player1 != null)
+            {
+                PlayerStrike(player1, playerTimerBar1);
+            }
+            if (player2 != null)
+            {
+                PlayerStrike(player2, playerTimerBar2);
+            }
+            if (player3 != null)
+            {
+                PlayerStrike(player3, playerTimerBar3);
+            }
+            if (player4 != null)
+            {
+                PlayerStrike(player4, playerTimerBar4);
+            }
+            if (player5 != null)
+            {
+                PlayerStrike(player5, playerTimerBar5);
+            }
+            if (enemy1 != null)
+            {
+                EnemyStrike(enemy1, enemyTimerBar1);
+            }
+            if (enemy2 != null)
+            {
+                EnemyStrike(enemy2, enemyTimerBar2);
+            }
+            if (enemy3 != null)
+            {
+                EnemyStrike(enemy3, enemyTimerBar3);
+            }
+            if (enemy4 != null)
+            {
+                EnemyStrike(enemy4, enemyTimerBar4);
+            }
+            if (enemy5 != null)
+            {
+                EnemyStrike(enemy5, enemyTimerBar5);
+            }
+            if (CheckWinCondition())
+            {
+                // Dừng Timer
+                timer.Stop();
+
+                // Xử lý logic chiến thắng tại đây
+
+                // Ví dụ: Hiển thị thông báo chiến thắng
+                MessageBox.Show("Bạn đã chiến thắng!", "Thông báo");
+
+                // Đóng form
+                this.Close();
             }
         }
 
         private void UpdatePlayerInfo()
         {
-            lblPlayerName.Text = player.name;
-            playerHealthProgressBar.Maximum = (int)player.maxHealth;
-            playerHealthProgressBar.Value = (int)player.curHealth;
-            lblPlayerHealth.Text = $"{player.curHealth}/{player.maxHealth}";
+            // Hiển thị thông tin của nhân vật đầu tiên trong đội hình người chơi
+            if (playerTeam.Count > 0)
+            {
+                player1 = playerTeam[0];
+                ShowPlayer(player1, lblPlayerName1, playerHealthProgressBar1, lblPlayerHealth1);
+            }
+            else
+            {
+                // Ẩn các điều khiển
+                HideSlotEmpty(lblPlayerName1, playerHealthProgressBar1, lblPlayerHealth1, playerTimerBar1, playerPanel1);
+            }
+            if (playerTeam.Count > 1)
+            {
+                player2 = playerTeam[1];
+                ShowPlayer(player2, lblPlayerName2, playerHealthProgressBar2, lblPlayerHealth2);
+            }
+            else
+            {
+                // Ẩn các điều khiển
+                HideSlotEmpty(lblPlayerName2, playerHealthProgressBar2, lblPlayerHealth2, playerTimerBar2, playerPanel2);
+            }
+            if (playerTeam.Count > 2)
+            {
+                player3 = playerTeam[2];
+                ShowPlayer(player3, lblPlayerName3, playerHealthProgressBar3, lblPlayerHealth3);
+            }
+            else
+            {
+                // Ẩn các điều khiển
+                HideSlotEmpty(lblPlayerName3, playerHealthProgressBar3, lblPlayerHealth3, playerTimerBar3, playerPanel3);
+            }
+            if (playerTeam.Count > 3)
+            {
+                player4 = playerTeam[3];
+                ShowPlayer(player4, lblPlayerName4, playerHealthProgressBar4, lblPlayerHealth4);
+            }
+            else
+            {
+                // Ẩn các điều khiển
+                HideSlotEmpty(lblPlayerName4, playerHealthProgressBar4, lblPlayerHealth4, playerTimerBar4, playerPanel4);
+            }
+            if (playerTeam.Count > 4)
+            {
+                player5 = playerTeam[4];
+                ShowPlayer(player5, lblPlayerName5, playerHealthProgressBar5, lblPlayerHealth5);
+            }
+            else
+            {
+                HideSlotEmpty(lblPlayerName5, playerHealthProgressBar5, lblPlayerHealth5, playerTimerBar5, playerPanel5);
+            }
         }
 
         private void UpdateEnemyInfo()
         {
-            lblEnemyName.Text = enemy.name;
-            enemyHealthProgressBar.Maximum = (int)enemy.maxHealth;
-            enemyHealthProgressBar.Value = (int)enemy.curHealth;
-            lblEnemyHealth.Text = $"{enemy.curHealth}/{enemy.maxHealth}";
+            // Hiển thị thông tin của nhân vật đầu tiên trong đội hình kẻ địch
+            if (enemyTeam.Count > 0)
+            {
+                enemy1 = enemyTeam[0];
+                ShowEnemy(enemy1, lblEnemyName1, enemyHealthProgressBar1, lblEnemyHealth1);
+            }
+            else
+            {
+                // Ẩn các điều khiển
+                HideSlotEmpty(lblEnemyName1, enemyHealthProgressBar1, lblEnemyHealth1, enemyTimerBar1, enemyPanel1);
+            }
+            if (enemyTeam.Count > 1)
+            {
+                enemy2 = enemyTeam[1];
+                ShowEnemy(enemy2, lblEnemyName2, enemyHealthProgressBar2, lblEnemyHealth2);
+            }
+            else
+            {
+                // Ẩn các điều khiển
+                HideSlotEmpty(lblEnemyName2, enemyHealthProgressBar2, lblEnemyHealth2, enemyTimerBar2, enemyPanel2);
+            }
+            if (enemyTeam.Count > 2)
+            {
+                enemy3 = enemyTeam[2];
+                ShowEnemy(enemy3, lblEnemyName3, enemyHealthProgressBar3, lblEnemyHealth3);
+            }
+            else
+            {
+                // Ẩn các điều khiển
+                HideSlotEmpty(lblEnemyName3, enemyHealthProgressBar3, lblEnemyHealth3, enemyTimerBar3, enemyPanel3);
+            }
+            if (enemyTeam.Count > 3)
+            {
+                enemy4 = enemyTeam[3];
+                ShowEnemy(enemy4, lblEnemyName4, enemyHealthProgressBar4, lblEnemyHealth4);
+            }
+            else
+            {
+                // Ẩn các điều khiển
+                HideSlotEmpty(lblEnemyName4, enemyHealthProgressBar4, lblEnemyHealth4, enemyTimerBar4, enemyPanel4);
+            }
+            if (enemyTeam.Count > 4)
+            {
+                enemy5 = enemyTeam[4];
+                ShowEnemy(enemy5, lblEnemyName5, enemyHealthProgressBar5, lblEnemyHealth5);
+            }
+            else
+            {
+                // Ẩn các điều khiển
+                HideSlotEmpty(lblEnemyName5, enemyHealthProgressBar5, lblEnemyHealth5, enemyTimerBar5, enemyPanel5);
+            }
+        }
+
+        private void HideSlotEmpty(Label namelabel, ProgressBar pb, Label healthlabel, ProgressBar timerbar, Panel panel)
+        {
+            // Ẩn các điều khiển
+            namelabel.Visible = false;
+            pb.Visible = false;
+            healthlabel.Visible = false;
+            timerbar.Visible = false;
+            panel.Visible = false;
+        }
+
+        private void ShowPlayer(Player player, Label namelabel, ProgressBar pb, Label healthlabel)
+        {
+            namelabel.Text = player.name;
+            pb.Maximum = (int)player.maxHealth;
+            if (player.curHealth < 0)
+            {
+                player.curHealth = 0;
+            }
+            pb.Value = (int)player.curHealth;
+            healthlabel.Text = $"{player.curHealth}/{player.maxHealth}";
+        }
+
+        private void ShowEnemy(Enemy enemy, Label namelabel, ProgressBar pb, Label healthlabel)
+        {
+            namelabel.Text = enemy.name;
+            pb.Maximum = (int)enemy.maxHealth;
+            if (enemy.curHealth < 0)
+            {
+                enemy.curHealth = 0 ;
+            }
+            pb.Value = (int)enemy.curHealth;
+            healthlabel.Text = $"{enemy.curHealth}/{enemy.maxHealth}";
+        }
+
+        private Enemy GetRandomEnemy()
+        {
+            int randomIndex = random.Next(enemyTeam.Count);
+            return enemyTeam[randomIndex];
+        }
+
+        private Player GetRandomPlayer()
+        {
+            int randomIndex = random.Next(playerTeam.Count);
+            return playerTeam[randomIndex];
+        }
+
+        private bool CheckWinCondition()
+        {
+            bool playerTeamAlive = playerTeam.Any(player => player.curHealth > 0);
+            bool enemyTeamAlive = enemyTeam.Any(enemy => enemy.curHealth > 0);
+
+            return !(playerTeamAlive && enemyTeamAlive);
         }
 
         private void btnCharacter_Click(object sender, EventArgs e)
         {
+            // Tạo một instance của CharacterForm và truyền danh sách người chơi vào constructor
+            CharacterForm characterForm = new CharacterForm(playerTeam);
 
+            // Hiển thị CharacterForm
+            characterForm.Show();
         }
 
         private void btnInventory_Click(object sender, EventArgs e)
