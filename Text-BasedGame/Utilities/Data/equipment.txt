@@ -1,0 +1,12 @@
+﻿Axe,Weapon,Decription here,..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\Weapon.png
+Shield,Secondary Weapon,Decription here,..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\SecondaryWeapon.png
+Helmet,Helmet,Decription here,..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\Helmet.png
+Chest Armor,Chest Armor,Decription here,..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\ChestArmor.png
+Glove,Glove,Decription here,..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\Glove.png
+Belt,Belt,Decription here,..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\Belt.png
+Pants,Pants,Decription here,..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\Pants.png
+Boots,Boots,Decription here,..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\Boots.png
+Necklace,Necklace,Decription here,..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\Necklace.png
+Ring,Ring,Decription here,..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\Ring1.png
+Ring,Ring,Decription here,..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\Ring2.png
+Artifact,Mask,Decription here,..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\Artifact.png

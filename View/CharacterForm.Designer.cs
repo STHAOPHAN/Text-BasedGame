@@ -50,6 +50,7 @@
             lblMana = new Label();
             lblHealth = new Label();
             panel14 = new Panel();
+            btnUndoIncreaseStat = new Button();
             btnIncreaseArmor = new Button();
             btnIncreaseAttackSpeed = new Button();
             btnIncreaseHealth = new Button();
@@ -63,7 +64,6 @@
             label4 = new Label();
             label1 = new Label();
             label2 = new Label();
-            btnUndoIncreaseStat = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel14.SuspendLayout();
@@ -99,6 +99,7 @@
             // 
             // panel1
             // 
+            panel1.BackColor = SystemColors.Window;
             panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(lblHelmet);
             panel1.Location = new Point(318, 37);
@@ -108,6 +109,7 @@
             // 
             // panel2
             // 
+            panel2.BackColor = SystemColors.Window;
             panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.Controls.Add(lblChestplate);
             panel2.Location = new Point(306, 102);
@@ -117,6 +119,7 @@
             // 
             // panel3
             // 
+            panel3.BackColor = SystemColors.Window;
             panel3.BorderStyle = BorderStyle.FixedSingle;
             panel3.Location = new Point(306, 228);
             panel3.Name = "panel3";
@@ -125,6 +128,7 @@
             // 
             // panel4
             // 
+            panel4.BackColor = SystemColors.Window;
             panel4.BorderStyle = BorderStyle.FixedSingle;
             panel4.Location = new Point(318, 259);
             panel4.Name = "panel4";
@@ -133,6 +137,7 @@
             // 
             // panel5
             // 
+            panel5.BackColor = SystemColors.Window;
             panel5.BorderStyle = BorderStyle.FixedSingle;
             panel5.Location = new Point(318, 340);
             panel5.Name = "panel5";
@@ -141,6 +146,7 @@
             // 
             // panel6
             // 
+            panel6.BackColor = SystemColors.Window;
             panel6.BorderStyle = BorderStyle.FixedSingle;
             panel6.Location = new Point(212, 146);
             panel6.Name = "panel6";
@@ -149,6 +155,7 @@
             // 
             // panel7
             // 
+            panel7.BackColor = SystemColors.Window;
             panel7.BorderStyle = BorderStyle.FixedSingle;
             panel7.Location = new Point(420, 146);
             panel7.Name = "panel7";
@@ -157,6 +164,7 @@
             // 
             // panel8
             // 
+            panel8.BackColor = SystemColors.Window;
             panel8.BorderStyle = BorderStyle.FixedSingle;
             panel8.Location = new Point(212, 296);
             panel8.Name = "panel8";
@@ -165,6 +173,7 @@
             // 
             // panel9
             // 
+            panel9.BackColor = SystemColors.Window;
             panel9.BorderStyle = BorderStyle.FixedSingle;
             panel9.Location = new Point(420, 296);
             panel9.Name = "panel9";
@@ -173,6 +182,7 @@
             // 
             // panel10
             // 
+            panel10.BackColor = SystemColors.Window;
             panel10.BorderStyle = BorderStyle.FixedSingle;
             panel10.Location = new Point(226, 243);
             panel10.Name = "panel10";
@@ -181,6 +191,7 @@
             // 
             // panel11
             // 
+            panel11.BackColor = SystemColors.Window;
             panel11.BorderStyle = BorderStyle.FixedSingle;
             panel11.Location = new Point(432, 243);
             panel11.Name = "panel11";
@@ -189,6 +200,7 @@
             // 
             // panel12
             // 
+            panel12.BackColor = SystemColors.Window;
             panel12.BorderStyle = BorderStyle.FixedSingle;
             panel12.Location = new Point(226, 49);
             panel12.Name = "panel12";
@@ -197,6 +209,7 @@
             // 
             // panel13
             // 
+            panel13.BackColor = SystemColors.Window;
             panel13.BorderStyle = BorderStyle.FixedSingle;
             panel13.Location = new Point(411, 73);
             panel13.Name = "panel13";
@@ -250,6 +263,7 @@
             // 
             // panel14
             // 
+            panel14.BackColor = SystemColors.Window;
             panel14.BorderStyle = BorderStyle.FixedSingle;
             panel14.Controls.Add(btnUndoIncreaseStat);
             panel14.Controls.Add(btnIncreaseArmor);
@@ -274,6 +288,16 @@
             panel14.Name = "panel14";
             panel14.Size = new Size(200, 194);
             panel14.TabIndex = 24;
+            // 
+            // btnUndoIncreaseStat
+            // 
+            btnUndoIncreaseStat.Location = new Point(117, 152);
+            btnUndoIncreaseStat.Name = "btnUndoIncreaseStat";
+            btnUndoIncreaseStat.Size = new Size(52, 23);
+            btnUndoIncreaseStat.TabIndex = 29;
+            btnUndoIncreaseStat.Text = "Reset";
+            btnUndoIncreaseStat.UseVisualStyleBackColor = true;
+            btnUndoIncreaseStat.Click += btnUndoIncreaseStat_Click;
             // 
             // btnIncreaseArmor
             // 
@@ -376,7 +400,7 @@
             label4.Name = "label4";
             label4.Size = new Size(51, 15);
             label4.TabIndex = 28;
-            label4.Text = "Damege";
+            label4.Text = "Damage";
             // 
             // label1
             // 
@@ -396,20 +420,11 @@
             label2.TabIndex = 26;
             label2.Text = "HP";
             // 
-            // btnUndoIncreaseStat
-            // 
-            btnUndoIncreaseStat.Location = new Point(117, 152);
-            btnUndoIncreaseStat.Name = "btnUndoIncreaseStat";
-            btnUndoIncreaseStat.Size = new Size(52, 23);
-            btnUndoIncreaseStat.TabIndex = 29;
-            btnUndoIncreaseStat.Text = "Reset";
-            btnUndoIncreaseStat.UseVisualStyleBackColor = true;
-            btnUndoIncreaseStat.Click += btnUndoIncreaseStat_Click;
-            // 
             // CharacterForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ActiveBorder;
             ClientSize = new Size(800, 450);
             Controls.Add(panel14);
             Controls.Add(panel13);
@@ -429,6 +444,8 @@
             Name = "CharacterForm";
             Text = "Nhân Vật";
             Load += CharacterForm_Load;
+            DragDrop += EquipmentSlot_DragDrop;
+            DragEnter += EquipmentSlot_DragEnter;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Text_BasedGame.Models;
+using Text_BasedGame.Controllers;
 
 namespace View
 {
@@ -15,19 +16,64 @@ namespace View
         private Random random = new Random();
         private Player player1, player2, player3, player4, player5;
         private Enemy enemy1, enemy2, enemy3, enemy4, enemy5;
+        private List<Item> items;
+        private EquipmentControllercs equipmentControllercs = new EquipmentControllercs();
+        private InventoryForm inventoryForm;
+        private System.Windows.Forms.Timer moveTimer;
+        private Panel playerPanel;
+        private Panel targetPanel;
+        private Point targetPosition;
+        private int moveSpeed = 50; // Tốc độ di chuyển của panel (có thể điều chỉnh)
+        private Point originalPlayerPosition;
+        private System.Windows.Forms.Timer playerTimer1;
+        private System.Windows.Forms.Timer playerTimer2;
+        private System.Windows.Forms.Timer playerTimer3;
+        private System.Windows.Forms.Timer playerTimer4;
+        private System.Windows.Forms.Timer playerTimer5;
+        private System.Windows.Forms.Timer enemyTimer1;
+        private System.Windows.Forms.Timer enemyTimer2;
+        private System.Windows.Forms.Timer enemyTimer3;
+        private System.Windows.Forms.Timer enemyTimer4;
+        private System.Windows.Forms.Timer enemyTimer5;
 
-        public MainForm(List<Player> playerTeam, List<Enemy> enemyTeam)
+        public MainForm(List<Player> playerTeam, List<Enemy> enemyTeam, List<Item> items)
         {
             InitializeComponent();
 
-            this.player = player;
-            this.enemy = enemy;
             this.playerTeam = playerTeam;
             this.enemyTeam = enemyTeam;
+            this.items = items;
 
-            timer = new System.Windows.Forms.Timer();
-            timer.Interval = tickInterval;
-            timer.Tick += Timer_Tick;
+            playerTimer1 = new System.Windows.Forms.Timer();
+            playerTimer1.Interval = tickInterval; // Thời gian cập nhật vị trí (có thể điều chỉnh)
+            playerTimer1.Tick += PlayerTimer1_Tick;
+            playerTimer2 = new System.Windows.Forms.Timer();
+            playerTimer2.Interval = tickInterval; // Thời gian cập nhật vị trí (có thể điều chỉnh)
+            playerTimer2.Tick += PlayerTimer2_Tick;
+            playerTimer3 = new System.Windows.Forms.Timer();
+            playerTimer3.Interval = tickInterval; // Thời gian cập nhật vị trí (có thể điều chỉnh)
+            playerTimer3.Tick += PlayerTimer3_Tick;
+            playerTimer4 = new System.Windows.Forms.Timer();
+            playerTimer4.Interval = tickInterval; // Thời gian cập nhật vị trí (có thể điều chỉnh)
+            playerTimer4.Tick += PlayerTimer4_Tick;
+            playerTimer5 = new System.Windows.Forms.Timer();
+            playerTimer5.Interval = tickInterval; // Thời gian cập nhật vị trí (có thể điều chỉnh)
+            playerTimer5.Tick += PlayerTimer5_Tick;
+            enemyTimer1 = new System.Windows.Forms.Timer();
+            enemyTimer1.Interval = tickInterval; // Thời gian cập nhật vị trí (có thể điều chỉnh)
+            enemyTimer1.Tick += EnemyTimer1_Tick;
+            enemyTimer2 = new System.Windows.Forms.Timer();
+            enemyTimer2.Interval = tickInterval; // Thời gian cập nhật vị trí (có thể điều chỉnh)
+            enemyTimer2.Tick += EnemyTimer2_Tick;
+            enemyTimer3 = new System.Windows.Forms.Timer();
+            enemyTimer3.Interval = tickInterval; // Thời gian cập nhật vị trí (có thể điều chỉnh)
+            enemyTimer3.Tick += EnemyTimer3_Tick;
+            enemyTimer4 = new System.Windows.Forms.Timer();
+            enemyTimer4.Interval = tickInterval; // Thời gian cập nhật vị trí (có thể điều chỉnh)
+            enemyTimer4.Tick += EnemyTimer4_Tick;
+            enemyTimer5 = new System.Windows.Forms.Timer();
+            enemyTimer5.Interval = tickInterval; // Thời gian cập nhật vị trí (có thể điều chỉnh)
+            enemyTimer5.Tick += EnemyTimer5_Tick;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -39,11 +85,21 @@ namespace View
             UpdateEnemyInfo();
 
             // Bắt đầu đếm ngược để tấn công tự động
-            timer.Start();
+            playerTimer1.Start();
+            playerTimer2.Start();
+            playerTimer3.Start();
+            playerTimer4.Start();
+            playerTimer5.Start();
+            enemyTimer1.Start();
+            enemyTimer2.Start();
+            enemyTimer3.Start();
+            enemyTimer4.Start();
+            enemyTimer5.Start();
         }
 
-        private void PlayerStrike(Player player, ProgressBar timerbar)
+        private void PlayerStrike(Player player, ProgressBar timerbar, Panel panel)
         {
+            Point originalPlayerPosition = panel.Location;
             if (player.curHealth <= 0)
             {
                 // Người chơi đã chết, không thể tấn công nữa
@@ -117,63 +173,56 @@ namespace View
                 UpdateEnemyInfo();
             }
         }
-
-        private void Timer_Tick(object sender, EventArgs e)
+        private void PlayerTimer1_Tick(object sender, EventArgs e)
         {
-            // Tăng giá trị hiện tại của ProgressBar người chơi lên 1
-            if (player1 != null)
-            {
-                PlayerStrike(player1, playerTimerBar1);
-            }
-            if (player2 != null)
-            {
-                PlayerStrike(player2, playerTimerBar2);
-            }
-            if (player3 != null)
-            {
-                PlayerStrike(player3, playerTimerBar3);
-            }
-            if (player4 != null)
-            {
-                PlayerStrike(player4, playerTimerBar4);
-            }
-            if (player5 != null)
-            {
-                PlayerStrike(player5, playerTimerBar5);
-            }
-            if (enemy1 != null)
-            {
-                EnemyStrike(enemy1, enemyTimerBar1);
-            }
-            if (enemy2 != null)
-            {
-                EnemyStrike(enemy2, enemyTimerBar2);
-            }
-            if (enemy3 != null)
-            {
-                EnemyStrike(enemy3, enemyTimerBar3);
-            }
-            if (enemy4 != null)
-            {
-                EnemyStrike(enemy4, enemyTimerBar4);
-            }
-            if (enemy5 != null)
-            {
-                EnemyStrike(enemy5, enemyTimerBar5);
-            }
-            if (CheckWinCondition())
-            {
-                // Dừng Timer
-                timer.Stop();
+            PlayerStrike(player1, playerTimerBar1, pnlPlayer1);
+            // Cập nhật vị trí di chuyển và ra đòn cho player1
+        }
+        private void PlayerTimer2_Tick(object sender, EventArgs e)
+        {
+            PlayerStrike(player2, playerTimerBar2, pnlPlayer2);
+            // Cập nhật vị trí di chuyển và ra đòn cho player1
+        }
+        private void PlayerTimer3_Tick(object sender, EventArgs e)
+        {
+            PlayerStrike(player3, playerTimerBar3, pnlPlayer3);
+            // Cập nhật vị trí di chuyển và ra đòn cho player1
+        }
+        private void PlayerTimer4_Tick(object sender, EventArgs e)
+        {
+            PlayerStrike(player4, playerTimerBar4, pnlPlayer4);
+            // Cập nhật vị trí di chuyển và ra đòn cho player1
+        }
+        private void PlayerTimer5_Tick(object sender, EventArgs e)
+        {
+            PlayerStrike(player5, playerTimerBar5, pnlPlayer5);
+            // Cập nhật vị trí di chuyển và ra đòn cho player1
+        }
 
-                // Xử lý logic chiến thắng tại đây
-
-                // Ví dụ: Hiển thị thông báo chiến thắng
-                MessageBox.Show("Bạn đã chiến thắng!", "Thông báo");
-
-                // Đóng form
-                this.Close();
-            }
+        private void EnemyTimer1_Tick(object sender, EventArgs e)
+        {
+            EnemyStrike(enemy1, enemyTimerBar1);
+            // Cập nhật vị trí di chuyển và ra đòn cho enemy1
+        }
+        private void EnemyTimer2_Tick(object sender, EventArgs e)
+        {
+            EnemyStrike(enemy2, enemyTimerBar2);
+            // Cập nhật vị trí di chuyển và ra đòn cho enemy1
+        }
+        private void EnemyTimer3_Tick(object sender, EventArgs e)
+        {
+            EnemyStrike(enemy3, enemyTimerBar3);
+            // Cập nhật vị trí di chuyển và ra đòn cho enemy1
+        }
+        private void EnemyTimer4_Tick(object sender, EventArgs e)
+        {
+            EnemyStrike(enemy4, enemyTimerBar4);
+            // Cập nhật vị trí di chuyển và ra đòn cho enemy1
+        }
+        private void EnemyTimer5_Tick(object sender, EventArgs e)
+        {
+            EnemyStrike(enemy5, enemyTimerBar5);
+            // Cập nhật vị trí di chuyển và ra đòn cho enemy1
         }
 
         private void UpdatePlayerInfo()
@@ -187,7 +236,7 @@ namespace View
             else
             {
                 // Ẩn các điều khiển
-                HideSlotEmpty(lblPlayerName1, playerHealthProgressBar1, lblPlayerHealth1, playerTimerBar1, playerPanel1);
+                HideSlotEmpty(lblPlayerName1, playerHealthProgressBar1, lblPlayerHealth1, playerTimerBar1, pnlPlayer1);
             }
             if (playerTeam.Count > 1)
             {
@@ -197,7 +246,7 @@ namespace View
             else
             {
                 // Ẩn các điều khiển
-                HideSlotEmpty(lblPlayerName2, playerHealthProgressBar2, lblPlayerHealth2, playerTimerBar2, playerPanel2);
+                HideSlotEmpty(lblPlayerName2, playerHealthProgressBar2, lblPlayerHealth2, playerTimerBar2, pnlPlayer2);
             }
             if (playerTeam.Count > 2)
             {
@@ -207,7 +256,7 @@ namespace View
             else
             {
                 // Ẩn các điều khiển
-                HideSlotEmpty(lblPlayerName3, playerHealthProgressBar3, lblPlayerHealth3, playerTimerBar3, playerPanel3);
+                HideSlotEmpty(lblPlayerName3, playerHealthProgressBar3, lblPlayerHealth3, playerTimerBar3, pnlPlayer3);
             }
             if (playerTeam.Count > 3)
             {
@@ -217,7 +266,7 @@ namespace View
             else
             {
                 // Ẩn các điều khiển
-                HideSlotEmpty(lblPlayerName4, playerHealthProgressBar4, lblPlayerHealth4, playerTimerBar4, playerPanel4);
+                HideSlotEmpty(lblPlayerName4, playerHealthProgressBar4, lblPlayerHealth4, playerTimerBar4, pnlPlayer4);
             }
             if (playerTeam.Count > 4)
             {
@@ -226,7 +275,7 @@ namespace View
             }
             else
             {
-                HideSlotEmpty(lblPlayerName5, playerHealthProgressBar5, lblPlayerHealth5, playerTimerBar5, playerPanel5);
+                HideSlotEmpty(lblPlayerName5, playerHealthProgressBar5, lblPlayerHealth5, playerTimerBar5, pnlPlayer5);
             }
         }
 
@@ -241,7 +290,7 @@ namespace View
             else
             {
                 // Ẩn các điều khiển
-                HideSlotEmpty(lblEnemyName1, enemyHealthProgressBar1, lblEnemyHealth1, enemyTimerBar1, enemyPanel1);
+                HideSlotEmpty(lblEnemyName1, enemyHealthProgressBar1, lblEnemyHealth1, enemyTimerBar1, pnlEnemy1);
             }
             if (enemyTeam.Count > 1)
             {
@@ -251,7 +300,7 @@ namespace View
             else
             {
                 // Ẩn các điều khiển
-                HideSlotEmpty(lblEnemyName2, enemyHealthProgressBar2, lblEnemyHealth2, enemyTimerBar2, enemyPanel2);
+                HideSlotEmpty(lblEnemyName2, enemyHealthProgressBar2, lblEnemyHealth2, enemyTimerBar2, pnlEnemy2);
             }
             if (enemyTeam.Count > 2)
             {
@@ -261,7 +310,7 @@ namespace View
             else
             {
                 // Ẩn các điều khiển
-                HideSlotEmpty(lblEnemyName3, enemyHealthProgressBar3, lblEnemyHealth3, enemyTimerBar3, enemyPanel3);
+                HideSlotEmpty(lblEnemyName3, enemyHealthProgressBar3, lblEnemyHealth3, enemyTimerBar3, pnlEnemy3);
             }
             if (enemyTeam.Count > 3)
             {
@@ -271,7 +320,7 @@ namespace View
             else
             {
                 // Ẩn các điều khiển
-                HideSlotEmpty(lblEnemyName4, enemyHealthProgressBar4, lblEnemyHealth4, enemyTimerBar4, enemyPanel4);
+                HideSlotEmpty(lblEnemyName4, enemyHealthProgressBar4, lblEnemyHealth4, enemyTimerBar4, pnlEnemy4);
             }
             if (enemyTeam.Count > 4)
             {
@@ -281,7 +330,7 @@ namespace View
             else
             {
                 // Ẩn các điều khiển
-                HideSlotEmpty(lblEnemyName5, enemyHealthProgressBar5, lblEnemyHealth5, enemyTimerBar5, enemyPanel5);
+                HideSlotEmpty(lblEnemyName5, enemyHealthProgressBar5, lblEnemyHealth5, enemyTimerBar5, pnlEnemy5);
             }
         }
 
@@ -313,7 +362,7 @@ namespace View
             pb.Maximum = (int)enemy.maxHealth;
             if (enemy.curHealth < 0)
             {
-                enemy.curHealth = 0 ;
+                enemy.curHealth = 0;
             }
             pb.Value = (int)enemy.curHealth;
             healthlabel.Text = $"{enemy.curHealth}/{enemy.maxHealth}";
@@ -331,12 +380,42 @@ namespace View
             return playerTeam[randomIndex];
         }
 
-        private bool CheckWinCondition()
+        private void CheckWinCondition()
         {
             bool playerTeamAlive = playerTeam.Any(player => player.curHealth > 0);
             bool enemyTeamAlive = enemyTeam.Any(enemy => enemy.curHealth > 0);
+            if (!playerTeamAlive)
+            {
+                // Ví dụ: Hiển thị thông báo chiến thắng
+                MessageBox.Show("Bạn đã thua!", "Thông báo");
+                // Hồi máu đầy cho các nhân vật người chơi
+                foreach (Player player in playerTeam)
+                {
+                    player.curHealth = player.maxHealth;
+                }
+            }
+            else if (!enemyTeamAlive)
+            {
+                string currentDirectory = Directory.GetCurrentDirectory();
+                string imagePath = Path.GetFullPath(Path.Combine(currentDirectory, "..\\..\\..\\..\\Text-BasedGame\\Utilities\\Data\\equipment.txt"));
+                Equipment equipment = equipmentControllercs.LoadEquipmentFromFile(imagePath);
+                items.Add(equipment);
+                foreach (Enemy enemy in enemyTeam)
+                {
+                    enemy.curHealth = enemy.maxHealth;
+                }
+                MessageBox.Show("Bạn đã chiến thắng! Bạn nhận được một trang bị mới:\n" + equipment.Name.ToString(), "Thông báo");
+                UpdateInventory(items);
 
-            return !(playerTeamAlive && enemyTeamAlive);
+            }
+        }
+
+        private void UpdateInventory(List<Item> items)
+        {
+            if (inventoryForm != null)
+            {
+                inventoryForm.UpdateItems(items);
+            }
         }
 
         private void btnCharacter_Click(object sender, EventArgs e)
@@ -350,7 +429,16 @@ namespace View
 
         private void btnInventory_Click(object sender, EventArgs e)
         {
-
+            if (inventoryForm == null)
+            {
+                inventoryForm = new InventoryForm(items);
+                inventoryForm.Show();
+            }
+            else
+            {
+                inventoryForm.UpdateItems(items);
+                inventoryForm.Focus();
+            }
         }
 
         private void btnSkill_Click(object sender, EventArgs e)
@@ -365,7 +453,16 @@ namespace View
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            DialogResult result = MessageBox.Show("Bạn có chắc muốn thoát?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
+            if (result == DialogResult.Yes)
+            {
+                // Đóng ứng dụng hoặc xử lý tắt trò chơi ở đây
+                Application.Exit(); // Đóng ứng dụng
+
+                // Hoặc
+                // this.Close(); // Đóng cửa sổ chứa trò chơi
+            }
         }
 
         // Các sự kiện và phương thức khác cần thiết cho MainForm

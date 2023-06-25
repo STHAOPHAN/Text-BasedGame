@@ -135,5 +135,25 @@ namespace View
             // Cập nhật thông tin người chơi
             UpdatePlayerInfo(selectedPlayer);
         }
+        private void EquipmentSlot_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(typeof(Item)))
+            {
+                e.Effect = DragDropEffects.Move;
+            }
+        }
+
+        private void EquipmentSlot_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(typeof(Item)))
+            {
+                Item item = (Item)e.Data.GetData(typeof(Item));
+
+                // Remove item from the equipment slot in CharacterForm
+                // Return the item to the original position in InventoryForm
+
+                // Example:
+            }
+        }
     }
 }

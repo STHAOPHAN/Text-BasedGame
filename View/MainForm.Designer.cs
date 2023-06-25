@@ -31,9 +31,9 @@
             lblPlayerName1 = new Label();
             playerHealthProgressBar1 = new ProgressBar();
             playerTimerBar1 = new ProgressBar();
-            playerPanel1 = new Panel();
+            pnlPlayer1 = new Panel();
             lblPlayerHealth1 = new Label();
-            enemyPanel1 = new Panel();
+            pnlEnemy1 = new Panel();
             lblEnemyHealth1 = new Label();
             enemyTimerBar1 = new ProgressBar();
             enemyHealthProgressBar1 = new ProgressBar();
@@ -44,57 +44,57 @@
             btnSkill = new Button();
             btnInventory = new Button();
             btnCharacter = new Button();
-            playerPanel2 = new Panel();
+            pnlPlayer2 = new Panel();
             lblPlayerHealth2 = new Label();
             lblPlayerName2 = new Label();
             playerHealthProgressBar2 = new ProgressBar();
             playerTimerBar2 = new ProgressBar();
-            playerPanel3 = new Panel();
+            pnlPlayer3 = new Panel();
             lblPlayerHealth3 = new Label();
             lblPlayerName3 = new Label();
             playerHealthProgressBar3 = new ProgressBar();
             playerTimerBar3 = new ProgressBar();
-            playerPanel5 = new Panel();
+            pnlPlayer5 = new Panel();
             lblPlayerHealth5 = new Label();
             lblPlayerName5 = new Label();
             playerHealthProgressBar5 = new ProgressBar();
             playerTimerBar5 = new ProgressBar();
-            playerPanel4 = new Panel();
+            pnlPlayer4 = new Panel();
             lblPlayerHealth4 = new Label();
             lblPlayerName4 = new Label();
             playerHealthProgressBar4 = new ProgressBar();
             playerTimerBar4 = new ProgressBar();
-            enemyPanel2 = new Panel();
+            pnlEnemy2 = new Panel();
             lblEnemyHealth2 = new Label();
             enemyTimerBar2 = new ProgressBar();
             enemyHealthProgressBar2 = new ProgressBar();
             lblEnemyName2 = new Label();
-            enemyPanel3 = new Panel();
+            pnlEnemy3 = new Panel();
             lblEnemyHealth3 = new Label();
             enemyTimerBar3 = new ProgressBar();
             enemyHealthProgressBar3 = new ProgressBar();
             lblEnemyName3 = new Label();
-            enemyPanel5 = new Panel();
+            pnlEnemy5 = new Panel();
             lblEnemyHealth5 = new Label();
             enemyTimerBar5 = new ProgressBar();
             enemyHealthProgressBar5 = new ProgressBar();
             lblEnemyName5 = new Label();
-            enemyPanel4 = new Panel();
+            pnlEnemy4 = new Panel();
             lblEnemyHealth4 = new Label();
             enemyTimerBar4 = new ProgressBar();
             enemyHealthProgressBar4 = new ProgressBar();
             lblEnemyName4 = new Label();
-            playerPanel1.SuspendLayout();
-            enemyPanel1.SuspendLayout();
+            pnlPlayer1.SuspendLayout();
+            pnlEnemy1.SuspendLayout();
             bottomMenuPanel.SuspendLayout();
-            playerPanel2.SuspendLayout();
-            playerPanel3.SuspendLayout();
-            playerPanel5.SuspendLayout();
-            playerPanel4.SuspendLayout();
-            enemyPanel2.SuspendLayout();
-            enemyPanel3.SuspendLayout();
-            enemyPanel5.SuspendLayout();
-            enemyPanel4.SuspendLayout();
+            pnlPlayer2.SuspendLayout();
+            pnlPlayer3.SuspendLayout();
+            pnlPlayer5.SuspendLayout();
+            pnlPlayer4.SuspendLayout();
+            pnlEnemy2.SuspendLayout();
+            pnlEnemy3.SuspendLayout();
+            pnlEnemy5.SuspendLayout();
+            pnlEnemy4.SuspendLayout();
             SuspendLayout();
             // 
             // lblPlayerName1
@@ -123,17 +123,17 @@
             playerTimerBar1.Size = new Size(146, 15);
             playerTimerBar1.TabIndex = 7;
             // 
-            // playerPanel1
+            // pnlPlayer1
             // 
-            playerPanel1.BorderStyle = BorderStyle.FixedSingle;
-            playerPanel1.Controls.Add(lblPlayerHealth1);
-            playerPanel1.Controls.Add(lblPlayerName1);
-            playerPanel1.Controls.Add(playerHealthProgressBar1);
-            playerPanel1.Controls.Add(playerTimerBar1);
-            playerPanel1.Location = new Point(217, 38);
-            playerPanel1.Name = "playerPanel1";
-            playerPanel1.Size = new Size(146, 60);
-            playerPanel1.TabIndex = 8;
+            pnlPlayer1.BorderStyle = BorderStyle.FixedSingle;
+            pnlPlayer1.Controls.Add(lblPlayerHealth1);
+            pnlPlayer1.Controls.Add(lblPlayerName1);
+            pnlPlayer1.Controls.Add(playerHealthProgressBar1);
+            pnlPlayer1.Controls.Add(playerTimerBar1);
+            pnlPlayer1.Location = new Point(217, 38);
+            pnlPlayer1.Name = "pnlPlayer1";
+            pnlPlayer1.Size = new Size(146, 60);
+            pnlPlayer1.TabIndex = 8;
             // 
             // lblPlayerHealth1
             // 
@@ -145,17 +145,17 @@
             lblPlayerHealth1.TabIndex = 10;
             lblPlayerHealth1.Text = "label1";
             // 
-            // enemyPanel1
+            // pnlEnemy1
             // 
-            enemyPanel1.BorderStyle = BorderStyle.FixedSingle;
-            enemyPanel1.Controls.Add(lblEnemyHealth1);
-            enemyPanel1.Controls.Add(enemyTimerBar1);
-            enemyPanel1.Controls.Add(enemyHealthProgressBar1);
-            enemyPanel1.Controls.Add(lblEnemyName1);
-            enemyPanel1.Location = new Point(444, 39);
-            enemyPanel1.Name = "enemyPanel1";
-            enemyPanel1.Size = new Size(146, 60);
-            enemyPanel1.TabIndex = 9;
+            pnlEnemy1.BorderStyle = BorderStyle.FixedSingle;
+            pnlEnemy1.Controls.Add(lblEnemyHealth1);
+            pnlEnemy1.Controls.Add(enemyTimerBar1);
+            pnlEnemy1.Controls.Add(enemyHealthProgressBar1);
+            pnlEnemy1.Controls.Add(lblEnemyName1);
+            pnlEnemy1.Location = new Point(444, 39);
+            pnlEnemy1.Name = "pnlEnemy1";
+            pnlEnemy1.Size = new Size(146, 60);
+            pnlEnemy1.TabIndex = 9;
             // 
             // lblEnemyHealth1
             // 
@@ -254,17 +254,17 @@
             btnCharacter.UseVisualStyleBackColor = true;
             btnCharacter.Click += btnCharacter_Click;
             // 
-            // playerPanel2
+            // pnlPlayer2
             // 
-            playerPanel2.BorderStyle = BorderStyle.FixedSingle;
-            playerPanel2.Controls.Add(lblPlayerHealth2);
-            playerPanel2.Controls.Add(lblPlayerName2);
-            playerPanel2.Controls.Add(playerHealthProgressBar2);
-            playerPanel2.Controls.Add(playerTimerBar2);
-            playerPanel2.Location = new Point(215, 122);
-            playerPanel2.Name = "playerPanel2";
-            playerPanel2.Size = new Size(146, 60);
-            playerPanel2.TabIndex = 11;
+            pnlPlayer2.BorderStyle = BorderStyle.FixedSingle;
+            pnlPlayer2.Controls.Add(lblPlayerHealth2);
+            pnlPlayer2.Controls.Add(lblPlayerName2);
+            pnlPlayer2.Controls.Add(playerHealthProgressBar2);
+            pnlPlayer2.Controls.Add(playerTimerBar2);
+            pnlPlayer2.Location = new Point(215, 122);
+            pnlPlayer2.Name = "pnlPlayer2";
+            pnlPlayer2.Size = new Size(146, 60);
+            pnlPlayer2.TabIndex = 11;
             // 
             // lblPlayerHealth2
             // 
@@ -302,17 +302,17 @@
             playerTimerBar2.Size = new Size(146, 15);
             playerTimerBar2.TabIndex = 7;
             // 
-            // playerPanel3
+            // pnlPlayer3
             // 
-            playerPanel3.BorderStyle = BorderStyle.FixedSingle;
-            playerPanel3.Controls.Add(lblPlayerHealth3);
-            playerPanel3.Controls.Add(lblPlayerName3);
-            playerPanel3.Controls.Add(playerHealthProgressBar3);
-            playerPanel3.Controls.Add(playerTimerBar3);
-            playerPanel3.Location = new Point(216, 209);
-            playerPanel3.Name = "playerPanel3";
-            playerPanel3.Size = new Size(146, 60);
-            playerPanel3.TabIndex = 12;
+            pnlPlayer3.BorderStyle = BorderStyle.FixedSingle;
+            pnlPlayer3.Controls.Add(lblPlayerHealth3);
+            pnlPlayer3.Controls.Add(lblPlayerName3);
+            pnlPlayer3.Controls.Add(playerHealthProgressBar3);
+            pnlPlayer3.Controls.Add(playerTimerBar3);
+            pnlPlayer3.Location = new Point(216, 209);
+            pnlPlayer3.Name = "pnlPlayer3";
+            pnlPlayer3.Size = new Size(146, 60);
+            pnlPlayer3.TabIndex = 12;
             // 
             // lblPlayerHealth3
             // 
@@ -350,17 +350,17 @@
             playerTimerBar3.Size = new Size(146, 15);
             playerTimerBar3.TabIndex = 7;
             // 
-            // playerPanel5
+            // pnlPlayer5
             // 
-            playerPanel5.BorderStyle = BorderStyle.FixedSingle;
-            playerPanel5.Controls.Add(lblPlayerHealth5);
-            playerPanel5.Controls.Add(lblPlayerName5);
-            playerPanel5.Controls.Add(playerHealthProgressBar5);
-            playerPanel5.Controls.Add(playerTimerBar5);
-            playerPanel5.Location = new Point(35, 165);
-            playerPanel5.Name = "playerPanel5";
-            playerPanel5.Size = new Size(146, 60);
-            playerPanel5.TabIndex = 13;
+            pnlPlayer5.BorderStyle = BorderStyle.FixedSingle;
+            pnlPlayer5.Controls.Add(lblPlayerHealth5);
+            pnlPlayer5.Controls.Add(lblPlayerName5);
+            pnlPlayer5.Controls.Add(playerHealthProgressBar5);
+            pnlPlayer5.Controls.Add(playerTimerBar5);
+            pnlPlayer5.Location = new Point(35, 165);
+            pnlPlayer5.Name = "pnlPlayer5";
+            pnlPlayer5.Size = new Size(146, 60);
+            pnlPlayer5.TabIndex = 13;
             // 
             // lblPlayerHealth5
             // 
@@ -398,17 +398,17 @@
             playerTimerBar5.Size = new Size(146, 15);
             playerTimerBar5.TabIndex = 7;
             // 
-            // playerPanel4
+            // pnlPlayer4
             // 
-            playerPanel4.BorderStyle = BorderStyle.FixedSingle;
-            playerPanel4.Controls.Add(lblPlayerHealth4);
-            playerPanel4.Controls.Add(lblPlayerName4);
-            playerPanel4.Controls.Add(playerHealthProgressBar4);
-            playerPanel4.Controls.Add(playerTimerBar4);
-            playerPanel4.Location = new Point(36, 81);
-            playerPanel4.Name = "playerPanel4";
-            playerPanel4.Size = new Size(146, 60);
-            playerPanel4.TabIndex = 13;
+            pnlPlayer4.BorderStyle = BorderStyle.FixedSingle;
+            pnlPlayer4.Controls.Add(lblPlayerHealth4);
+            pnlPlayer4.Controls.Add(lblPlayerName4);
+            pnlPlayer4.Controls.Add(playerHealthProgressBar4);
+            pnlPlayer4.Controls.Add(playerTimerBar4);
+            pnlPlayer4.Location = new Point(36, 81);
+            pnlPlayer4.Name = "pnlPlayer4";
+            pnlPlayer4.Size = new Size(146, 60);
+            pnlPlayer4.TabIndex = 13;
             // 
             // lblPlayerHealth4
             // 
@@ -446,17 +446,17 @@
             playerTimerBar4.Size = new Size(146, 15);
             playerTimerBar4.TabIndex = 7;
             // 
-            // enemyPanel2
+            // pnlEnemy2
             // 
-            enemyPanel2.BorderStyle = BorderStyle.FixedSingle;
-            enemyPanel2.Controls.Add(lblEnemyHealth2);
-            enemyPanel2.Controls.Add(enemyTimerBar2);
-            enemyPanel2.Controls.Add(enemyHealthProgressBar2);
-            enemyPanel2.Controls.Add(lblEnemyName2);
-            enemyPanel2.Location = new Point(444, 122);
-            enemyPanel2.Name = "enemyPanel2";
-            enemyPanel2.Size = new Size(146, 60);
-            enemyPanel2.TabIndex = 14;
+            pnlEnemy2.BorderStyle = BorderStyle.FixedSingle;
+            pnlEnemy2.Controls.Add(lblEnemyHealth2);
+            pnlEnemy2.Controls.Add(enemyTimerBar2);
+            pnlEnemy2.Controls.Add(enemyHealthProgressBar2);
+            pnlEnemy2.Controls.Add(lblEnemyName2);
+            pnlEnemy2.Location = new Point(444, 122);
+            pnlEnemy2.Name = "pnlEnemy2";
+            pnlEnemy2.Size = new Size(146, 60);
+            pnlEnemy2.TabIndex = 14;
             // 
             // lblEnemyHealth2
             // 
@@ -492,17 +492,17 @@
             lblEnemyName2.TabIndex = 1;
             lblEnemyName2.Text = "label1";
             // 
-            // enemyPanel3
+            // pnlEnemy3
             // 
-            enemyPanel3.BorderStyle = BorderStyle.FixedSingle;
-            enemyPanel3.Controls.Add(lblEnemyHealth3);
-            enemyPanel3.Controls.Add(enemyTimerBar3);
-            enemyPanel3.Controls.Add(enemyHealthProgressBar3);
-            enemyPanel3.Controls.Add(lblEnemyName3);
-            enemyPanel3.Location = new Point(444, 207);
-            enemyPanel3.Name = "enemyPanel3";
-            enemyPanel3.Size = new Size(146, 60);
-            enemyPanel3.TabIndex = 15;
+            pnlEnemy3.BorderStyle = BorderStyle.FixedSingle;
+            pnlEnemy3.Controls.Add(lblEnemyHealth3);
+            pnlEnemy3.Controls.Add(enemyTimerBar3);
+            pnlEnemy3.Controls.Add(enemyHealthProgressBar3);
+            pnlEnemy3.Controls.Add(lblEnemyName3);
+            pnlEnemy3.Location = new Point(444, 207);
+            pnlEnemy3.Name = "pnlEnemy3";
+            pnlEnemy3.Size = new Size(146, 60);
+            pnlEnemy3.TabIndex = 15;
             // 
             // lblEnemyHealth3
             // 
@@ -538,17 +538,17 @@
             lblEnemyName3.TabIndex = 1;
             lblEnemyName3.Text = "label1";
             // 
-            // enemyPanel5
+            // pnlEnemy5
             // 
-            enemyPanel5.BorderStyle = BorderStyle.FixedSingle;
-            enemyPanel5.Controls.Add(lblEnemyHealth5);
-            enemyPanel5.Controls.Add(enemyTimerBar5);
-            enemyPanel5.Controls.Add(enemyHealthProgressBar5);
-            enemyPanel5.Controls.Add(lblEnemyName5);
-            enemyPanel5.Location = new Point(624, 166);
-            enemyPanel5.Name = "enemyPanel5";
-            enemyPanel5.Size = new Size(146, 60);
-            enemyPanel5.TabIndex = 16;
+            pnlEnemy5.BorderStyle = BorderStyle.FixedSingle;
+            pnlEnemy5.Controls.Add(lblEnemyHealth5);
+            pnlEnemy5.Controls.Add(enemyTimerBar5);
+            pnlEnemy5.Controls.Add(enemyHealthProgressBar5);
+            pnlEnemy5.Controls.Add(lblEnemyName5);
+            pnlEnemy5.Location = new Point(624, 166);
+            pnlEnemy5.Name = "pnlEnemy5";
+            pnlEnemy5.Size = new Size(146, 60);
+            pnlEnemy5.TabIndex = 16;
             // 
             // lblEnemyHealth5
             // 
@@ -584,17 +584,17 @@
             lblEnemyName5.TabIndex = 1;
             lblEnemyName5.Text = "label1";
             // 
-            // enemyPanel4
+            // pnlEnemy4
             // 
-            enemyPanel4.BorderStyle = BorderStyle.FixedSingle;
-            enemyPanel4.Controls.Add(lblEnemyHealth4);
-            enemyPanel4.Controls.Add(enemyTimerBar4);
-            enemyPanel4.Controls.Add(enemyHealthProgressBar4);
-            enemyPanel4.Controls.Add(lblEnemyName4);
-            enemyPanel4.Location = new Point(624, 81);
-            enemyPanel4.Name = "enemyPanel4";
-            enemyPanel4.Size = new Size(146, 60);
-            enemyPanel4.TabIndex = 17;
+            pnlEnemy4.BorderStyle = BorderStyle.FixedSingle;
+            pnlEnemy4.Controls.Add(lblEnemyHealth4);
+            pnlEnemy4.Controls.Add(enemyTimerBar4);
+            pnlEnemy4.Controls.Add(enemyHealthProgressBar4);
+            pnlEnemy4.Controls.Add(lblEnemyName4);
+            pnlEnemy4.Location = new Point(624, 81);
+            pnlEnemy4.Name = "pnlEnemy4";
+            pnlEnemy4.Size = new Size(146, 60);
+            pnlEnemy4.TabIndex = 17;
             // 
             // lblEnemyHealth4
             // 
@@ -634,43 +634,43 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ButtonShadow;
+            BackColor = SystemColors.ActiveBorder;
             ClientSize = new Size(800, 489);
-            Controls.Add(enemyPanel4);
-            Controls.Add(enemyPanel5);
-            Controls.Add(enemyPanel3);
-            Controls.Add(enemyPanel2);
-            Controls.Add(playerPanel4);
-            Controls.Add(playerPanel5);
-            Controls.Add(playerPanel3);
-            Controls.Add(playerPanel2);
+            Controls.Add(pnlEnemy4);
+            Controls.Add(pnlEnemy5);
+            Controls.Add(pnlEnemy3);
+            Controls.Add(pnlEnemy2);
+            Controls.Add(pnlPlayer4);
+            Controls.Add(pnlPlayer5);
+            Controls.Add(pnlPlayer3);
+            Controls.Add(pnlPlayer2);
             Controls.Add(bottomMenuPanel);
-            Controls.Add(enemyPanel1);
-            Controls.Add(playerPanel1);
+            Controls.Add(pnlEnemy1);
+            Controls.Add(pnlPlayer1);
             Name = "MainForm";
             Text = "Text-Based Game";
             Load += MainForm_Load;
-            playerPanel1.ResumeLayout(false);
-            playerPanel1.PerformLayout();
-            enemyPanel1.ResumeLayout(false);
-            enemyPanel1.PerformLayout();
+            pnlPlayer1.ResumeLayout(false);
+            pnlPlayer1.PerformLayout();
+            pnlEnemy1.ResumeLayout(false);
+            pnlEnemy1.PerformLayout();
             bottomMenuPanel.ResumeLayout(false);
-            playerPanel2.ResumeLayout(false);
-            playerPanel2.PerformLayout();
-            playerPanel3.ResumeLayout(false);
-            playerPanel3.PerformLayout();
-            playerPanel5.ResumeLayout(false);
-            playerPanel5.PerformLayout();
-            playerPanel4.ResumeLayout(false);
-            playerPanel4.PerformLayout();
-            enemyPanel2.ResumeLayout(false);
-            enemyPanel2.PerformLayout();
-            enemyPanel3.ResumeLayout(false);
-            enemyPanel3.PerformLayout();
-            enemyPanel5.ResumeLayout(false);
-            enemyPanel5.PerformLayout();
-            enemyPanel4.ResumeLayout(false);
-            enemyPanel4.PerformLayout();
+            pnlPlayer2.ResumeLayout(false);
+            pnlPlayer2.PerformLayout();
+            pnlPlayer3.ResumeLayout(false);
+            pnlPlayer3.PerformLayout();
+            pnlPlayer5.ResumeLayout(false);
+            pnlPlayer5.PerformLayout();
+            pnlPlayer4.ResumeLayout(false);
+            pnlPlayer4.PerformLayout();
+            pnlEnemy2.ResumeLayout(false);
+            pnlEnemy2.PerformLayout();
+            pnlEnemy3.ResumeLayout(false);
+            pnlEnemy3.PerformLayout();
+            pnlEnemy5.ResumeLayout(false);
+            pnlEnemy5.PerformLayout();
+            pnlEnemy4.ResumeLayout(false);
+            pnlEnemy4.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -679,8 +679,8 @@
         private Label lblPlayerName1;
         private ProgressBar playerHealthProgressBar1;
         private ProgressBar playerTimerBar1;
-        private Panel playerPanel1;
-        private Panel enemyPanel1;
+        private Panel pnlPlayer1;
+        private Panel pnlEnemy1;
         private ProgressBar enemyHealthProgressBar1;
         private ProgressBar enemyTimerBar1;
         private Label lblEnemyName1;
@@ -692,42 +692,42 @@
         private Button btnSkill;
         private Button btnInventory;
         private Button btnCharacter;
-        private Panel playerPanel2;
+        private Panel pnlPlayer2;
         private Label lblPlayerHealth2;
         private Label lblPlayerName2;
         private ProgressBar playerHealthProgressBar2;
         private ProgressBar playerTimerBar2;
-        private Panel playerPanel3;
+        private Panel pnlPlayer3;
         private Label lblPlayerHealth3;
         private Label lblPlayerName3;
         private ProgressBar playerHealthProgressBar3;
         private ProgressBar playerTimerBar3;
-        private Panel playerPanel5;
+        private Panel pnlPlayer5;
         private Label lblPlayerHealth5;
         private Label lblPlayerName5;
         private ProgressBar playerHealthProgressBar5;
         private ProgressBar playerTimerBar5;
-        private Panel playerPanel4;
+        private Panel pnlPlayer4;
         private Label lblPlayerHealth4;
         private Label lblPlayerName4;
         private ProgressBar playerHealthProgressBar4;
         private ProgressBar playerTimerBar4;
-        private Panel enemyPanel2;
+        private Panel pnlEnemy2;
         private Label lblEnemyHealth2;
         private ProgressBar enemyTimerBar2;
         private ProgressBar enemyHealthProgressBar2;
         private Label lblEnemyName2;
-        private Panel enemyPanel3;
+        private Panel pnlEnemy3;
         private Label lblEnemyHealth3;
         private ProgressBar enemyTimerBar3;
         private ProgressBar enemyHealthProgressBar3;
         private Label lblEnemyName3;
-        private Panel enemyPanel5;
+        private Panel pnlEnemy5;
         private Label lblEnemyHealth5;
         private ProgressBar enemyTimerBar5;
         private ProgressBar enemyHealthProgressBar5;
         private Label lblEnemyName5;
-        private Panel enemyPanel4;
+        private Panel pnlEnemy4;
         private Label lblEnemyHealth4;
         private ProgressBar enemyTimerBar4;
         private ProgressBar enemyHealthProgressBar4;

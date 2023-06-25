@@ -11,17 +11,17 @@ namespace Text_BasedGame.Models
         public int mana { get; set; }
         public bool ultimate { get; set; }
         public int statPoints { get; set; }
-        public Item Weapon { get; set; }
-        public Item SecondaryWeapon { get; set; }
-        public Item Helmet { get; set; }
-        public Item ChestArmor { get; set; }
-        public Item ArmArmor { get; set; }
-        public Item Belt { get; set; }
-        public Item Pants { get; set; }
-        public Item Boots { get; set; }
-        public Item Necklace { get; set; }
-        public Item Ring { get; set; }
-        public Item Artifact { get; set; }
+        public Equipment Weapon { get; set; }
+        public Equipment SecondaryWeapon { get; set; }
+        public Equipment Helmet { get; set; }
+        public Equipment ChestArmor { get; set; }
+        public Equipment Glove { get; set; }
+        public Equipment Belt { get; set; }
+        public Equipment Pants { get; set; }
+        public Equipment Boots { get; set; }
+        public Equipment Necklace { get; set; }
+        public Equipment Ring { get; set; }
+        public Equipment Artifact { get; set; }
         public Player() { }
 
         public Player(string name, int level, float maxHealth, float curHealth, int damage, int armor, float attackSpeed, int mana, bool ultimate) : base(name, level, maxHealth, curHealth, damage, armor, attackSpeed)
@@ -38,7 +38,7 @@ namespace Text_BasedGame.Models
         }
 
         public Player(string name, int level, float maxHealth, float curHealth, int damage, int armor, float attackSpeed, int mana, bool ultimate, int statPoints,
-            Item weapon, Item secondaryWeapon, Item helmet, Item chestArmor, Item armArmor, Item belt, Item pants, Item boots, Item necklace, Item ring, Item artifact) : base(name, level, maxHealth, curHealth, damage, armor, attackSpeed)
+            Equipment weapon, Equipment secondaryWeapon, Equipment helmet, Equipment chestArmor, Equipment glove, Equipment belt, Equipment pants, Equipment boots, Equipment necklace, Equipment ring, Equipment artifact) : base(name, level, maxHealth, curHealth, damage, armor, attackSpeed)
         {
             this.mana = mana;
             this.ultimate = ultimate;
@@ -47,7 +47,7 @@ namespace Text_BasedGame.Models
             SecondaryWeapon = secondaryWeapon;
             Helmet = helmet;
             ChestArmor = chestArmor;
-            ArmArmor = armArmor;
+            Glove = glove;
             Belt = belt;
             Pants = pants;
             Boots = boots;
