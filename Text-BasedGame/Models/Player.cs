@@ -10,6 +10,7 @@ namespace Text_BasedGame.Models
     {
         public int mana { get; set; }
         public bool ultimate { get; set; }
+        public int statPoints { get; set; }
         public Item Weapon { get; set; }
         public Item SecondaryWeapon { get; set; }
         public Item Helmet { get; set; }
@@ -23,21 +24,25 @@ namespace Text_BasedGame.Models
         public Item Artifact { get; set; }
         public Player() { }
 
-        public Player(string name, float maxHealth, float curHealth, int damage, int armor, float attackSpeed, int mana, bool ultimate) : base(name, maxHealth, curHealth, damage, armor, attackSpeed)
+        public Player(string name, int level, float maxHealth, float curHealth, int damage, int armor, float attackSpeed, int mana, bool ultimate) : base(name, level, maxHealth, curHealth, damage, armor, attackSpeed)
         {
             this.mana = mana;
             this.ultimate = ultimate;
         }
-        public Player(string name, float maxHealth, float curHealth, int damage, int armor, float attackSpeed, int mana) : base(name, maxHealth, curHealth, damage, armor, attackSpeed)
+        public Player(string name, int level, float maxHealth, float curHealth, int damage, int armor, float attackSpeed, int mana, int statPoints) : base(name, level, maxHealth, curHealth, damage, armor, attackSpeed)
         {
             this.mana = mana;
+
+            //Cập nhật số điểm chỉ số ban đầu
+            UpdateStatPoints();
         }
 
-        public Player(string name, float maxHealth, float curHealth, int damage, int armor, float attackSpeed, int mana, bool ultimate, 
-            Item weapon, Item secondaryWeapon, Item helmet, Item chestArmor, Item armArmor, Item belt, Item pants, Item boots, Item necklace, Item ring, Item artifact) : base(name, maxHealth, curHealth, damage, armor, attackSpeed)
+        public Player(string name, int level, float maxHealth, float curHealth, int damage, int armor, float attackSpeed, int mana, bool ultimate, int statPoints,
+            Item weapon, Item secondaryWeapon, Item helmet, Item chestArmor, Item armArmor, Item belt, Item pants, Item boots, Item necklace, Item ring, Item artifact) : base(name, level, maxHealth, curHealth, damage, armor, attackSpeed)
         {
             this.mana = mana;
             this.ultimate = ultimate;
+            this.statPoints = statPoints;
             Weapon = weapon;
             SecondaryWeapon = secondaryWeapon;
             Helmet = helmet;
@@ -83,6 +88,12 @@ namespace Text_BasedGame.Models
                 // Hiển thị thông báo hoặc xử lý khi không đủ mana
                 // ...
             }
+        }
+
+        public void UpdateStatPoints()
+        {
+            // Scale số điểm chỉ số dựa trên cấp độ
+            statPoints = level * 5;
         }
     }
 }

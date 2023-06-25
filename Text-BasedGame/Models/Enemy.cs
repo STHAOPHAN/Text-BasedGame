@@ -10,9 +10,10 @@ namespace Text_BasedGame.Models
     {
         public Enemy() { }
 
-        public Enemy(string name, float maxHealth, float curHealth, int damage, int armor, float attackSpeed) : base(name, maxHealth, curHealth, damage, armor, attackSpeed)
+        public Enemy(string name, int level, float maxHealth, float curHealth, int damage, int armor, float attackSpeed) : base(name, level, maxHealth, curHealth, damage, armor, attackSpeed)
         {
         }
+
         public override void Attack(Creature target)
         {
             base.Attack(target);

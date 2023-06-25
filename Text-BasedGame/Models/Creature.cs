@@ -6,6 +6,7 @@ namespace Text_BasedGame.Models
     public class Creature
     {
         public string name { get; set; }
+        public int level { get; set; }
         public float maxHealth { get; set; }
         public float curHealth { get; set; }
         public int damage { get; set; }
@@ -19,9 +20,10 @@ namespace Text_BasedGame.Models
         {
         }
 
-        public Creature(string name, float maxHealth, float curHealth, int damage, int armor, float attackSpeed)
+        public Creature(string name, int level, float maxHealth, float curHealth, int damage, int armor, float attackSpeed)
         {
             this.name = name;
+            this.level = level;
             this.maxHealth = maxHealth;
             this.curHealth = curHealth;
             this.damage = damage;

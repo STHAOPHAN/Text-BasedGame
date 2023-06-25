@@ -50,11 +50,20 @@
             lblMana = new Label();
             lblHealth = new Label();
             panel14 = new Panel();
+            btnIncreaseArmor = new Button();
+            btnIncreaseAttackSpeed = new Button();
+            btnIncreaseHealth = new Button();
+            btnIncreaseDamege = new Button();
+            lblStatPoints = new Label();
+            label = new Label();
+            lblLevel = new Label();
+            label6 = new Label();
+            label5 = new Label();
             label3 = new Label();
             label4 = new Label();
             label1 = new Label();
             label2 = new Label();
-            label5 = new Label();
+            btnUndoIncreaseStat = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel14.SuspendLayout();
@@ -197,7 +206,7 @@
             // lblDamage
             // 
             lblDamage.AutoSize = true;
-            lblDamage.Location = new Point(72, 56);
+            lblDamage.Location = new Point(73, 85);
             lblDamage.Name = "lblDamage";
             lblDamage.Size = new Size(38, 15);
             lblDamage.TabIndex = 8;
@@ -206,7 +215,7 @@
             // lblAttackSpeed
             // 
             lblAttackSpeed.AutoSize = true;
-            lblAttackSpeed.Location = new Point(72, 78);
+            lblAttackSpeed.Location = new Point(73, 107);
             lblAttackSpeed.Name = "lblAttackSpeed";
             lblAttackSpeed.Size = new Size(38, 15);
             lblAttackSpeed.TabIndex = 7;
@@ -215,7 +224,7 @@
             // lblArmor
             // 
             lblArmor.AutoSize = true;
-            lblArmor.Location = new Point(72, 102);
+            lblArmor.Location = new Point(73, 131);
             lblArmor.Name = "lblArmor";
             lblArmor.Size = new Size(38, 15);
             lblArmor.TabIndex = 6;
@@ -224,7 +233,7 @@
             // lblMana
             // 
             lblMana.AutoSize = true;
-            lblMana.Location = new Point(72, 33);
+            lblMana.Location = new Point(73, 62);
             lblMana.Name = "lblMana";
             lblMana.Size = new Size(38, 15);
             lblMana.TabIndex = 23;
@@ -233,7 +242,7 @@
             // lblHealth
             // 
             lblHealth.AutoSize = true;
-            lblHealth.Location = new Point(72, 9);
+            lblHealth.Location = new Point(73, 38);
             lblHealth.Name = "lblHealth";
             lblHealth.Size = new Size(38, 15);
             lblHealth.TabIndex = 5;
@@ -242,6 +251,15 @@
             // panel14
             // 
             panel14.BorderStyle = BorderStyle.FixedSingle;
+            panel14.Controls.Add(btnUndoIncreaseStat);
+            panel14.Controls.Add(btnIncreaseArmor);
+            panel14.Controls.Add(btnIncreaseAttackSpeed);
+            panel14.Controls.Add(btnIncreaseHealth);
+            panel14.Controls.Add(btnIncreaseDamege);
+            panel14.Controls.Add(lblStatPoints);
+            panel14.Controls.Add(label);
+            panel14.Controls.Add(lblLevel);
+            panel14.Controls.Add(label6);
             panel14.Controls.Add(label5);
             panel14.Controls.Add(lblHealth);
             panel14.Controls.Add(label3);
@@ -254,13 +272,98 @@
             panel14.Controls.Add(lblAttackSpeed);
             panel14.Location = new Point(559, 27);
             panel14.Name = "panel14";
-            panel14.Size = new Size(200, 136);
+            panel14.Size = new Size(200, 194);
             panel14.TabIndex = 24;
+            // 
+            // btnIncreaseArmor
+            // 
+            btnIncreaseArmor.Location = new Point(133, 127);
+            btnIncreaseArmor.Name = "btnIncreaseArmor";
+            btnIncreaseArmor.Size = new Size(23, 23);
+            btnIncreaseArmor.TabIndex = 28;
+            btnIncreaseArmor.Text = "+";
+            btnIncreaseArmor.UseVisualStyleBackColor = true;
+            btnIncreaseArmor.Click += btnIncreaseArmor_Click;
+            // 
+            // btnIncreaseAttackSpeed
+            // 
+            btnIncreaseAttackSpeed.Location = new Point(133, 103);
+            btnIncreaseAttackSpeed.Name = "btnIncreaseAttackSpeed";
+            btnIncreaseAttackSpeed.Size = new Size(23, 23);
+            btnIncreaseAttackSpeed.TabIndex = 29;
+            btnIncreaseAttackSpeed.Text = "+";
+            btnIncreaseAttackSpeed.UseVisualStyleBackColor = true;
+            btnIncreaseAttackSpeed.Click += btnIncreaseAttackSpeed_Click;
+            // 
+            // btnIncreaseHealth
+            // 
+            btnIncreaseHealth.Location = new Point(133, 34);
+            btnIncreaseHealth.Name = "btnIncreaseHealth";
+            btnIncreaseHealth.Size = new Size(23, 23);
+            btnIncreaseHealth.TabIndex = 26;
+            btnIncreaseHealth.Text = "+";
+            btnIncreaseHealth.UseVisualStyleBackColor = true;
+            btnIncreaseHealth.Click += btnIncreaseHealth_Click;
+            // 
+            // btnIncreaseDamege
+            // 
+            btnIncreaseDamege.Location = new Point(133, 81);
+            btnIncreaseDamege.Name = "btnIncreaseDamege";
+            btnIncreaseDamege.Size = new Size(23, 23);
+            btnIncreaseDamege.TabIndex = 25;
+            btnIncreaseDamege.Text = "+";
+            btnIncreaseDamege.UseVisualStyleBackColor = true;
+            btnIncreaseDamege.Click += btnIncreaseDamege_Click;
+            // 
+            // lblStatPoints
+            // 
+            lblStatPoints.AutoSize = true;
+            lblStatPoints.Location = new Point(73, 156);
+            lblStatPoints.Name = "lblStatPoints";
+            lblStatPoints.Size = new Size(38, 15);
+            lblStatPoints.TabIndex = 25;
+            lblStatPoints.Text = "label6";
+            // 
+            // label
+            // 
+            label.AutoSize = true;
+            label.Location = new Point(16, 156);
+            label.Name = "label";
+            label.Size = new Size(20, 15);
+            label.TabIndex = 28;
+            label.Text = "SP";
+            // 
+            // lblLevel
+            // 
+            lblLevel.AutoSize = true;
+            lblLevel.Location = new Point(73, 13);
+            lblLevel.Name = "lblLevel";
+            lblLevel.Size = new Size(38, 15);
+            lblLevel.TabIndex = 25;
+            lblLevel.Text = "label5";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(16, 13);
+            label6.Name = "label6";
+            label6.Size = new Size(21, 15);
+            label6.TabIndex = 27;
+            label6.Text = "Lvl";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(14, 131);
+            label5.Name = "label5";
+            label5.Size = new Size(41, 15);
+            label5.TabIndex = 29;
+            label5.Text = "Armor";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(13, 78);
+            label3.Location = new Point(14, 107);
             label3.Name = "label3";
             label3.Size = new Size(21, 15);
             label3.TabIndex = 27;
@@ -269,7 +372,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(13, 56);
+            label4.Location = new Point(14, 85);
             label4.Name = "label4";
             label4.Size = new Size(51, 15);
             label4.TabIndex = 28;
@@ -278,7 +381,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(13, 33);
+            label1.Location = new Point(14, 62);
             label1.Name = "label1";
             label1.Size = new Size(37, 15);
             label1.TabIndex = 25;
@@ -287,20 +390,21 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(13, 9);
+            label2.Location = new Point(14, 38);
             label2.Name = "label2";
             label2.Size = new Size(23, 15);
             label2.TabIndex = 26;
             label2.Text = "HP";
             // 
-            // label5
+            // btnUndoIncreaseStat
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(13, 102);
-            label5.Name = "label5";
-            label5.Size = new Size(41, 15);
-            label5.TabIndex = 29;
-            label5.Text = "Armor";
+            btnUndoIncreaseStat.Location = new Point(117, 152);
+            btnUndoIncreaseStat.Name = "btnUndoIncreaseStat";
+            btnUndoIncreaseStat.Size = new Size(52, 23);
+            btnUndoIncreaseStat.TabIndex = 29;
+            btnUndoIncreaseStat.Text = "Reset";
+            btnUndoIncreaseStat.UseVisualStyleBackColor = true;
+            btnUndoIncreaseStat.Click += btnUndoIncreaseStat_Click;
             // 
             // CharacterForm
             // 
@@ -363,5 +467,14 @@
         private Label label1;
         private Label label2;
         private Label label5;
+        private Label lblLevel;
+        private Label label6;
+        private Label lblStatPoints;
+        private Label label;
+        private Button btnIncreaseArmor;
+        private Button btnIncreaseAttackSpeed;
+        private Button btnIncreaseHealth;
+        private Button btnIncreaseDamege;
+        private Button btnUndoIncreaseStat;
     }
 }

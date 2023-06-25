@@ -4,15 +4,20 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Text_BasedGame.Controllers;
 using Text_BasedGame.Models;
+
+using static System.Net.Mime.MediaTypeNames;
 
 namespace View
 {
     public partial class CharacterForm : Form
     {
+        private PlayerController playerController = new PlayerController();
         private List<Player> players;
 
         public CharacterForm(List<Player> players)
@@ -39,11 +44,7 @@ namespace View
             // Hiển thị các thuộc tính khác của trang bị
 
             // Hiển thị chỉ số của nhân vật
-            lblHealth.Text = $"{selectedPlayer.curHealth}/{selectedPlayer.maxHealth}";
-            lblMana.Text = selectedPlayer.mana.ToString();
-            lblDamage.Text = selectedPlayer.damage.ToString();
-            lblArmor.Text = selectedPlayer.armor.ToString();
-            lblAttackSpeed.Text = selectedPlayer.attackSpeed.ToString();
+            UpdatePlayerInfo(selectedPlayer);
             // Hiển thị các chỉ số khác của nhân vật
         }
 
@@ -54,6 +55,85 @@ namespace View
                 // Hiển thị thông tin của người chơi đầu tiên
                 playerListBox.SelectedIndex = 0;
             }
+        }
+
+        private void UpdatePlayerInfo(Player player)
+        {
+            // Cập nhật các thông tin của người chơi sau khi cộng điểm kỹ năng
+            lblLevel.Text = player.level.ToString();
+            lblHealth.Text = $"{player.curHealth}/{player.maxHealth}";
+            lblMana.Text = player.mana.ToString();
+            lblDamage.Text = player.damage.ToString();
+            lblArmor.Text = player.armor.ToString();
+            lblAttackSpeed.Text = player.attackSpeed.ToString();
+            lblStatPoints.Text = player.statPoints.ToString();
+        }
+
+        private void HideBtnIncrease(Player player)
+        {
+            if (player.statPoints == 0)
+            {
+                btnIncreaseHealth.Enabled = false;
+                btnIncreaseDamege.Enabled = false;
+                btnIncreaseAttackSpeed.Enabled = false;
+                btnIncreaseArmor.Enabled = false;
+            }
+            else
+            {
+                btnIncreaseHealth.Enabled = true;
+                btnIncreaseDamege.Enabled = true;
+                btnIncreaseAttackSpeed.Enabled = true;
+                btnIncreaseArmor.Enabled = true;
+            }
+        }
+        private void btnIncreaseHealth_Click(object sender, EventArgs e)
+        {
+            var selectedPlayer = players[playerListBox.SelectedIndex];
+            playerController.IncreaseHealth(selectedPlayer);
+            // Ẩn nút tăng stat khi hết điểm
+            HideBtnIncrease(selectedPlayer);
+            // Cập nhật thông tin người chơi
+            UpdatePlayerInfo(selectedPlayer);
+        }
+
+        private void btnIncreaseDamege_Click(object sender, EventArgs e)
+        {
+            var selectedPlayer = players[playerListBox.SelectedIndex];
+            playerController.IncreaseDamage(selectedPlayer);
+            // Ẩn nút tăng stat khi hết điểm
+            HideBtnIncrease(selectedPlayer);
+            // Cập nhật thông tin người chơi
+            UpdatePlayerInfo(selectedPlayer);
+        }
+
+        private void btnIncreaseAttackSpeed_Click(object sender, EventArgs e)
+        {
+            var selectedPlayer = players[playerListBox.SelectedIndex];
+            playerController.IncreaseAttackSpeed(selectedPlayer);
+            // Ẩn nút tăng stat khi hết điểm
+            HideBtnIncrease(selectedPlayer);
+            // Cập nhật thông tin người chơi
+            UpdatePlayerInfo(selectedPlayer);
+        }
+
+        private void btnIncreaseArmor_Click(object sender, EventArgs e)
+        {
+            var selectedPlayer = players[playerListBox.SelectedIndex];
+            playerController.IncreaseArmor(selectedPlayer);
+            // Ẩn nút tăng stat khi hết điểm
+            HideBtnIncrease(selectedPlayer);
+            // Cập nhật thông tin người chơi
+            UpdatePlayerInfo(selectedPlayer);
+        }
+
+        private void btnUndoIncreaseStat_Click(object sender, EventArgs e)
+        {
+            var selectedPlayer = players[playerListBox.SelectedIndex];
+            playerController.ResetStatPoint(selectedPlayer);
+            // Ẩn nút tăng stat khi hết điểm
+            HideBtnIncrease(selectedPlayer);
+            // Cập nhật thông tin người chơi
+            UpdatePlayerInfo(selectedPlayer);
         }
     }
 }
