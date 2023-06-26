@@ -23,18 +23,8 @@ namespace View
         private Panel playerPanel;
         private Panel targetPanel;
         private Point targetPosition;
-        private int moveSpeed = 50; // Tốc độ di chuyển của panel (có thể điều chỉnh)
+        private int moveSpeed = 10; // Tốc độ di chuyển của panel (có thể điều chỉnh)
         private Point originalPlayerPosition;
-        private System.Windows.Forms.Timer playerTimer1;
-        private System.Windows.Forms.Timer playerTimer2;
-        private System.Windows.Forms.Timer playerTimer3;
-        private System.Windows.Forms.Timer playerTimer4;
-        private System.Windows.Forms.Timer playerTimer5;
-        private System.Windows.Forms.Timer enemyTimer1;
-        private System.Windows.Forms.Timer enemyTimer2;
-        private System.Windows.Forms.Timer enemyTimer3;
-        private System.Windows.Forms.Timer enemyTimer4;
-        private System.Windows.Forms.Timer enemyTimer5;
 
         public MainForm(List<Player> playerTeam, List<Enemy> enemyTeam, List<Item> items)
         {
@@ -44,36 +34,9 @@ namespace View
             this.enemyTeam = enemyTeam;
             this.items = items;
 
-            playerTimer1 = new System.Windows.Forms.Timer();
-            playerTimer1.Interval = tickInterval; // Thời gian cập nhật vị trí (có thể điều chỉnh)
-            playerTimer1.Tick += PlayerTimer1_Tick;
-            playerTimer2 = new System.Windows.Forms.Timer();
-            playerTimer2.Interval = tickInterval; // Thời gian cập nhật vị trí (có thể điều chỉnh)
-            playerTimer2.Tick += PlayerTimer2_Tick;
-            playerTimer3 = new System.Windows.Forms.Timer();
-            playerTimer3.Interval = tickInterval; // Thời gian cập nhật vị trí (có thể điều chỉnh)
-            playerTimer3.Tick += PlayerTimer3_Tick;
-            playerTimer4 = new System.Windows.Forms.Timer();
-            playerTimer4.Interval = tickInterval; // Thời gian cập nhật vị trí (có thể điều chỉnh)
-            playerTimer4.Tick += PlayerTimer4_Tick;
-            playerTimer5 = new System.Windows.Forms.Timer();
-            playerTimer5.Interval = tickInterval; // Thời gian cập nhật vị trí (có thể điều chỉnh)
-            playerTimer5.Tick += PlayerTimer5_Tick;
-            enemyTimer1 = new System.Windows.Forms.Timer();
-            enemyTimer1.Interval = tickInterval; // Thời gian cập nhật vị trí (có thể điều chỉnh)
-            enemyTimer1.Tick += EnemyTimer1_Tick;
-            enemyTimer2 = new System.Windows.Forms.Timer();
-            enemyTimer2.Interval = tickInterval; // Thời gian cập nhật vị trí (có thể điều chỉnh)
-            enemyTimer2.Tick += EnemyTimer2_Tick;
-            enemyTimer3 = new System.Windows.Forms.Timer();
-            enemyTimer3.Interval = tickInterval; // Thời gian cập nhật vị trí (có thể điều chỉnh)
-            enemyTimer3.Tick += EnemyTimer3_Tick;
-            enemyTimer4 = new System.Windows.Forms.Timer();
-            enemyTimer4.Interval = tickInterval; // Thời gian cập nhật vị trí (có thể điều chỉnh)
-            enemyTimer4.Tick += EnemyTimer4_Tick;
-            enemyTimer5 = new System.Windows.Forms.Timer();
-            enemyTimer5.Interval = tickInterval; // Thời gian cập nhật vị trí (có thể điều chỉnh)
-            enemyTimer5.Tick += EnemyTimer5_Tick;
+            timer = new System.Windows.Forms.Timer();
+            timer.Interval = tickInterval;
+            timer.Tick += Timer_Tick;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -85,21 +48,67 @@ namespace View
             UpdateEnemyInfo();
 
             // Bắt đầu đếm ngược để tấn công tự động
-            playerTimer1.Start();
-            playerTimer2.Start();
-            playerTimer3.Start();
-            playerTimer4.Start();
-            playerTimer5.Start();
-            enemyTimer1.Start();
-            enemyTimer2.Start();
-            enemyTimer3.Start();
-            enemyTimer4.Start();
-            enemyTimer5.Start();
+            timer.Start();
         }
 
-        private void PlayerStrike(Player player, ProgressBar timerbar, Panel panel)
+        private void MovePlayerToTarget(Panel playerpanel, Point originalPlayerPosition, Point targetPosition)
         {
-            Point originalPlayerPosition = panel.Location;
+            System.Windows.Forms.Timer moveTimer = new System.Windows.Forms.Timer();
+            moveTimer.Interval = moveSpeed;
+            moveTimer.Tick += (sender, e) => MoveToTargetTimer_Tick(sender, e, playerpanel, originalPlayerPosition, targetPosition, moveTimer);
+            moveTimer.Start();
+        }
+
+        private void MovePlayerToOriginalPosition(Panel playerpanel, Point originalPlayerPosition, System.Windows.Forms.Timer moveTimer)
+        {
+            moveTimer = new System.Windows.Forms.Timer();
+            moveTimer.Interval = moveSpeed;
+            moveTimer.Tick += (sender, e) => MoveToOriginalTimer_Tick(sender, e, playerpanel, originalPlayerPosition, moveTimer);
+            moveTimer.Start();
+        }
+
+        private void MoveToTargetTimer_Tick(object sender, EventArgs e, Panel playerpanel, Point originalPlayerPosition, Point targetPosition, System.Windows.Forms.Timer moveTimer)
+        {
+            if (!playerpanel.Bounds.IntersectsWith(new Rectangle(targetPosition, playerPanel.Size)))
+            {
+                // Di chuyển nhân vật đến vị trí cần tấn công
+                playerpanel.Left += (playerpanel.Location.X < targetPosition.X) ? moveSpeed : -moveSpeed;
+                playerpanel.Top += (playerpanel.Location.Y < targetPosition.Y) ? moveSpeed : -moveSpeed;
+            }
+            else
+            {
+                // Đã đến vị trí cần tấn công
+                moveTimer.Stop();
+
+                // Thực hiện hành động tấn công
+
+                // Di chuyển nhân vật trở về vị trí ban đầu
+                MovePlayerToOriginalPosition(playerpanel, originalPlayerPosition, moveTimer);
+                UpdatePlayerInfo();
+                UpdateEnemyInfo();
+            }
+        }
+
+        private void MoveToOriginalTimer_Tick(object sender, EventArgs e,Panel playerpanel, Point originalPlayerPosition, System.Windows.Forms.Timer moveTimer)
+        {
+            if (playerpanel.Location != originalPlayerPosition)
+            {
+                // Di chuyển nhân vật về vị trí ban đầu
+                playerpanel.Left += (playerpanel.Location.X < originalPlayerPosition.X) ? moveSpeed : -moveSpeed;
+                playerpanel.Top += (playerpanel.Location.Y < originalPlayerPosition.Y) ? moveSpeed : -moveSpeed;
+            }
+            else
+            {
+                // Đã đến vị trí ban đầu
+                moveTimer.Stop();
+
+                // Tiếp tục đếm ngược để tấn công tự động
+                timer.Start();
+            }
+        }
+
+        private void PlayerStrike(Player player, ProgressBar timerbar, Panel playerpanel)
+        {
             if (player.curHealth <= 0)
             {
                 // Người chơi đã chết, không thể tấn công nữa
@@ -118,6 +127,7 @@ namespace View
             }
             if (timerbar.Value >= timerbar.Maximum)
             {
+                timer.Stop();
                 // Reset giá trị ProgressBar về 0
                 timerbar.Value = 0 + bonus;
 
@@ -128,12 +138,41 @@ namespace View
                     // Đối thủ đã chết, chọn một đối thủ khác
                     targetEnemy = GetRandomEnemy();
                 }
+                Point targetPosition = new Point();
+                if (targetEnemy.name.Contains('1'))
+                {
+                    targetPosition = pnlEnemy1.Location;
+                }
+                else if (targetEnemy.name.Contains('2'))
+                {
+                    targetPosition = pnlEnemy2.Location;
+                }
+                else if (targetEnemy.name.Contains('3'))
+                {
+                    targetPosition = pnlEnemy3.Location;
+                }
+                else if (targetEnemy.name.Contains('4'))
+                {
+                    targetPosition = pnlEnemy4.Location;
+                }
+                else if (targetEnemy.name.Contains('5'))
+                {
+                    targetPosition = pnlEnemy5.Location;
+                }
+                // Lưu vị trí ban đầu của nhân vật
+                Point originalPlayerPosition = playerpanel.Location;
+
+                playerPanel = playerpanel;
+
+                // Di chuyển nhân vật đến vị trí của đối tượng cần tấn công
+
+                MovePlayerToTarget(playerpanel, originalPlayerPosition, targetPosition);
+
                 // Thực hiện hành động tấn công của người chơi lên đối thủ được chọn
                 player.Attack(targetEnemy);
 
-                // Cập nhật thông tin hiển thị
-                UpdatePlayerInfo();
-                UpdateEnemyInfo();
+                // Di chuyển nhân vật trở lại vị trí ban đầu
+                playerPanel = playerpanel;
             }
         }
         private void EnemyStrike(Enemy enemy, ProgressBar timerbar)
@@ -173,56 +212,50 @@ namespace View
                 UpdateEnemyInfo();
             }
         }
-        private void PlayerTimer1_Tick(object sender, EventArgs e)
+        private void Timer_Tick(object sender, EventArgs e)
         {
-            PlayerStrike(player1, playerTimerBar1, pnlPlayer1);
-            // Cập nhật vị trí di chuyển và ra đòn cho player1
-        }
-        private void PlayerTimer2_Tick(object sender, EventArgs e)
-        {
-            PlayerStrike(player2, playerTimerBar2, pnlPlayer2);
-            // Cập nhật vị trí di chuyển và ra đòn cho player1
-        }
-        private void PlayerTimer3_Tick(object sender, EventArgs e)
-        {
-            PlayerStrike(player3, playerTimerBar3, pnlPlayer3);
-            // Cập nhật vị trí di chuyển và ra đòn cho player1
-        }
-        private void PlayerTimer4_Tick(object sender, EventArgs e)
-        {
-            PlayerStrike(player4, playerTimerBar4, pnlPlayer4);
-            // Cập nhật vị trí di chuyển và ra đòn cho player1
-        }
-        private void PlayerTimer5_Tick(object sender, EventArgs e)
-        {
-            PlayerStrike(player5, playerTimerBar5, pnlPlayer5);
-            // Cập nhật vị trí di chuyển và ra đòn cho player1
-        }
-
-        private void EnemyTimer1_Tick(object sender, EventArgs e)
-        {
-            EnemyStrike(enemy1, enemyTimerBar1);
-            // Cập nhật vị trí di chuyển và ra đòn cho enemy1
-        }
-        private void EnemyTimer2_Tick(object sender, EventArgs e)
-        {
-            EnemyStrike(enemy2, enemyTimerBar2);
-            // Cập nhật vị trí di chuyển và ra đòn cho enemy1
-        }
-        private void EnemyTimer3_Tick(object sender, EventArgs e)
-        {
-            EnemyStrike(enemy3, enemyTimerBar3);
-            // Cập nhật vị trí di chuyển và ra đòn cho enemy1
-        }
-        private void EnemyTimer4_Tick(object sender, EventArgs e)
-        {
-            EnemyStrike(enemy4, enemyTimerBar4);
-            // Cập nhật vị trí di chuyển và ra đòn cho enemy1
-        }
-        private void EnemyTimer5_Tick(object sender, EventArgs e)
-        {
-            EnemyStrike(enemy5, enemyTimerBar5);
-            // Cập nhật vị trí di chuyển và ra đòn cho enemy1
+            // Tăng giá trị hiện tại của ProgressBar người chơi lên 1
+            if (player1 != null)
+            {
+                PlayerStrike(player1, playerTimerBar1, pnlPlayer1);
+            }
+            if (player2 != null)
+            {
+                PlayerStrike(player2, playerTimerBar2, pnlPlayer2);
+            }
+            if (player3 != null)
+            {
+                PlayerStrike(player3, playerTimerBar3, pnlPlayer3);
+            }
+            if (player4 != null)
+            {
+                PlayerStrike(player4, playerTimerBar4, pnlPlayer4);
+            }
+            if (player5 != null)
+            {
+                PlayerStrike(player5, playerTimerBar5, pnlPlayer5);
+            }
+            if (enemy1 != null)
+            {
+                EnemyStrike(enemy1, enemyTimerBar1);
+            }
+            if (enemy2 != null)
+            {
+                EnemyStrike(enemy2, enemyTimerBar2);
+            }
+            if (enemy3 != null)
+            {
+                EnemyStrike(enemy3, enemyTimerBar3);
+            }
+            if (enemy4 != null)
+            {
+                EnemyStrike(enemy4, enemyTimerBar4);
+            }
+            if (enemy5 != null)
+            {
+                EnemyStrike(enemy5, enemyTimerBar5);
+            }
+            CheckWinCondition();
         }
 
         private void UpdatePlayerInfo()

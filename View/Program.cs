@@ -21,11 +21,11 @@ namespace View
 
             // Thêm người chơi vào đội hình
 
-            playerTeam.Add(new Player("Player1", 1, 100, 100, 10, 10, 4.5f, 0, 5));//Name, Max Health, Current Health, Damage, Armor, Attack Speed, Mana
+            playerTeam.Add(new Player("Player1", 1, 100, 100, 10, 10, 1, 0, 5));//Name, Max Health, Current Health, Damage, Armor, Attack Speed, Mana
             playerTeam.Add(new Player("Player2", 1, 100, 100, 10, 10, 5, 0, 5));
             playerTeam.Add(new Player("Player3", 1, 100, 100, 10, 10, 5.5f, 0, 5));
             playerTeam.Add(new Player("Player4", 1, 100, 100, 10, 10, 3, 0, 5));
-            playerTeam.Add(new Player("Player5", 1, 100, 100, 10, 10, 1, 0, 5));
+            playerTeam.Add(new Player("Player5", 1, 100, 100, 10, 10, 2, 0, 5));
 
             // Thêm kẻ địch vào đội hình
             enemyTeam.Add(new Enemy("Enemy1", 1, 100, 100, 8, 5, 5));//Name, Max Health, Current Health, Damage, Armor, Attack Speed
