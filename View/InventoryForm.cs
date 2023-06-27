@@ -16,11 +16,12 @@ namespace View
     {
         private List<Item> inventory;
         private ToolTip toolTip;
-
+        private Form tooltipForm;
         public InventoryForm(List<Item> inventory)
         {
             InitializeComponent();
             this.inventory = inventory;
+            inventory.Add(new Equipment("Axe", "Weapon", "This is a axe", "..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\Weapon.png", 50, 10, 0, 0));
             // Thêm các ô vào lưới
             for (int row = 0; row < tlpInventory.RowCount; row++)
             {
@@ -39,7 +40,17 @@ namespace View
 
             LoadItems();
         }
+/*
+        public List<Item> Inventory
+        {
+            get { return inventory; }
+        }
 
+        public TableLayoutPanel InventoryTableLayoutPanel
+        {
+            get { return tlpInventory; }
+        }
+*/
         private void LoadItems()
         {
             foreach (Panel cell in tlpInventory.Controls)
@@ -57,11 +68,23 @@ namespace View
                         pictureBox.Image = Image.FromFile(imagePath);
                     }
                     pictureBox.MouseEnter += PictureBox_MouseEnter;
+                    pictureBox.MouseLeave += PictureBox_MouseLeave;
+                    pictureBox.MouseDown += (sender, e) => panel_DragMouseDown(sender, e, cell);
                     cell.Controls.Clear();
                     cell.Controls.Add(pictureBox);
                 }
             }
         }
+        private void panel_DragMouseDown(object sender, MouseEventArgs e, Panel cell)
+        {
+            Item item = GetItemFromCell(cell);
+
+            if (item != null)
+            {
+                cell.DoDragDrop(item, DragDropEffects.Move);
+            }
+        }
+
 
         private void PictureBox_MouseEnter(object sender, EventArgs e)
         {
@@ -71,7 +94,51 @@ namespace View
 
             // Hiển thị thông tin tooltip cho vật phẩm
             string tooltipText = GetItemTooltipText(item);
-            SetToolTip(pictureBox, tooltipText);
+            ShowItemTooltip(pictureBox, tooltipText);
+        }
+
+        private void PictureBox_MouseLeave(object sender, EventArgs e)
+        {
+            // Ẩn tooltip khi di chuột ra khỏi PictureBox
+            HideItemTooltip();
+        }
+
+        private void ShowItemTooltip(PictureBox pictureBox, string tooltipText)
+        {
+            // Tạo một Form để hiển thị tooltip kèm hình ảnh
+            tooltipForm = new Form();
+            tooltipForm.FormBorderStyle = FormBorderStyle.None;
+            tooltipForm.BackColor = Color.White;
+            tooltipForm.ShowInTaskbar = false;
+            tooltipForm.StartPosition = FormStartPosition.Manual;
+            tooltipForm.Location = new Point(pictureBox.PointToScreen(Point.Empty).X + pictureBox.Width, pictureBox.PointToScreen(Point.Empty).Y);
+
+            // Tạo PictureBox trong tooltipForm để hiển thị hình ảnh
+            PictureBox tooltipPictureBox = new PictureBox();
+            tooltipPictureBox.Size = new Size(100, 100);
+            tooltipPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            tooltipPictureBox.Image = pictureBox.Image;
+            tooltipForm.Controls.Add(tooltipPictureBox);
+
+            // Tạo Label trong tooltipForm để hiển thị thông tin vật phẩm
+            Label tooltipLabel = new Label();
+            tooltipLabel.AutoSize = true;
+            tooltipLabel.Text = tooltipText;
+            tooltipLabel.Location = new Point(tooltipPictureBox.Right + 5, tooltipPictureBox.Top);
+            tooltipForm.Controls.Add(tooltipLabel);
+
+            tooltipForm.Show();
+        }
+
+        private void HideItemTooltip()
+        {
+            // Đóng và giải phóng tooltipForm nếu nó đang hiển thị
+            if (tooltipForm != null && !tooltipForm.IsDisposed)
+            {
+                tooltipForm.Close();
+                tooltipForm.Dispose();
+                tooltipForm = null;
+            }
         }
 
         private Item GetItemFromCell(Panel cell)
@@ -102,18 +169,27 @@ namespace View
             tooltipText += $"Description: \n{item.Description}\n";
             // Thêm các thông tin khác tùy thuộc vào thuộc tính của vật phẩm
 
-            return tooltipText;
-        }
-
-
-
-        private void SetToolTip(Control control, string tooltipText)
-        {
-            if (toolTip == null)
+            // Kiểm tra xem vật phẩm có phải là Equipment không
+            if (item is Equipment)
             {
-                toolTip = new ToolTip();
+                Equipment equipment = (Equipment)item;
+                if (equipment.HP != 0) {
+                    tooltipText += $"HP: +{equipment.HP}\n";
+                }
+                if (equipment.Damage != 0)
+                {
+                    tooltipText += $"Damage: +{equipment.Damage}\n";
+                }
+                if (equipment.AttackSpeed != 0)
+                {
+                    tooltipText += $"AS: +{equipment.AttackSpeed}%\n";
+                }
+                if (equipment.Armor != 0)
+                {
+                    tooltipText += $"Armor: +{equipment.Armor}\n";
+                }
             }
-            toolTip.SetToolTip(control, tooltipText);
+                return tooltipText;
         }
 
         public void UpdateItems(List<Item> items)
@@ -130,55 +206,12 @@ namespace View
 
             if (item != null)
             {
+                Equipment equipment = (Equipment)item;
+                // Xóa trang bị khỏi danh sách trang bị trong kho đồ
+                inventory.Remove(equipment);
                 // Bắt đầu quá trình kéo thả với dữ liệu là vật phẩm (item)
-                pictureBox.DoDragDrop(item, DragDropEffects.Move);
+                cell.DoDragDrop(item, DragDropEffects.Move);
             }
-        }
-
-        private void CharacterForm_DragEnter(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(typeof(Item)))
-            {
-                e.Effect = DragDropEffects.Move;
-            }
-        }
-
-        private void CharacterForm_DragDrop(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(typeof(Item)))
-            {
-                Item item = (Item)e.Data.GetData(typeof(Item));
-                Panel cell = (Panel)sender;
-
-                // Kiểm tra xem ô đã có trang bị hay chưa
-                if (cell.Controls.Count > 0)
-                {
-                    // Nếu ô đã có trang bị, trả về trang bị về vị trí ban đầu trong InventoryForm
-                    PictureBox pictureBox = (PictureBox)cell.Controls[0];
-                    Panel originalCell = (Panel)pictureBox.Parent;
-                    Item originalItem = GetItemFromCell(originalCell);
-                    if (originalItem != null)
-                    {
-                        originalCell.Controls.Clear();
-                        originalCell.Controls.Add(pictureBox);
-                    }
-                }
-
-                // Gắn trang bị vào ô và cập nhật chỉ số
-                PictureBox itemPictureBox = (PictureBox)cell.Controls[0];
-                cell.Controls.Clear();
-                cell.Controls.Add(itemPictureBox);
-                UpdateStats(item);
-            }
-        }
-
-        private void UpdateStats(Item item)
-        {
-            // Cập nhật chỉ số cần thiết dựa trên trang bị (item)
-            // Bạn cần triển khai logic cập nhật tương ứng cho trò chơi của mình
-
-            // Example:
-            // characterForm.UpdateStats(item);
         }
     }
 }

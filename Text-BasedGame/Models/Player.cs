@@ -15,12 +15,14 @@ namespace Text_BasedGame.Models
         public Equipment SecondaryWeapon { get; set; }
         public Equipment Helmet { get; set; }
         public Equipment ChestArmor { get; set; }
+        public Equipment ArmArmor { get; set; }
         public Equipment Glove { get; set; }
         public Equipment Belt { get; set; }
         public Equipment Pants { get; set; }
         public Equipment Boots { get; set; }
         public Equipment Necklace { get; set; }
-        public Equipment Ring { get; set; }
+        public Equipment Ring1 { get; set; }
+        public Equipment Ring2 { get; set; }
         public Equipment Artifact { get; set; }
         public Player() { }
 
@@ -38,7 +40,7 @@ namespace Text_BasedGame.Models
         }
 
         public Player(string name, int level, float maxHealth, float curHealth, int damage, int armor, float attackSpeed, int mana, bool ultimate, int statPoints,
-            Equipment weapon, Equipment secondaryWeapon, Equipment helmet, Equipment chestArmor, Equipment glove, Equipment belt, Equipment pants, Equipment boots, Equipment necklace, Equipment ring, Equipment artifact) : base(name, level, maxHealth, curHealth, damage, armor, attackSpeed)
+            Equipment weapon, Equipment secondaryWeapon, Equipment helmet, Equipment chestArmor, Equipment armArmor, Equipment glove, Equipment belt, Equipment pants, Equipment boots, Equipment necklace, Equipment ring1, Equipment ring2, Equipment artifact) : base(name, level, maxHealth, curHealth, damage, armor, attackSpeed)
         {
             this.mana = mana;
             this.ultimate = ultimate;
@@ -47,12 +49,14 @@ namespace Text_BasedGame.Models
             SecondaryWeapon = secondaryWeapon;
             Helmet = helmet;
             ChestArmor = chestArmor;
+            ArmArmor = armArmor;
             Glove = glove;
             Belt = belt;
             Pants = pants;
             Boots = boots;
             Necklace = necklace;
-            Ring = ring;
+            Ring1 = ring1;
+            Ring2 = ring2;
             Artifact = artifact;
         }
 

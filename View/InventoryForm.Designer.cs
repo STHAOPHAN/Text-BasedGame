@@ -58,8 +58,6 @@
             tlpInventory.RowStyles.Add(new RowStyle(SizeType.Absolute, 77F));
             tlpInventory.Size = new Size(783, 388);
             tlpInventory.TabIndex = 0;
-            tlpInventory.DragDrop += CharacterForm_DragDrop;
-            tlpInventory.DragEnter += CharacterForm_DragEnter;
             // 
             // InventoryForm
             // 

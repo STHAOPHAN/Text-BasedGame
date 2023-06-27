@@ -25,8 +25,9 @@ namespace View
         private Point targetPosition;
         private int moveSpeed = 10; // Tốc độ di chuyển của panel (có thể điều chỉnh)
         private Point originalPlayerPosition;
+        private List<Equipment> equipmentInventory;
 
-        public MainForm(List<Player> playerTeam, List<Enemy> enemyTeam, List<Item> items)
+        public MainForm(List<Player> playerTeam, List<Enemy> enemyTeam, List<Item> items) 
         {
             InitializeComponent();
 
@@ -454,7 +455,7 @@ namespace View
         private void btnCharacter_Click(object sender, EventArgs e)
         {
             // Tạo một instance của CharacterForm và truyền danh sách người chơi vào constructor
-            CharacterForm characterForm = new CharacterForm(playerTeam);
+            CharacterForm characterForm = new CharacterForm(playerTeam, equipmentInventory);
 
             // Hiển thị CharacterForm
             characterForm.Show();
@@ -462,16 +463,8 @@ namespace View
 
         private void btnInventory_Click(object sender, EventArgs e)
         {
-            if (inventoryForm == null)
-            {
-                inventoryForm = new InventoryForm(items);
-                inventoryForm.Show();
-            }
-            else
-            {
-                inventoryForm.UpdateItems(items);
-                inventoryForm.Focus();
-            }
+            inventoryForm = new InventoryForm(items);
+            inventoryForm.Show();
         }
 
         private void btnSkill_Click(object sender, EventArgs e)
