@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Text_BasedGame.Models;
+using View;
 
 namespace View
 {
@@ -17,11 +18,14 @@ namespace View
         private List<Item> inventory;
         private ToolTip toolTip;
         private Form tooltipForm;
-        public InventoryForm(List<Item> inventory)
+        private List<Player> players;
+        private CharacterForm characterForm;
+
+        public InventoryForm(List<Item> inventory, List<Player> players)
         {
             InitializeComponent();
             this.inventory = inventory;
-            inventory.Add(new Equipment("Axe", "Weapon", "This is a axe", "..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\Weapon.png", 50, 10, 0, 0));
+            this.players = players;
             // Thêm các ô vào lưới
             for (int row = 0; row < tlpInventory.RowCount; row++)
             {
@@ -40,17 +44,7 @@ namespace View
 
             LoadItems();
         }
-/*
-        public List<Item> Inventory
-        {
-            get { return inventory; }
-        }
 
-        public TableLayoutPanel InventoryTableLayoutPanel
-        {
-            get { return tlpInventory; }
-        }
-*/
         private void LoadItems()
         {
             foreach (Panel cell in tlpInventory.Controls)
@@ -69,9 +63,112 @@ namespace View
                     }
                     pictureBox.MouseEnter += PictureBox_MouseEnter;
                     pictureBox.MouseLeave += PictureBox_MouseLeave;
-                    pictureBox.MouseDown += (sender, e) => panel_DragMouseDown(sender, e, cell);
+                    pictureBox.MouseDown += (sender, e) =>
+                    {
+                        if (e.Button == MouseButtons.Left)
+                        {
+                            panel_DragMouseDown(sender, e, cell);
+                        }
+                    };
+                    pictureBox.MouseUp += PictureBox_MouseUp;
                     cell.Controls.Clear();
+                    if (item != null)
                     cell.Controls.Add(pictureBox);
+                }
+            }
+        }
+
+        private void PictureBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                PictureBox pictureBox = (PictureBox)sender;
+                Panel cell = (Panel)pictureBox.Parent;
+                Item item = GetItemFromCell(cell);
+
+                if (item != null && item is Equipment equipment)
+                {
+                    // Tạo ContextMenuStrip mới và thêm các MenuItem tùy chọn
+                    ContextMenuStrip contextMenuStrip = new ContextMenuStrip();
+
+                        // MenuItem "Trang Bị"
+                        Label equipLabel = new Label();
+                        equipLabel.Text = "Trang Bị";
+                        equipLabel.MouseEnter += (menuSender, menuEvent) => EquipLabel_MouseEnter(menuSender, menuEvent, cell);
+                        contextMenuStrip.Items.Add(new ToolStripControlHost(equipLabel));
+
+                        // MenuItem "Xóa"
+                        ToolStripMenuItem deleteMenuItem = new ToolStripMenuItem("Xóa");
+                        deleteMenuItem.Click += (menuSender, menuEvent) => DeleteMenuItem_Click(menuSender, menuEvent, cell);
+                        contextMenuStrip.Items.Add(deleteMenuItem);
+
+                    // Hiển thị menu tại vị trí chuột phải
+                    contextMenuStrip.Show(pictureBox, e.Location);
+                }
+            }
+        }
+
+        private void EquipLabel_MouseEnter(object sender, EventArgs e, Panel cell)
+        {
+            Item item = GetItemFromCell(cell);
+            if (item != null && item is Equipment equipment)
+            {
+                // Tạo ToolStripDropDown
+                ToolStripDropDown dropDown = new ToolStripDropDown();
+                // Tạo ToolStripMenuItem cho mỗi người chơi và thêm vào ToolStripDropDown
+                foreach (Player player in players)
+                {
+                    ToolStripMenuItem playerMenuItem = new ToolStripMenuItem(player.name);
+                    playerMenuItem.Tag = player; // Lưu trữ thông tin người chơi trong Tag để lấy sau này
+                    playerMenuItem.Click += (sender, e) => PlayerMenuItem_Click(sender, e, cell, item);
+                    dropDown.Items.Add(playerMenuItem);
+                }
+
+                // Hiển thị ToolStripDropDown tại vị trí chuột phải
+                dropDown.Show(MousePosition);
+            }
+        }
+
+        private void PlayerMenuItem_Click(object sender, EventArgs e, Panel panel, Item item)
+        {
+            ToolStripMenuItem menuItem = (ToolStripMenuItem)sender;
+            Player selectedPlayer = (Player)menuItem.Tag;
+            Equipment equipment = (Equipment)item;
+            // Thực hiện thao tác trang bị cho người chơi được chọn tại đây
+            // ...
+            characterForm = new CharacterForm(players, inventory);
+            Equipment returnequipment =  characterForm.EquipItemByButton(equipment, selectedPlayer);
+            if (returnequipment == null)
+            {
+                inventory.Remove(equipment);
+                panel.Controls.Clear();
+                // Sau khi trang bị thành công, cập nhật lại danh sách vật phẩm trong kho đồ
+                UpdateItems(inventory);
+            }
+            else
+            {
+                inventory.Add(returnequipment);
+                inventory.Remove(equipment);
+                panel.Controls.Clear();
+                UpdateItems(inventory);
+            }
+        }
+
+        private void DeleteMenuItem_Click(object sender, EventArgs e, Panel cell)
+        {
+            Item item = GetItemFromCell(cell);
+
+            if (item != null)
+            {
+                DialogResult result = MessageBox.Show("Bạn có chắc muốn xóa?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    // Thực hiện thao tác xóa vật phẩm tại đây
+                    // Ví dụ: xóa vật phẩm khỏi danh sách inventory
+                    inventory.Remove(item);
+                    cell.Controls.Clear();
+                    LoadItems();
                 }
             }
         }
@@ -84,7 +181,6 @@ namespace View
                 cell.DoDragDrop(item, DragDropEffects.Move);
             }
         }
-
 
         private void PictureBox_MouseEnter(object sender, EventArgs e)
         {
@@ -101,6 +197,15 @@ namespace View
         {
             // Ẩn tooltip khi di chuột ra khỏi PictureBox
             HideItemTooltip();
+        }
+
+        public void AddItemToInventory(Equipment equipment)
+        {
+            if (equipment != null)
+            {
+                inventory.Add(equipment);
+                LoadItems();
+            }
         }
 
         private void ShowItemTooltip(PictureBox pictureBox, string tooltipText)
@@ -194,7 +299,7 @@ namespace View
 
         public void UpdateItems(List<Item> items)
         {
-            this.inventory = items;
+            inventory = items;
             LoadItems();
         }
 

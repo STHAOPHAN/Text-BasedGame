@@ -17,14 +17,14 @@ namespace View
             List<Item> items = new List<Item>();
             List<Equipment> equipments = new List<Equipment>();
 
-            items.Add(new Item("Axe", "Weapon", "This is a axe", "..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\Weapon.png"));
-            items.Add(new Item("Shield", "Secondary Weapon", "This is a shield", "..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\SecondaryWeapon.png"));
+            //items.Add(new Item("Axe", "Weapon", "This is a axe", "..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\Weapon.png"));
+            //items.Add(new Item("Shield", "Secondary Weapon", "This is a shield", "..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\SecondaryWeapon.png"));
             equipments.Add(new Equipment("Axe", "Weapon", "This is a axe", "..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\Weapon.png",50,10,0,0));
             equipments.Add(new Equipment("Shield", "Secondary Weapon", "This is a shield", "..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\SecondaryWeapon.png",0,0, 50, 10));
 
             // Thêm người chơi vào đội hình
 
-            playerTeam.Add(new Player("Player1", 1, 100, 100, 10, 10, 1, 0, 5));//Name, Max Health, Current Health, Damage, Armor, Attack Speed, Mana
+            playerTeam.Add(new Player("Player1", 1, 100, 100, 100, 10, 1, 0, 5));//Name, Max Health, Current Health, Damage, Armor, Attack Speed, Mana
             playerTeam.Add(new Player("Player2", 1, 100, 100, 10, 10, 5, 0, 5));
             playerTeam.Add(new Player("Player3", 1, 100, 100, 10, 10, 4, 0, 5));
             playerTeam.Add(new Player("Player4", 1, 100, 100, 10, 10, 3, 0, 5));

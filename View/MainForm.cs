@@ -18,14 +18,14 @@ namespace View
         private Enemy enemy1, enemy2, enemy3, enemy4, enemy5;
         private List<Item> items;
         private EquipmentControllercs equipmentControllercs = new EquipmentControllercs();
-        private InventoryForm inventoryForm;
         private System.Windows.Forms.Timer moveTimer;
         private Panel playerPanel;
         private Panel targetPanel;
         private Point targetPosition;
         private int moveSpeed = 10; // Tốc độ di chuyển của panel (có thể điều chỉnh)
         private Point originalPlayerPosition;
-        private List<Equipment> equipmentInventory;
+        private CharacterForm characterForm;
+        private InventoryForm inventoryForm;
 
         public MainForm(List<Player> playerTeam, List<Enemy> enemyTeam, List<Item> items) 
         {
@@ -40,6 +40,15 @@ namespace View
             timer.Tick += Timer_Tick;
         }
 
+        public MainForm()
+        {
+            InitializeComponent();
+        }
+
+        public List<Player> GetPlayers()
+        {
+            return playerTeam;
+        }
         private void MainForm_Load(object sender, EventArgs e)
         {
             // Thiết lập giao diện ban đầu
@@ -454,16 +463,27 @@ namespace View
 
         private void btnCharacter_Click(object sender, EventArgs e)
         {
-            // Tạo một instance của CharacterForm và truyền danh sách người chơi vào constructor
-            CharacterForm characterForm = new CharacterForm(playerTeam, equipmentInventory);
+            if (characterForm == null || characterForm.IsDisposed)
+            {
+                // Tạo một instance mới của CharacterForm và truyền danh sách người chơi vào constructor
+                characterForm = new CharacterForm(playerTeam, items);
+            }
 
             // Hiển thị CharacterForm
+            characterForm.BringToFront();
             characterForm.Show();
         }
 
         private void btnInventory_Click(object sender, EventArgs e)
         {
-            inventoryForm = new InventoryForm(items);
+            if (inventoryForm == null || inventoryForm.IsDisposed)
+            {
+                // Tạo một instance mới của InventoryForm và truyền danh sách vật phẩm và đội ngũ người chơi vào constructor
+                inventoryForm = new InventoryForm(items, playerTeam);
+            }
+
+            // Hiển thị InventoryForm
+            inventoryForm.BringToFront();
             inventoryForm.Show();
         }
 

@@ -41,16 +41,16 @@
             ptbBoots = new PictureBox();
             pnlGlove = new Panel();
             ptbGlove = new PictureBox();
-            pnlArmChest = new Panel();
+            pnlArmArmor = new Panel();
             ptbArmArmor = new PictureBox();
             pnlWeapon = new Panel();
             ptbWeapon = new PictureBox();
             pnlSecondaryWeapon = new Panel();
             ptbSecondaryWeapon = new PictureBox();
-            pnlRing1 = new Panel();
-            ptbRing1 = new PictureBox();
-            pnlRing2 = new Panel();
-            ptbRing2 = new PictureBox();
+            pnlRing = new Panel();
+            ptbRing = new PictureBox();
+            pnlBracelet = new Panel();
+            ptbBracelet = new PictureBox();
             pnlArtifact = new Panel();
             ptbArtifact = new PictureBox();
             pnlNecklace = new Panel();
@@ -87,16 +87,16 @@
             ((System.ComponentModel.ISupportInitialize)ptbBoots).BeginInit();
             pnlGlove.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ptbGlove).BeginInit();
-            pnlArmChest.SuspendLayout();
+            pnlArmArmor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ptbArmArmor).BeginInit();
             pnlWeapon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ptbWeapon).BeginInit();
             pnlSecondaryWeapon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ptbSecondaryWeapon).BeginInit();
-            pnlRing1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)ptbRing1).BeginInit();
-            pnlRing2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)ptbRing2).BeginInit();
+            pnlRing.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ptbRing).BeginInit();
+            pnlBracelet.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)ptbBracelet).BeginInit();
             pnlArtifact.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ptbArtifact).BeginInit();
             pnlNecklace.SuspendLayout();
@@ -137,6 +137,7 @@
             ptbHelmet.SizeMode = PictureBoxSizeMode.StretchImage;
             ptbHelmet.TabIndex = 28;
             ptbHelmet.TabStop = false;
+            ptbHelmet.MouseUp += PictureBox_MouseUp;
             // 
             // pnlChestArmor
             // 
@@ -160,6 +161,7 @@
             ptbChestArmor.SizeMode = PictureBoxSizeMode.StretchImage;
             ptbChestArmor.TabIndex = 26;
             ptbChestArmor.TabStop = false;
+            ptbChestArmor.MouseUp += PictureBox_MouseUp;
             // 
             // pnlBelt
             // 
@@ -183,6 +185,7 @@
             ptbBelt.SizeMode = PictureBoxSizeMode.StretchImage;
             ptbBelt.TabIndex = 28;
             ptbBelt.TabStop = false;
+            ptbBelt.MouseUp += PictureBox_MouseUp;
             // 
             // pnlPants
             // 
@@ -206,6 +209,7 @@
             ptbPants.SizeMode = PictureBoxSizeMode.StretchImage;
             ptbPants.TabIndex = 27;
             ptbPants.TabStop = false;
+            ptbPants.MouseUp += PictureBox_MouseUp;
             // 
             // pnlBoots
             // 
@@ -229,6 +233,7 @@
             ptbBoots.SizeMode = PictureBoxSizeMode.StretchImage;
             ptbBoots.TabIndex = 26;
             ptbBoots.TabStop = false;
+            ptbBoots.MouseUp += PictureBox_MouseUp;
             // 
             // pnlGlove
             // 
@@ -252,20 +257,21 @@
             ptbGlove.SizeMode = PictureBoxSizeMode.StretchImage;
             ptbGlove.TabIndex = 27;
             ptbGlove.TabStop = false;
+            ptbGlove.MouseUp += PictureBox_MouseUp;
             // 
-            // pnlArmChest
+            // pnlArmArmor
             // 
-            pnlArmChest.AllowDrop = true;
-            pnlArmChest.BackColor = SystemColors.Window;
-            pnlArmChest.BorderStyle = BorderStyle.FixedSingle;
-            pnlArmChest.Controls.Add(ptbArmArmor);
-            pnlArmChest.Location = new Point(480, 195);
-            pnlArmChest.Margin = new Padding(3, 4, 3, 4);
-            pnlArmChest.Name = "pnlArmChest";
-            pnlArmChest.Size = new Size(72, 99);
-            pnlArmChest.TabIndex = 15;
-            pnlArmChest.DragDrop += EquipmentSlot_DragDrop;
-            pnlArmChest.DragEnter += EquipmentSlot_DragEnter;
+            pnlArmArmor.AllowDrop = true;
+            pnlArmArmor.BackColor = SystemColors.Window;
+            pnlArmArmor.BorderStyle = BorderStyle.FixedSingle;
+            pnlArmArmor.Controls.Add(ptbArmArmor);
+            pnlArmArmor.Location = new Point(480, 195);
+            pnlArmArmor.Margin = new Padding(3, 4, 3, 4);
+            pnlArmArmor.Name = "pnlArmArmor";
+            pnlArmArmor.Size = new Size(72, 99);
+            pnlArmArmor.TabIndex = 15;
+            pnlArmArmor.DragDrop += EquipmentSlot_DragDrop;
+            pnlArmArmor.DragEnter += EquipmentSlot_DragEnter;
             // 
             // ptbArmArmor
             // 
@@ -275,6 +281,7 @@
             ptbArmArmor.SizeMode = PictureBoxSizeMode.StretchImage;
             ptbArmArmor.TabIndex = 26;
             ptbArmArmor.TabStop = false;
+            ptbArmArmor.MouseUp += PictureBox_MouseUp;
             // 
             // pnlWeapon
             // 
@@ -298,6 +305,7 @@
             ptbWeapon.SizeMode = PictureBoxSizeMode.StretchImage;
             ptbWeapon.TabIndex = 26;
             ptbWeapon.TabStop = false;
+            ptbWeapon.MouseUp += PictureBox_MouseUp;
             // 
             // pnlSecondaryWeapon
             // 
@@ -321,52 +329,55 @@
             ptbSecondaryWeapon.SizeMode = PictureBoxSizeMode.StretchImage;
             ptbSecondaryWeapon.TabIndex = 25;
             ptbSecondaryWeapon.TabStop = false;
+            ptbSecondaryWeapon.MouseUp += PictureBox_MouseUp;
             // 
-            // pnlRing1
+            // pnlRing
             // 
-            pnlRing1.AllowDrop = true;
-            pnlRing1.BackColor = SystemColors.Window;
-            pnlRing1.BorderStyle = BorderStyle.FixedSingle;
-            pnlRing1.Controls.Add(ptbRing1);
-            pnlRing1.Location = new Point(258, 324);
-            pnlRing1.Margin = new Padding(3, 4, 3, 4);
-            pnlRing1.Name = "pnlRing1";
-            pnlRing1.Size = new Size(44, 45);
-            pnlRing1.TabIndex = 18;
-            pnlRing1.DragDrop += EquipmentSlot_DragDrop;
-            pnlRing1.DragEnter += EquipmentSlot_DragEnter;
+            pnlRing.AllowDrop = true;
+            pnlRing.BackColor = SystemColors.Window;
+            pnlRing.BorderStyle = BorderStyle.FixedSingle;
+            pnlRing.Controls.Add(ptbRing);
+            pnlRing.Location = new Point(258, 324);
+            pnlRing.Margin = new Padding(3, 4, 3, 4);
+            pnlRing.Name = "pnlRing";
+            pnlRing.Size = new Size(44, 45);
+            pnlRing.TabIndex = 18;
+            pnlRing.DragDrop += EquipmentSlot_DragDrop;
+            pnlRing.DragEnter += EquipmentSlot_DragEnter;
             // 
-            // ptbRing1
+            // ptbRing
             // 
-            ptbRing1.Location = new Point(3, 3);
-            ptbRing1.Name = "ptbRing1";
-            ptbRing1.Size = new Size(36, 37);
-            ptbRing1.SizeMode = PictureBoxSizeMode.StretchImage;
-            ptbRing1.TabIndex = 30;
-            ptbRing1.TabStop = false;
+            ptbRing.Location = new Point(3, 3);
+            ptbRing.Name = "ptbRing";
+            ptbRing.Size = new Size(36, 37);
+            ptbRing.SizeMode = PictureBoxSizeMode.StretchImage;
+            ptbRing.TabIndex = 30;
+            ptbRing.TabStop = false;
+            ptbRing.MouseUp += PictureBox_MouseUp;
             // 
-            // pnlRing2
+            // pnlBracelet
             // 
-            pnlRing2.AllowDrop = true;
-            pnlRing2.BackColor = SystemColors.Window;
-            pnlRing2.BorderStyle = BorderStyle.FixedSingle;
-            pnlRing2.Controls.Add(ptbRing2);
-            pnlRing2.Location = new Point(494, 324);
-            pnlRing2.Margin = new Padding(3, 4, 3, 4);
-            pnlRing2.Name = "pnlRing2";
-            pnlRing2.Size = new Size(44, 45);
-            pnlRing2.TabIndex = 19;
-            pnlRing2.DragDrop += EquipmentSlot_DragDrop;
-            pnlRing2.DragEnter += EquipmentSlot_DragEnter;
+            pnlBracelet.AllowDrop = true;
+            pnlBracelet.BackColor = SystemColors.Window;
+            pnlBracelet.BorderStyle = BorderStyle.FixedSingle;
+            pnlBracelet.Controls.Add(ptbBracelet);
+            pnlBracelet.Location = new Point(494, 324);
+            pnlBracelet.Margin = new Padding(3, 4, 3, 4);
+            pnlBracelet.Name = "pnlBracelet";
+            pnlBracelet.Size = new Size(44, 45);
+            pnlBracelet.TabIndex = 19;
+            pnlBracelet.DragDrop += EquipmentSlot_DragDrop;
+            pnlBracelet.DragEnter += EquipmentSlot_DragEnter;
             // 
-            // ptbRing2
+            // ptbBracelet
             // 
-            ptbRing2.Location = new Point(3, 3);
-            ptbRing2.Name = "ptbRing2";
-            ptbRing2.Size = new Size(36, 37);
-            ptbRing2.SizeMode = PictureBoxSizeMode.StretchImage;
-            ptbRing2.TabIndex = 29;
-            ptbRing2.TabStop = false;
+            ptbBracelet.Location = new Point(3, 3);
+            ptbBracelet.Name = "ptbBracelet";
+            ptbBracelet.Size = new Size(36, 37);
+            ptbBracelet.SizeMode = PictureBoxSizeMode.StretchImage;
+            ptbBracelet.TabIndex = 29;
+            ptbBracelet.TabStop = false;
+            ptbBracelet.MouseUp += PictureBox_MouseUp;
             // 
             // pnlArtifact
             // 
@@ -390,6 +401,7 @@
             ptbArtifact.SizeMode = PictureBoxSizeMode.StretchImage;
             ptbArtifact.TabIndex = 28;
             ptbArtifact.TabStop = false;
+            ptbArtifact.MouseUp += PictureBox_MouseUp;
             // 
             // pnlNecklace
             // 
@@ -413,6 +425,7 @@
             ptbNecklace.SizeMode = PictureBoxSizeMode.StretchImage;
             ptbNecklace.TabIndex = 30;
             ptbNecklace.TabStop = false;
+            ptbNecklace.MouseUp += PictureBox_MouseUp;
             // 
             // lblDamage
             // 
@@ -633,11 +646,11 @@
             Controls.Add(panel14);
             Controls.Add(pnlNecklace);
             Controls.Add(pnlArtifact);
-            Controls.Add(pnlRing2);
-            Controls.Add(pnlRing1);
+            Controls.Add(pnlBracelet);
+            Controls.Add(pnlRing);
             Controls.Add(pnlSecondaryWeapon);
             Controls.Add(pnlWeapon);
-            Controls.Add(pnlArmChest);
+            Controls.Add(pnlArmArmor);
             Controls.Add(pnlGlove);
             Controls.Add(pnlBoots);
             Controls.Add(pnlPants);
@@ -663,16 +676,16 @@
             ((System.ComponentModel.ISupportInitialize)ptbBoots).EndInit();
             pnlGlove.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)ptbGlove).EndInit();
-            pnlArmChest.ResumeLayout(false);
+            pnlArmArmor.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)ptbArmArmor).EndInit();
             pnlWeapon.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)ptbWeapon).EndInit();
             pnlSecondaryWeapon.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)ptbSecondaryWeapon).EndInit();
-            pnlRing1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)ptbRing1).EndInit();
-            pnlRing2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)ptbRing2).EndInit();
+            pnlRing.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)ptbRing).EndInit();
+            pnlBracelet.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)ptbBracelet).EndInit();
             pnlArtifact.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)ptbArtifact).EndInit();
             pnlNecklace.ResumeLayout(false);
@@ -691,11 +704,11 @@
         private Panel pnlPants;
         private Panel pnlBoots;
         private Panel pnlGlove;
-        private Panel pnlArmChest;
+        private Panel pnlArmArmor;
         private Panel pnlWeapon;
         private Panel pnlSecondaryWeapon;
-        private Panel pnlRing1;
-        private Panel pnlRing2;
+        private Panel pnlRing;
+        private Panel pnlBracelet;
         private Panel pnlArtifact;
         private Panel pnlNecklace;
         private Label lblDamage;
@@ -727,8 +740,8 @@
         private PictureBox ptbArmArmor;
         private PictureBox ptbWeapon;
         private PictureBox ptbSecondaryWeapon;
-        private PictureBox ptbRing1;
-        private PictureBox ptbRing2;
+        private PictureBox ptbRing;
+        private PictureBox ptbBracelet;
         private PictureBox ptbArtifact;
         private PictureBox ptbNecklace;
     }
