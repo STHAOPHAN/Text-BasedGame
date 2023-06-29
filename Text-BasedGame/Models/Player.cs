@@ -21,17 +21,23 @@ namespace Text_BasedGame.Models
         public Equipment Pants { get; set; }
         public Equipment Boots { get; set; }
         public Equipment Necklace { get; set; }
-        public Equipment Ring1 { get; set; }
-        public Equipment Ring2 { get; set; }
+        public Equipment Ring { get; set; }
+        public Equipment Bracelet { get; set; }
         public Equipment Artifact { get; set; }
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public Player() { }
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public Player(string name, int level, float maxHealth, float curHealth, int damage, int armor, float attackSpeed, int mana, bool ultimate) : base(name, level, maxHealth, curHealth, damage, armor, attackSpeed)
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             this.mana = mana;
             this.ultimate = ultimate;
         }
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public Player(string name, int level, float maxHealth, float curHealth, int damage, int armor, float attackSpeed, int mana, int statPoints) : base(name, level, maxHealth, curHealth, damage, armor, attackSpeed)
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             this.mana = mana;
 
@@ -40,7 +46,7 @@ namespace Text_BasedGame.Models
         }
 
         public Player(string name, int level, float maxHealth, float curHealth, int damage, int armor, float attackSpeed, int mana, bool ultimate, int statPoints,
-            Equipment weapon, Equipment secondaryWeapon, Equipment helmet, Equipment chestArmor, Equipment armArmor, Equipment glove, Equipment belt, Equipment pants, Equipment boots, Equipment necklace, Equipment ring1, Equipment ring2, Equipment artifact) : base(name, level, maxHealth, curHealth, damage, armor, attackSpeed)
+            Equipment weapon, Equipment secondaryWeapon, Equipment helmet, Equipment chestArmor, Equipment armArmor, Equipment glove, Equipment belt, Equipment pants, Equipment boots, Equipment necklace, Equipment ring, Equipment bracelet, Equipment artifact) : base(name, level, maxHealth, curHealth, damage, armor, attackSpeed)
         {
             this.mana = mana;
             this.ultimate = ultimate;
@@ -55,8 +61,8 @@ namespace Text_BasedGame.Models
             Pants = pants;
             Boots = boots;
             Necklace = necklace;
-            Ring1 = ring1;
-            Ring2 = ring2;
+            Ring = ring;
+            Bracelet = bracelet;
             Artifact = artifact;
         }
 
