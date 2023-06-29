@@ -73,7 +73,7 @@ namespace View
                     pictureBox.MouseUp += PictureBox_MouseUp;
                     cell.Controls.Clear();
                     if (item != null)
-                    cell.Controls.Add(pictureBox);
+                        cell.Controls.Add(pictureBox);
                 }
             }
         }
@@ -91,16 +91,16 @@ namespace View
                     // Tạo ContextMenuStrip mới và thêm các MenuItem tùy chọn
                     ContextMenuStrip contextMenuStrip = new ContextMenuStrip();
 
-                        // MenuItem "Trang Bị"
-                        Label equipLabel = new Label();
-                        equipLabel.Text = "Trang Bị";
-                        equipLabel.MouseEnter += (menuSender, menuEvent) => EquipLabel_MouseEnter(menuSender, menuEvent, cell);
-                        contextMenuStrip.Items.Add(new ToolStripControlHost(equipLabel));
+                    // MenuItem "Trang Bị"
+                    Label equipLabel = new Label();
+                    equipLabel.Text = "Trang Bị";
+                    equipLabel.MouseEnter += (menuSender, menuEvent) => EquipLabel_MouseEnter(menuSender, menuEvent, cell);
+                    contextMenuStrip.Items.Add(new ToolStripControlHost(equipLabel));
 
-                        // MenuItem "Xóa"
-                        ToolStripMenuItem deleteMenuItem = new ToolStripMenuItem("Xóa");
-                        deleteMenuItem.Click += (menuSender, menuEvent) => DeleteMenuItem_Click(menuSender, menuEvent, cell);
-                        contextMenuStrip.Items.Add(deleteMenuItem);
+                    // MenuItem "Xóa"
+                    ToolStripMenuItem deleteMenuItem = new ToolStripMenuItem("Xóa");
+                    deleteMenuItem.Click += (menuSender, menuEvent) => DeleteMenuItem_Click(menuSender, menuEvent, cell);
+                    contextMenuStrip.Items.Add(deleteMenuItem);
 
                     // Hiển thị menu tại vị trí chuột phải
                     contextMenuStrip.Show(pictureBox, e.Location);
@@ -137,7 +137,7 @@ namespace View
             // Thực hiện thao tác trang bị cho người chơi được chọn tại đây
             // ...
             characterForm = new CharacterForm(players, inventory);
-            Equipment returnequipment =  characterForm.EquipItemByButton(equipment, selectedPlayer);
+            Equipment returnequipment = characterForm.EquipItemByButton(equipment, selectedPlayer);
             if (returnequipment == null)
             {
                 inventory.Remove(equipment);
@@ -278,7 +278,8 @@ namespace View
             if (item is Equipment)
             {
                 Equipment equipment = (Equipment)item;
-                if (equipment.HP != 0) {
+                if (equipment.HP != 0)
+                {
                     tooltipText += $"HP: +{equipment.HP}\n";
                 }
                 if (equipment.Damage != 0)
@@ -294,7 +295,7 @@ namespace View
                     tooltipText += $"Armor: +{equipment.Armor}\n";
                 }
             }
-                return tooltipText;
+            return tooltipText;
         }
 
         public void UpdateItems(List<Item> items)

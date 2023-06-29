@@ -27,7 +27,7 @@ namespace View
         private CharacterForm characterForm;
         private InventoryForm inventoryForm;
 
-        public MainForm(List<Player> playerTeam, List<Enemy> enemyTeam, List<Item> items) 
+        public MainForm(List<Player> playerTeam, List<Enemy> enemyTeam, List<Item> items)
         {
             InitializeComponent();
 
@@ -99,7 +99,7 @@ namespace View
             }
         }
 
-        private void MoveToOriginalTimer_Tick(object sender, EventArgs e,Panel playerpanel, Point originalPlayerPosition, System.Windows.Forms.Timer moveTimer)
+        private void MoveToOriginalTimer_Tick(object sender, EventArgs e, Panel playerpanel, Point originalPlayerPosition, System.Windows.Forms.Timer moveTimer)
         {
             if (playerpanel.Location != originalPlayerPosition)
             {
@@ -143,10 +143,13 @@ namespace View
 
                 // Lựa chọn ngẫu nhiên một đối thủ từ danh sách địch
                 Enemy targetEnemy = GetRandomEnemy();
+                int count = 0;
                 while (targetEnemy.curHealth <= 0)
                 {
                     // Đối thủ đã chết, chọn một đối thủ khác
                     targetEnemy = GetRandomEnemy();
+                    count++;
+                    if (count > 5) break;
                 }
                 Point targetPosition = new Point();
                 if (targetEnemy.name.Contains('1'))
@@ -447,7 +450,9 @@ namespace View
                 {
                     enemy.curHealth = enemy.maxHealth;
                 }
-                MessageBox.Show("Bạn đã chiến thắng! Bạn nhận được một trang bị mới:\n" + equipment.Name.ToString(), "Thông báo");
+                lblMessage.Visible = true;
+                lblMessage.Text = "Bạn đã chiến thắng! Bạn nhận được một trang bị mới:\n" + equipment.Name.ToString();
+
                 UpdateInventory(items);
 
             }
