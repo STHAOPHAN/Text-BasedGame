@@ -163,61 +163,163 @@ namespace View
             }
         }
 
-            private void PictureBox_MouseUp(object sender, MouseEventArgs e)
+        private void PictureBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
             {
-                if (e.Button == MouseButtons.Right)
+                var pictureBox = (PictureBox)sender;
+                var panel = (Panel)pictureBox.Parent; // Lấy Panel chứa PictureBox
+                pictureBox.ContextMenuStrip = new ContextMenuStrip();
+                pictureBox.ContextMenuStrip.Items.Add("Tháo Đồ", null, (s, args) =>
                 {
-                    var pictureBox = (PictureBox)sender;
-                    var panel = (Panel)pictureBox.Parent; // Lấy Panel chứa PictureBox
-                    pictureBox.ContextMenuStrip = new ContextMenuStrip();
-                    pictureBox.ContextMenuStrip.Items.Add("Tháo Đồ", null, (s, args) =>
-                    {
-                        UnequipItem(panel);
-                    });
-                    return;
-                }
+                    UnequipItem(panel);
+                });
+                return;
             }
+        }
 
-            private void UnequipItem(Panel panel)
+        private void UnequipItem(Panel panel)
+        {
+            var selectedPlayer = players[playerListBox.SelectedIndex];
+
+            if (panel == pnlWeapon && selectedPlayer.Weapon != null)
             {
-                var selectedPlayer = players[playerListBox.SelectedIndex];
+                // Lấy trang bị hiện tại từ panel
+                var equipment = selectedPlayer.Weapon;
 
-                if (panel == pnlWeapon && selectedPlayer.Weapon != null)
-                {
-                    // Lấy trang bị hiện tại từ panel
-                    var equipment = selectedPlayer.Weapon;
+                UnequipItem(equipment, panel, selectedPlayer);
 
-                    UnequipItem(equipment, panel, selectedPlayer);
-
-                    // Thiết lập lại trang bị của người chơi
-                    selectedPlayer.Weapon = null;
-                }
-                else if (panel == pnlSecondaryWeapon && selectedPlayer.SecondaryWeapon != null)
-                {
-                    // Lấy trang bị hiện tại từ panel
-                    var equipment = selectedPlayer.SecondaryWeapon;
-
-                    UnequipItem(equipment, panel, selectedPlayer);
-                    // Thiết lập lại trang bị của người chơi
-                    selectedPlayer.SecondaryWeapon = null;
-                }
-                // Lặp lại cho các panel khác tương tự như trên
-                // ...
+                // Thiết lập lại trang bị của người chơi
+                selectedPlayer.Weapon = null;
             }
-
-            private void UnequipItem(Equipment equipment, Panel panel, Player player)
+            else if (panel == pnlSecondaryWeapon && selectedPlayer.SecondaryWeapon != null)
             {
-                // Xóa trang bị khỏi panel
-                panel.Controls.Clear();
+                // Lấy trang bị hiện tại từ panel
+                var equipment = selectedPlayer.SecondaryWeapon;
 
-                // Thêm trang bị vào InventoryForm
-                items.Add(equipment);
-                inventoryForm = new InventoryForm(items, players);
-                inventoryForm.UpdateItems(items);
-
-                // Giảm chỉ số theo trang bị
-                DecreasePlayerStats(player, equipment);
+                UnequipItem(equipment, panel, selectedPlayer);
+                // Thiết lập lại trang bị của người chơi
+                selectedPlayer.SecondaryWeapon = null;
             }
+            else if (panel == pnlHelmet && selectedPlayer.Helmet != null)
+            {
+                // Lấy trang bị hiện tại từ panel
+                var equipment = selectedPlayer.Helmet;
+
+                UnequipItem(equipment, panel, selectedPlayer);
+                // Thiết lập lại trang bị của người chơi
+                selectedPlayer.Helmet = null;
+            }
+            else if (panel == pnlChestArmor && selectedPlayer.ChestArmor != null)
+            {
+                // Lấy trang bị hiện tại từ panel
+                var equipment = selectedPlayer.ChestArmor;
+
+                UnequipItem(equipment, panel, selectedPlayer);
+                // Thiết lập lại trang bị của người chơi
+                selectedPlayer.ChestArmor = null;
+            }
+            else if (panel == pnlArmArmor && selectedPlayer.ArmArmor != null)
+            {
+                // Lấy trang bị hiện tại từ panel
+                var equipment = selectedPlayer.ArmArmor;
+
+                UnequipItem(equipment, panel, selectedPlayer);
+                // Thiết lập lại trang bị của người chơi
+                selectedPlayer.ArmArmor = null;
+            }
+            else if (panel == pnlGlove && selectedPlayer.Glove != null)
+            {
+                // Lấy trang bị hiện tại từ panel
+                var equipment = selectedPlayer.Glove;
+
+                UnequipItem(equipment, panel, selectedPlayer);
+                // Thiết lập lại trang bị của người chơi
+                selectedPlayer.Glove = null;
+            }
+            else if (panel == pnlBelt && selectedPlayer.Belt != null)
+            {
+                // Lấy trang bị hiện tại từ panel
+                var equipment = selectedPlayer.Belt;
+
+                UnequipItem(equipment, panel, selectedPlayer);
+                // Thiết lập lại trang bị của người chơi
+                selectedPlayer.Belt = null;
+            }
+            else if (panel == pnlPants && selectedPlayer.Pants != null)
+            {
+                // Lấy trang bị hiện tại từ panel
+                var equipment = selectedPlayer.Pants;
+
+                UnequipItem(equipment, panel, selectedPlayer);
+                // Thiết lập lại trang bị của người chơi
+                selectedPlayer.Pants = null;
+            }
+            else if (panel == pnlBoots && selectedPlayer.Boots != null)
+            {
+                // Lấy trang bị hiện tại từ panel
+                var equipment = selectedPlayer.Boots;
+
+                UnequipItem(equipment, panel, selectedPlayer);
+                // Thiết lập lại trang bị của người chơi
+                selectedPlayer.Boots = null;
+            }
+            else if (panel == pnlRing && selectedPlayer.Ring != null)
+            {
+                // Lấy trang bị hiện tại từ panel
+                var equipment = selectedPlayer.Ring;
+
+                UnequipItem(equipment, panel, selectedPlayer);
+                // Thiết lập lại trang bị của người chơi
+                selectedPlayer.Ring = null;
+            }
+            else if (panel == pnlBracelet && selectedPlayer.Bracelet != null)
+            {
+                // Lấy trang bị hiện tại từ panel
+                var equipment = selectedPlayer.Bracelet;
+
+                UnequipItem(equipment, panel, selectedPlayer);
+                // Thiết lập lại trang bị của người chơi
+                selectedPlayer.Bracelet = null;
+            }
+            else if (panel == pnlNecklace && selectedPlayer.Necklace != null)
+            {
+                // Lấy trang bị hiện tại từ panel
+                var equipment = selectedPlayer.Necklace;
+
+                UnequipItem(equipment, panel, selectedPlayer);
+                // Thiết lập lại trang bị của người chơi
+                selectedPlayer.Necklace = null;
+            }
+            else if (panel == pnlArtifact && selectedPlayer.Artifact != null)
+            {
+                // Lấy trang bị hiện tại từ panel
+                var equipment = selectedPlayer.Artifact;
+
+                UnequipItem(equipment, panel, selectedPlayer);
+                // Thiết lập lại trang bị của người chơi
+                selectedPlayer.Artifact = null;
+            }
+        }
+
+        private void UnequipItem(Equipment equipment, Panel panel, Player player)
+        {
+            // Xóa trang bị khỏi panel
+            panel.Controls.Clear();
+
+            // Thêm trang bị vào InventoryForm
+            items.Add(equipment);
+            inventoryForm = new InventoryForm(items, players);
+            inventoryForm.UpdateItems(items);
+
+            // Giảm chỉ số theo trang bị
+            DecreasePlayerStats(player, equipment);
+
+            UpdatePlayerStats();
+
+            RefreshCharacterForm();
+
+        }
 
         public void EquipItem(Panel panel, Equipment equipment)
         {
@@ -301,6 +403,8 @@ namespace View
                 // Tăng chỉ số theo trang bị
                 IncreasePlayerStats(selectedPlayer, equipment);
             }
+            UpdatePlayerStats();
+            RefreshCharacterForm();
         }
         public Equipment EquipItemByButton(Equipment equipment, Player selectedPlayer)
         {
@@ -317,6 +421,7 @@ namespace View
                 {
                     Equipment returnEquipment = selectedPlayer.Weapon;
                     selectedPlayer.Weapon = equipment;
+                    IncreasePlayerStats(selectedPlayer, equipment);
                     return returnEquipment;
                 }
             }
@@ -333,6 +438,7 @@ namespace View
                 {
                     Equipment returnEquipment = selectedPlayer.SecondaryWeapon;
                     selectedPlayer.SecondaryWeapon = equipment;
+                    IncreasePlayerStats(selectedPlayer, equipment);
                     return returnEquipment;
                 }
             }
@@ -349,6 +455,7 @@ namespace View
                 {
                     Equipment returnEquipment = selectedPlayer.Helmet;
                     selectedPlayer.Helmet = equipment;
+                    IncreasePlayerStats(selectedPlayer, equipment);
                     return returnEquipment;
                 }
             }
@@ -365,6 +472,7 @@ namespace View
                 {
                     Equipment returnEquipment = selectedPlayer.ChestArmor;
                     selectedPlayer.ChestArmor = equipment;
+                    IncreasePlayerStats(selectedPlayer, equipment);
                     return returnEquipment;
                 }
             }
@@ -381,6 +489,7 @@ namespace View
                 {
                     Equipment returnEquipment = selectedPlayer.ArmArmor;
                     selectedPlayer.ArmArmor = equipment;
+                    IncreasePlayerStats(selectedPlayer, equipment);
                     return returnEquipment;
                 }
             }
@@ -397,6 +506,7 @@ namespace View
                 {
                     Equipment returnEquipment = selectedPlayer.Glove;
                     selectedPlayer.Glove = equipment;
+                    IncreasePlayerStats(selectedPlayer, equipment);
                     return returnEquipment;
                 }
             }
@@ -413,6 +523,7 @@ namespace View
                 {
                     Equipment returnEquipment = selectedPlayer.Belt;
                     selectedPlayer.Belt = equipment;
+                    IncreasePlayerStats(selectedPlayer, equipment);
                     return returnEquipment;
                 }
             }
@@ -429,6 +540,7 @@ namespace View
                 {
                     Equipment returnEquipment = selectedPlayer.Pants;
                     selectedPlayer.Pants = equipment;
+                    IncreasePlayerStats(selectedPlayer, equipment);
                     return returnEquipment;
                 }
             }
@@ -445,6 +557,7 @@ namespace View
                 {
                     Equipment returnEquipment = selectedPlayer.Boots;
                     selectedPlayer.Boots = equipment;
+                    IncreasePlayerStats(selectedPlayer, equipment);
                     return returnEquipment;
                 }
             }
@@ -461,6 +574,7 @@ namespace View
                 {
                     Equipment returnEquipment = selectedPlayer.Necklace;
                     selectedPlayer.Necklace = equipment;
+                    IncreasePlayerStats(selectedPlayer, equipment);
                     return returnEquipment;
                 }
             }
@@ -477,6 +591,7 @@ namespace View
                 {
                     Equipment returnEquipment = selectedPlayer.Ring;
                     selectedPlayer.Ring = equipment;
+                    IncreasePlayerStats(selectedPlayer, equipment);
                     return returnEquipment;
                 }
             }
@@ -493,6 +608,7 @@ namespace View
                 {
                     Equipment returnEquipment = selectedPlayer.Bracelet;
                     selectedPlayer.Bracelet = equipment;
+                    IncreasePlayerStats(selectedPlayer, equipment);
                     return returnEquipment;
                 }
             }
@@ -509,9 +625,12 @@ namespace View
                 {
                     Equipment returnEquipment = selectedPlayer.Artifact;
                     selectedPlayer.Artifact = equipment;
+                    IncreasePlayerStats(selectedPlayer, equipment);
                     return returnEquipment;
                 }
             }
+            UpdatePlayerStats();
+            RefreshCharacterForm();
             return null;
         }
 
@@ -532,7 +651,7 @@ namespace View
             }
         }
 
-        private void DecreasePlayerStats(Player player, Item item )
+        private void DecreasePlayerStats(Player player, Item item)
         {
             if (item is Equipment)
             {
@@ -722,7 +841,5 @@ namespace View
             }
 
         }
-
-
     }
 }

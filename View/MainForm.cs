@@ -26,6 +26,9 @@ namespace View
         private Point originalPlayerPosition;
         private CharacterForm characterForm;
         private InventoryForm inventoryForm;
+        private SettingsForm settingsForm;
+        private SkillsForm skillForm;
+        private DungeonForm dungeonForm;
 
         public MainForm(List<Player> playerTeam, List<Enemy> enemyTeam, List<Item> items)
         {
@@ -494,12 +497,49 @@ namespace View
 
         private void btnSkill_Click(object sender, EventArgs e)
         {
+            if (skillForm == null || skillForm.IsDisposed)
+            {
+                // Tạo một instance mới của InventoryForm và truyền danh sách vật phẩm và đội ngũ người chơi vào constructor
+                skillForm = new SkillsForm();
+            }
 
+            // Hiển thị InventoryForm
+            skillForm.BringToFront();
+            skillForm.Show();
+        }
+
+        private void btnDungeon_Click(object sender, EventArgs e)
+        {
+            if (dungeonForm == null || dungeonForm.IsDisposed)
+            {
+                // Tạo một instance mới của InventoryForm và truyền danh sách vật phẩm và đội ngũ người chơi vào constructor
+                dungeonForm = new DungeonForm();
+            }
+
+            // Hiển thị InventoryForm
+            dungeonForm.BringToFront();
+            dungeonForm.Show();
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
+            if (settingsForm == null || settingsForm.IsDisposed)
+            {
+                // Tạo một instance mới của SettingsForm
+                settingsForm = new SettingsForm();
+                settingsForm.StartPosition = FormStartPosition.Manual;
 
+                // Tính toán vị trí hiển thị
+                int x = this.Left + (this.Width - settingsForm.Width) / 2;
+                int y = this.Top + (this.Height - settingsForm.Height) / 2;
+
+                // Đặt vị trí hiển thị của SettingsForm
+                settingsForm.Location = new Point(x, y);
+            }
+
+            // Hiển thị InventoryForm
+            settingsForm.BringToFront();
+            settingsForm.Show();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -515,7 +555,6 @@ namespace View
                 // this.Close(); // Đóng cửa sổ chứa trò chơi
             }
         }
-
         // Các sự kiện và phương thức khác cần thiết cho MainForm
         // ...
     }

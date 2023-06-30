@@ -658,7 +658,10 @@
             Controls.Add(pnlChestArmor);
             Controls.Add(pnlHelmet);
             Controls.Add(playerListBox);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "CharacterForm";
             Text = "Nhân Vật";
             Load += CharacterForm_Load;

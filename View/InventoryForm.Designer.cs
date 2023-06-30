@@ -64,10 +64,14 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
             BackColor = SystemColors.ActiveBorder;
             ClientSize = new Size(923, 578);
             Controls.Add(tlpInventory);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "InventoryForm";
             Text = "Kho Đồ";
             ResumeLayout(false);

@@ -8,6 +8,6 @@ Belt,Belt,Decription here,..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\Belt.pn
 Pants,Pants,Decription here,..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\Pants.png
 Boots,Boots,Decription here,..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\Boots.png
 Necklace,Necklace,Decription here,..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\Necklace.png
-Ring,Ring,Decription here,..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\Ring1.png
-Ring,Ring,Decription here,..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\Ring2.png
+Ring,Ring,Decription here,..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\Ring.png
+Bracelet,Bracelet,Decription here,..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\Bracelet.png
 Artifact,Artifact,Decription here,..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\Artifact.png
