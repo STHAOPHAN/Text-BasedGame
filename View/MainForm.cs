@@ -132,6 +132,9 @@ namespace View
             if ((timerbar.Value + (6000 / (player.attackSpeed))) > 6000)
             {
                 bonus = (int)((timerbar.Value + (6000 / (player.attackSpeed))) - 6000);
+                if (bonus > 6000) {
+                    bonus = 6000;
+                }
                 timerbar.Value = 6000;
             }
             else
@@ -395,7 +398,7 @@ namespace View
 
         private void ShowPlayer(Player player, Label namelabel, ProgressBar pb, Label healthlabel)
         {
-            namelabel.Text = player.name;
+            namelabel.Text = $"{player.name} | Lvl {player.level}";
             pb.Maximum = (int)player.maxHealth;
             if (player.curHealth < 0)
             {
@@ -407,7 +410,7 @@ namespace View
 
         private void ShowEnemy(Enemy enemy, Label namelabel, ProgressBar pb, Label healthlabel)
         {
-            namelabel.Text = enemy.name;
+            namelabel.Text = $"{enemy.name} | Lvl {enemy.level}";
             pb.Maximum = (int)enemy.maxHealth;
             if (enemy.curHealth < 0)
             {
@@ -447,7 +450,7 @@ namespace View
             {
                 string currentDirectory = Directory.GetCurrentDirectory();
                 string imagePath = Path.GetFullPath(Path.Combine(currentDirectory, "..\\..\\..\\..\\Text-BasedGame\\Utilities\\Data\\equipment.txt"));
-                Equipment equipment = equipmentControllercs.LoadEquipmentFromFile(imagePath);
+                Equipment equipment = equipmentControllercs.LoadEquipmentFromFile(imagePath, enemy2);
                 items.Add(equipment);
                 foreach (Enemy enemy in enemyTeam)
                 {

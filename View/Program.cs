@@ -19,8 +19,8 @@ namespace View
 
             //items.Add(new Item("Axe", "Weapon", "This is a axe", "..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\Weapon.png"));
             //items.Add(new Item("Shield", "Secondary Weapon", "This is a shield", "..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\SecondaryWeapon.png"));
-            equipments.Add(new Equipment("Axe", "Weapon", "This is a axe", "..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\Weapon.png",50,10,0,0));
-            equipments.Add(new Equipment("Shield", "Secondary Weapon", "This is a shield", "..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\SecondaryWeapon.png",0,0, 50, 10));
+            equipments.Add(new Equipment("Axe", "Weapon", "This is a axe", "..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\Weapon.png",5 , "Common", 50, 10, 0, 0));
+            equipments.Add(new Equipment("Shield", "Secondary Weapon", "This is a shield", "..\\..\\..\\..\\Text-BasedGame\\Images\\Items\\SecondaryWeapon.png", 5, "Common", 0, 0, 50, 10));
 
             // Thêm người chơi vào đội hình
 
@@ -31,11 +31,11 @@ namespace View
             playerTeam.Add(new Player("Player5", 1, 100, 100, 100, 10, 5, 0, 5));
 
             // Thêm kẻ địch vào đội hình
-            enemyTeam.Add(new Enemy("Enemy1", 1, 100, 100, 8, 0, 5));//Name, Max Health, Current Health, Damage, Armor, Attack Speed
-            enemyTeam.Add(new Enemy("Enemy2", 1, 100, 100, 8, 0, 5));
-            enemyTeam.Add(new Enemy("Enemy3", 1, 100, 100, 8, 0, 5));
-            enemyTeam.Add(new Enemy("Enemy4", 1, 100, 100, 8, 0, 5));
-            enemyTeam.Add(new Enemy("Enemy5", 1, 100, 100, 8, 0, 5));
+            enemyTeam.Add(new Enemy("Enemy1", 5, 100, 100, 8, 0, 5));//Name, Max Health, Current Health, Damage, Armor, Attack Speed
+            enemyTeam.Add(new Enemy("Enemy2", 5, 100, 100, 8, 0, 5));
+            enemyTeam.Add(new Enemy("Enemy3", 5, 100, 100, 8, 0, 5));
+            enemyTeam.Add(new Enemy("Enemy4", 5, 100, 100, 8, 0, 5));
+            enemyTeam.Add(new Enemy("Enemy5", 5, 100, 100, 8, 0, 5));
             string sourceDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             Console.WriteLine(sourceDirectory);
 

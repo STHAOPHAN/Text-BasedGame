@@ -104,7 +104,7 @@
             // lblPlayerName1
             // 
             lblPlayerName1.AutoSize = true;
-            lblPlayerName1.Location = new Point(66, 5);
+            lblPlayerName1.Location = new Point(29, 5);
             lblPlayerName1.Name = "lblPlayerName1";
             lblPlayerName1.Size = new Size(38, 15);
             lblPlayerName1.TabIndex = 0;
@@ -189,7 +189,7 @@
             // lblEnemyName1
             // 
             lblEnemyName1.AutoSize = true;
-            lblEnemyName1.Location = new Point(67, 5);
+            lblEnemyName1.Location = new Point(30, 5);
             lblEnemyName1.Name = "lblEnemyName1";
             lblEnemyName1.Size = new Size(38, 15);
             lblEnemyName1.TabIndex = 1;
@@ -300,7 +300,7 @@
             // lblPlayerName2
             // 
             lblPlayerName2.AutoSize = true;
-            lblPlayerName2.Location = new Point(66, 5);
+            lblPlayerName2.Location = new Point(29, 5);
             lblPlayerName2.Name = "lblPlayerName2";
             lblPlayerName2.Size = new Size(38, 15);
             lblPlayerName2.TabIndex = 0;
@@ -348,7 +348,7 @@
             // lblPlayerName3
             // 
             lblPlayerName3.AutoSize = true;
-            lblPlayerName3.Location = new Point(66, 5);
+            lblPlayerName3.Location = new Point(29, 5);
             lblPlayerName3.Name = "lblPlayerName3";
             lblPlayerName3.Size = new Size(38, 15);
             lblPlayerName3.TabIndex = 0;
@@ -396,7 +396,7 @@
             // lblPlayerName5
             // 
             lblPlayerName5.AutoSize = true;
-            lblPlayerName5.Location = new Point(67, 6);
+            lblPlayerName5.Location = new Point(26, 6);
             lblPlayerName5.Name = "lblPlayerName5";
             lblPlayerName5.Size = new Size(38, 15);
             lblPlayerName5.TabIndex = 0;
@@ -444,7 +444,7 @@
             // lblPlayerName4
             // 
             lblPlayerName4.AutoSize = true;
-            lblPlayerName4.Location = new Point(66, 5);
+            lblPlayerName4.Location = new Point(25, 5);
             lblPlayerName4.Name = "lblPlayerName4";
             lblPlayerName4.Size = new Size(38, 15);
             lblPlayerName4.TabIndex = 0;
@@ -507,7 +507,7 @@
             // lblEnemyName2
             // 
             lblEnemyName2.AutoSize = true;
-            lblEnemyName2.Location = new Point(66, 5);
+            lblEnemyName2.Location = new Point(29, 5);
             lblEnemyName2.Name = "lblEnemyName2";
             lblEnemyName2.Size = new Size(38, 15);
             lblEnemyName2.TabIndex = 1;
@@ -553,7 +553,7 @@
             // lblEnemyName3
             // 
             lblEnemyName3.AutoSize = true;
-            lblEnemyName3.Location = new Point(66, 5);
+            lblEnemyName3.Location = new Point(29, 7);
             lblEnemyName3.Name = "lblEnemyName3";
             lblEnemyName3.Size = new Size(38, 15);
             lblEnemyName3.TabIndex = 1;
@@ -599,7 +599,7 @@
             // lblEnemyName5
             // 
             lblEnemyName5.AutoSize = true;
-            lblEnemyName5.Location = new Point(67, 5);
+            lblEnemyName5.Location = new Point(27, 5);
             lblEnemyName5.Name = "lblEnemyName5";
             lblEnemyName5.Size = new Size(38, 15);
             lblEnemyName5.TabIndex = 1;
@@ -645,7 +645,7 @@
             // lblEnemyName4
             // 
             lblEnemyName4.AutoSize = true;
-            lblEnemyName4.Location = new Point(67, 5);
+            lblEnemyName4.Location = new Point(27, 5);
             lblEnemyName4.Name = "lblEnemyName4";
             lblEnemyName4.Size = new Size(38, 15);
             lblEnemyName4.TabIndex = 1;

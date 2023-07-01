@@ -20,6 +20,7 @@ namespace View
         private Form tooltipForm;
         private List<Player> players;
         private CharacterForm characterForm;
+        private List<PictureBox> itemPictureBoxes = new List<PictureBox>();
 
         public InventoryForm(List<Item> inventory, List<Player> players)
         {
@@ -52,6 +53,14 @@ namespace View
                 Item item = GetItemFromCell(cell);
                 if (item != null && !string.IsNullOrEmpty(item.Image))
                 {
+                    if (item is Equipment)
+                    {
+                        Equipment equipment = (Equipment)item;
+                        if (equipment.Quality.Equals("Common")) cell.BackColor = Color.White;
+                        else if (equipment.Quality.Equals("Rare")) cell.BackColor = Color.Aqua;
+                        else if (equipment.Quality.Equals("Elite")) cell.BackColor = Color.Violet;
+                        else if (equipment.Quality.Equals("Legendary")) cell.BackColor = Color.Orange;
+                    }
                     PictureBox pictureBox = new PictureBox();
                     pictureBox.Size = cell.Size;
                     pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -74,6 +83,7 @@ namespace View
                     cell.Controls.Clear();
                     if (item != null)
                         cell.Controls.Add(pictureBox);
+                    itemPictureBoxes.Add(pictureBox);
                 }
             }
         }
@@ -131,6 +141,7 @@ namespace View
 
         private void PlayerMenuItem_Click(object sender, EventArgs e, Panel panel, Item item)
         {
+            int lastItemIndex = itemPictureBoxes.Count;
             ToolStripMenuItem menuItem = (ToolStripMenuItem)sender;
             Player selectedPlayer = (Player)menuItem.Tag;
             Equipment equipment = (Equipment)item;
@@ -141,7 +152,7 @@ namespace View
             if (returnequipment == null)
             {
                 inventory.Remove(equipment);
-                panel.Controls.Clear();
+                UpdatePictureBoxPositions(lastItemIndex);
                 // Sau khi trang bị thành công, cập nhật lại danh sách vật phẩm trong kho đồ
                 UpdateItems(inventory);
             }
@@ -149,11 +160,17 @@ namespace View
             {
                 inventory.Add(returnequipment);
                 inventory.Remove(equipment);
-                panel.Controls.Clear();
+                UpdatePictureBoxPositions(lastItemIndex);
                 UpdateItems(inventory);
             }
         }
 
+        private void UpdatePictureBoxPositions(int lastItemIndex)
+        {
+            Panel cell = (Panel)itemPictureBoxes[lastItemIndex-1].Parent;
+            cell.Controls.Clear();
+            cell.BackColor = Color.White;
+        }
         private void DeleteMenuItem_Click(object sender, EventArgs e, Panel cell)
         {
             Item item = GetItemFromCell(cell);
@@ -164,10 +181,11 @@ namespace View
 
                 if (result == DialogResult.Yes)
                 {
+                    int lastItemIndex = itemPictureBoxes.Count;
                     // Thực hiện thao tác xóa vật phẩm tại đây
                     // Ví dụ: xóa vật phẩm khỏi danh sách inventory
                     inventory.Remove(item);
-                    cell.Controls.Clear();
+                    UpdatePictureBoxPositions(lastItemIndex);
                     LoadItems();
                 }
             }
@@ -190,7 +208,7 @@ namespace View
 
             // Hiển thị thông tin tooltip cho vật phẩm
             string tooltipText = GetItemTooltipText(item);
-            ShowItemTooltip(pictureBox, tooltipText);
+            ShowItemTooltip(pictureBox, tooltipText, item);
         }
 
         private void PictureBox_MouseLeave(object sender, EventArgs e)
@@ -208,7 +226,7 @@ namespace View
             }
         }
 
-        private void ShowItemTooltip(PictureBox pictureBox, string tooltipText)
+        private void ShowItemTooltip(PictureBox pictureBox, string tooltipText, Item item)
         {
             // Tạo một Form để hiển thị tooltip kèm hình ảnh
             tooltipForm = new Form();
@@ -270,7 +288,13 @@ namespace View
                 return "";
             }
             tooltipText = $"Name: {item.Name}\n";
-            tooltipText += $"Type: {item.Type}\n";
+            if (item is Equipment)
+            {
+                Equipment equipment = (Equipment)item;
+                tooltipText += $"Lvl: {equipment.Level}\n";
+                tooltipText += $"Quality: {equipment.Quality}\n";
+            }
+                tooltipText += $"Type: {item.Type}\n";
             tooltipText += $"Description: \n{item.Description}\n";
             // Thêm các thông tin khác tùy thuộc vào thuộc tính của vật phẩm
 
