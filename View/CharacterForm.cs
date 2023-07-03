@@ -80,7 +80,7 @@ namespace View
             lblMana.Text = player.mana.ToString();
             lblDamage.Text = player.damage.ToString();
             lblArmor.Text = player.armor.ToString();
-            if (player.attackSpeed < 1) lblAttackSpeed.Text = 1;
+            if (player.attackSpeed < 1) lblAttackSpeed.Text = "1";
             else lblAttackSpeed.Text = player.attackSpeed.ToString();
             lblStatPoints.Text = player.statPoints.ToString();
         }

@@ -29,6 +29,8 @@ namespace View
         private SettingsForm settingsForm;
         private SkillsForm skillForm;
         private DungeonForm dungeonForm;
+        private int turnCount = 1;
+        private Enemy boss;
 
         public MainForm(List<Player> playerTeam, List<Enemy> enemyTeam, List<Item> items)
         {
@@ -132,7 +134,8 @@ namespace View
             if ((timerbar.Value + (6000 / (player.attackSpeed))) > 6000)
             {
                 bonus = (int)((timerbar.Value + (6000 / (player.attackSpeed))) - 6000);
-                if (bonus > 6000) {
+                if (bonus > 6000)
+                {
                     bonus = 6000;
                 }
                 timerbar.Value = 6000;
@@ -420,6 +423,16 @@ namespace View
             healthlabel.Text = $"{enemy.curHealth}/{enemy.maxHealth}";
         }
 
+        private void ShowSlotEnemy(Label namelabel, ProgressBar pb, Label healthlabel, ProgressBar timerbar, Panel panel)
+        {
+            // Hiện các điều khiển
+            namelabel.Visible = true;
+            pb.Visible = true;
+            healthlabel.Visible = true;
+            timerbar.Visible = true;
+            panel.Visible = true;
+        }
+
         private Enemy GetRandomEnemy()
         {
             int randomIndex = random.Next(enemyTeam.Count);
@@ -446,21 +459,58 @@ namespace View
                     player.curHealth = player.maxHealth;
                 }
             }
-            else if (!enemyTeamAlive)
+            else if (!enemyTeamAlive && boss == null)
+            {
+
+                string currentDirectory = Directory.GetCurrentDirectory();
+                string imagePath = Path.GetFullPath(Path.Combine(currentDirectory, "..\\..\\..\\..\\Text-BasedGame\\Utilities\\Data\\equipment.txt"));
+                Equipment equipment = equipmentControllercs.LoadEquipmentFromFile(imagePath, enemy2);
+                items.Add(equipment);
+                if (turnCount < 2)
+                {
+                    foreach (Enemy enemy in enemyTeam)
+                    {
+                        enemy.curHealth = enemy.maxHealth;
+                    }
+                    turnCount++;
+                }
+                else
+                {
+                    enemy2.curHealth = enemy2.maxHealth;
+                    boss = new Enemy("Boss", enemy2.level, enemy2.curHealth * 10, enemy2.maxHealth * 10, enemy2.damage * 10, enemy2.armor * 2, 5);
+                    enemyTeam = new List<Enemy>();
+                    enemyTeam.Add(boss);
+                }
+                lblTurnCount.Text = $"{turnCount} / 10";
+                lblMessage.Visible = true;
+                lblMessage.Text = "Bạn đã chiến thắng! Bạn nhận được một trang bị mới:\n" + equipment.Name.ToString();
+
+            }
+            else if (!enemyTeamAlive && boss != null)
             {
                 string currentDirectory = Directory.GetCurrentDirectory();
                 string imagePath = Path.GetFullPath(Path.Combine(currentDirectory, "..\\..\\..\\..\\Text-BasedGame\\Utilities\\Data\\equipment.txt"));
                 Equipment equipment = equipmentControllercs.LoadEquipmentFromFile(imagePath, enemy2);
                 items.Add(equipment);
-                foreach (Enemy enemy in enemyTeam)
-                {
-                    enemy.curHealth = enemy.maxHealth;
-                }
+                enemyTeam = new List<Enemy>();
+                enemy1 = new Enemy("Enemy1", boss.level + 1, 100 + boss.level * 50, 100 + boss.level * 50, 8 + boss.level * 2, 5 + boss.level, 5);
+                enemy2 = new Enemy("Enemy2", enemy1.level, enemy1.curHealth, enemy1.maxHealth, enemy1.damage, enemy1.armor, 5);
+                enemy3 = new Enemy("Enemy3", enemy1.level, enemy1.curHealth, enemy1.maxHealth, enemy1.damage, enemy1.armor, 5);
+                enemy4 = new Enemy("Enemy4", enemy1.level, enemy1.curHealth, enemy1.maxHealth, enemy1.damage, enemy1.armor, 5);
+                enemy5 = new Enemy("Enemy5", enemy1.level, enemy1.curHealth, enemy1.maxHealth, enemy1.damage, enemy1.armor, 5);
+                enemyTeam.Add(enemy1);
+                enemyTeam.Add(enemy2);
+                enemyTeam.Add(enemy3);
+                enemyTeam.Add(enemy4);
+                enemyTeam.Add(enemy5);
+                ShowSlotEnemy(lblEnemyName2, enemyHealthProgressBar2, lblEnemyHealth2, enemyTimerBar2, pnlEnemy2);
+                ShowSlotEnemy(lblEnemyName3, enemyHealthProgressBar3, lblEnemyHealth3, enemyTimerBar3, pnlEnemy3);
+                ShowSlotEnemy(lblEnemyName4, enemyHealthProgressBar4, lblEnemyHealth4, enemyTimerBar4, pnlEnemy4);
+                ShowSlotEnemy(lblEnemyName5, enemyHealthProgressBar5, lblEnemyHealth5, enemyTimerBar5, pnlEnemy5);
+                turnCount = 1;
+                lblTurnCount.Text = $"{turnCount} / 10";
                 lblMessage.Visible = true;
                 lblMessage.Text = "Bạn đã chiến thắng! Bạn nhận được một trang bị mới:\n" + equipment.Name.ToString();
-
-                UpdateInventory(items);
-
             }
         }
 

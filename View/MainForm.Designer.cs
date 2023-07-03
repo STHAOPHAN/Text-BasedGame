@@ -88,6 +88,7 @@
             lblEnemyName4 = new Label();
             lblMessage = new Label();
             messageTimer = new System.Windows.Forms.Timer(components);
+            lblTurnCount = new Label();
             pnlPlayer1.SuspendLayout();
             pnlEnemy1.SuspendLayout();
             bottomMenuPanel.SuspendLayout();
@@ -665,12 +666,24 @@
             lblMessage.TextAlign = ContentAlignment.MiddleCenter;
             lblMessage.Visible = false;
             // 
+            // lblTurnCount
+            // 
+            lblTurnCount.AutoSize = true;
+            lblTurnCount.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            lblTurnCount.Location = new Point(1458, 20);
+            lblTurnCount.Name = "lblTurnCount";
+            lblTurnCount.Size = new Size(76, 32);
+            lblTurnCount.TabIndex = 19;
+            lblTurnCount.Tag = "";
+            lblTurnCount.Text = "1 / 10";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveBorder;
             ClientSize = new Size(1584, 861);
+            Controls.Add(lblTurnCount);
             Controls.Add(lblMessage);
             Controls.Add(pnlEnemy4);
             Controls.Add(pnlEnemy5);
@@ -775,5 +788,6 @@
         private Label lblMessage;
         private System.Windows.Forms.Timer messageTimer;
         private Button btnDungeon;
+        private Label lblTurnCount;
     }
 }

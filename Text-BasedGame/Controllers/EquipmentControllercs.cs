@@ -49,47 +49,72 @@ namespace Text_BasedGame.Controllers
             Random random = new Random();
             Equipment randomEquipment = equipmentList[random.Next(equipmentList.Count)];
 
-            // Chọn ngẫu nhiên 2 chỉ số để khởi tạo trang bị
-            List<string> stats = new List<string> { "HP", "Damage", "AttackSpeed", "Armor" };
-            var selectedStats = stats.OrderBy(x => random.Next()).Take(2).ToList();
-
             List<string> quality = new List<string> { "Common", "Rare", "Elite", "Legendary" };
-
-            // Tạo danh sách trọng số tương ứng với mỗi thành phần
-            List<int> weights = new List<int> { 70, 20, 8, 2 };
+            List<int> weights;
+            if (enemy.name.Equals("Boss")) weights = new List<int> { 50, 25, 15, 10 };
+            else weights = new List<int> { 70, 20, 8, 2 };
 
             // Tính tổng trọng số
             int totalWeight = weights.Sum();
 
-            // Sắp xếp các thành phần theo tỉ lệ trọng số
-            var selectedQuality = quality.OrderBy(x => random.Next(0, totalWeight))
-                                     .Take(1)
-                                     .ToList();
-            // Random phẩm chất vật phẩm
-            randomEquipment.Quality = selectedQuality[0];
-            // Cấp độ theo cấp của địch
+            // Chọn ngẫu nhiên một số từ 0 đến tổng trọng số
+            int randomValue = random.Next(0, totalWeight);
+
+            // Xác định phẩm chất tương ứng với số ngẫu nhiên
+            int cumulativeWeight = 0;
+            string selectedQuality = "";
+            for (int i = 0; i < quality.Count; i++)
+            {
+                cumulativeWeight += weights[i];
+                if (randomValue < cumulativeWeight)
+                {
+                    selectedQuality = quality[i];
+                    break;
+                }
+            }
+            var selectedStats = new List<string>();
+            if (selectedQuality.Equals("Common"))
+            {
+                List<string> stats = new List<string> { "HP", "Damage", "AttackSpeed", "Armor" };
+                selectedStats = stats.OrderBy(x => random.Next()).Take(1).ToList();
+            }
+            else if (selectedQuality.Equals("Rare"))
+            {
+                List<string> stats = new List<string> { "HP", "Damage", "AttackSpeed", "Armor" };
+                selectedStats = stats.OrderBy(x => random.Next()).Take(2).ToList();
+            }
+            else if (selectedQuality.Equals("Elite"))
+            {
+                List<string> stats = new List<string> { "HP", "Damage", "AttackSpeed", "Armor" };
+                selectedStats = stats.OrderBy(x => random.Next()).Take(3).ToList();
+            }
+            else if (selectedQuality.Equals("Legendary"))
+            {
+                List<string> stats = new List<string> { "HP", "Damage", "AttackSpeed", "Armor" };
+                selectedStats = stats.OrderBy(x => random.Next()).Take(4).ToList();
+            }
+
+            randomEquipment.Quality = selectedQuality;
             randomEquipment.Level = enemy.level;
-            int level = randomEquipment.Level;
 
             int weight = 0;
             if (randomEquipment.Quality.Equals("Common"))
             {
-                weight = level;
+                weight = enemy.level;
             }
             else if (randomEquipment.Quality.Equals("Rare"))
             {
-                weight = level * 2;
+                weight = enemy.level * 2;
             }
             else if (randomEquipment.Quality.Equals("Elite"))
             {
-                weight = level * 3;
+                weight = enemy.level * 3;
             }
             else if (randomEquipment.Quality.Equals("Legendary"))
             {
-                weight = level * 5;
+                weight = enemy.level * 5;
             }
 
-            // Khởi tạo giá trị cho các chỉ số
             foreach (string stat in selectedStats)
             {
                 int value;
@@ -115,5 +140,6 @@ namespace Text_BasedGame.Controllers
             }
             return randomEquipment;
         }
+
     }
 }

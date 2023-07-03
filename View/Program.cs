@@ -31,11 +31,11 @@ namespace View
             playerTeam.Add(new Player("Player5", 1, 100, 100, 100, 10, 5, 0, 5));
 
             // Thêm kẻ địch vào đội hình
-            enemyTeam.Add(new Enemy("Enemy1", 5, 100, 100, 8, 0, 5));//Name, Max Health, Current Health, Damage, Armor, Attack Speed
-            enemyTeam.Add(new Enemy("Enemy2", 5, 100, 100, 8, 0, 5));
-            enemyTeam.Add(new Enemy("Enemy3", 5, 100, 100, 8, 0, 5));
-            enemyTeam.Add(new Enemy("Enemy4", 5, 100, 100, 8, 0, 5));
-            enemyTeam.Add(new Enemy("Enemy5", 5, 100, 100, 8, 0, 5));
+            enemyTeam.Add(new Enemy("Enemy1", 5, 100, 100, 8, 5, 5));//Name, Max Health, Current Health, Damage, Armor, Attack Speed
+            enemyTeam.Add(new Enemy("Enemy2", 5, 100, 100, 8, 5, 5));
+            enemyTeam.Add(new Enemy("Enemy3", 5, 100, 100, 8, 5, 5));
+            enemyTeam.Add(new Enemy("Enemy4", 5, 100, 100, 8, 5, 5));
+            enemyTeam.Add(new Enemy("Enemy5", 5, 100, 100, 8, 5, 5));
             string sourceDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             Console.WriteLine(sourceDirectory);
 
