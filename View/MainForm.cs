@@ -466,7 +466,7 @@ namespace View
                 string imagePath = Path.GetFullPath(Path.Combine(currentDirectory, "..\\..\\..\\..\\Text-BasedGame\\Utilities\\Data\\equipment.txt"));
                 Equipment equipment = equipmentControllercs.LoadEquipmentFromFile(imagePath, enemy2);
                 items.Add(equipment);
-                if (turnCount < 2)
+                if (turnCount < 5)
                 {
                     foreach (Enemy enemy in enemyTeam)
                     {
@@ -579,7 +579,7 @@ namespace View
             if (settingsForm == null || settingsForm.IsDisposed)
             {
                 // Tạo một instance mới của SettingsForm
-                settingsForm = new SettingsForm();
+                settingsForm = new SettingsForm(playerTeam, enemyTeam, items);
                 settingsForm.StartPosition = FormStartPosition.Manual;
 
                 // Tính toán vị trí hiển thị
@@ -602,13 +602,32 @@ namespace View
             if (result == DialogResult.Yes)
             {
                 // Đóng ứng dụng hoặc xử lý tắt trò chơi ở đây
-                Application.Exit(); // Đóng ứng dụng
+                //Application.Exit(); // Đóng ứng dụng
 
                 // Hoặc
-                // this.Close(); // Đóng cửa sổ chứa trò chơi
+                this.Close(); // Đóng cửa sổ chứa trò chơi
             }
         }
-        // Các sự kiện và phương thức khác cần thiết cho MainForm
-        // ...
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            MainMenuForm mainMenuForm = new MainMenuForm();
+            mainMenuForm.Show();
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                // Xử lý khi người dùng bấm nút "X" trên thanh tiêu đề
+
+                // Hiển thị hộp thoại xác nhận hoặc lưu dữ liệu trước khi tắt chương trình
+                DialogResult result = MessageBox.Show("Bạn có muốn thoát chương trình?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.No)
+                {
+                    e.Cancel = true; // Hủy sự kiện đóng cửa sổ
+                }
+            }
+        }
     }
 }

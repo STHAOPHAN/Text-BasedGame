@@ -22,6 +22,10 @@ namespace Text_BasedGame.Models
             Image = image;
         }
 
+        public Item()
+        {
+        }
+
 
         // Thêm các thuộc tính khác tùy theo yêu cầu của trò chơi
 

@@ -701,6 +701,8 @@
             MinimizeBox = false;
             Name = "MainForm";
             Text = "Text-Based Game";
+            FormClosing += MainForm_FormClosing;
+            FormClosed += MainForm_FormClosed;
             Load += MainForm_Load;
             pnlPlayer1.ResumeLayout(false);
             pnlPlayer1.PerformLayout();

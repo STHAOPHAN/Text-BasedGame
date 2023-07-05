@@ -1,5 +1,5 @@
 # Text-Based Game
-### This is my personal project, a simple RPG Text-Based game, feature:
+### This is my personal project, a simple RPG Text-Based game called "Rectangle Rampage", feature:
 
 * Combat Mechanism
 * Equipment Mechanism

@@ -45,6 +45,7 @@ namespace Text_BasedGame.Models
                 // ...
 
                 canAttack = false;
+                attackTimer = new System.Timers.Timer(attackSpeed * 1000);
                 attackTimer.Start();
             }
         }

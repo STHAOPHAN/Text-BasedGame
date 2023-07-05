@@ -50,7 +50,6 @@
             btnLoad.TabIndex = 2;
             btnLoad.Text = "Load";
             btnLoad.UseVisualStyleBackColor = true;
-            btnLoad.Click += btnLoad_Click;
             // 
             // SettingsForm
             // 
