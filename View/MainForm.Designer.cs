@@ -89,6 +89,12 @@
             lblMessage = new Label();
             messageTimer = new System.Windows.Forms.Timer(components);
             lblTurnCount = new Label();
+            panel1 = new Panel();
+            lblDiamond = new Label();
+            lblGold = new Label();
+            label2 = new Label();
+            label1 = new Label();
+            fileSystemWatcher1 = new FileSystemWatcher();
             pnlPlayer1.SuspendLayout();
             pnlEnemy1.SuspendLayout();
             bottomMenuPanel.SuspendLayout();
@@ -100,6 +106,8 @@
             pnlEnemy3.SuspendLayout();
             pnlEnemy5.SuspendLayout();
             pnlEnemy4.SuspendLayout();
+            panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)fileSystemWatcher1).BeginInit();
             SuspendLayout();
             // 
             // lblPlayerName1
@@ -217,7 +225,7 @@
             btnDungeon.Name = "btnDungeon";
             btnDungeon.Size = new Size(202, 137);
             btnDungeon.TabIndex = 13;
-            btnDungeon.Text = "Phó bản";
+            btnDungeon.Text = "Cửa Hàng";
             btnDungeon.UseVisualStyleBackColor = true;
             btnDungeon.Click += btnDungeon_Click;
             // 
@@ -672,10 +680,65 @@
             lblTurnCount.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
             lblTurnCount.Location = new Point(1458, 20);
             lblTurnCount.Name = "lblTurnCount";
-            lblTurnCount.Size = new Size(76, 32);
+            lblTurnCount.Size = new Size(63, 32);
             lblTurnCount.TabIndex = 19;
             lblTurnCount.Tag = "";
-            lblTurnCount.Text = "1 / 10";
+            lblTurnCount.Text = "1 / 5";
+            // 
+            // panel1
+            // 
+            panel1.AutoSize = true;
+            panel1.BackColor = SystemColors.ButtonHighlight;
+            panel1.BorderStyle = BorderStyle.FixedSingle;
+            panel1.Controls.Add(lblDiamond);
+            panel1.Controls.Add(lblGold);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(label1);
+            panel1.Location = new Point(48, 577);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(202, 69);
+            panel1.TabIndex = 20;
+            // 
+            // lblDiamond
+            // 
+            lblDiamond.AutoSize = true;
+            lblDiamond.Location = new Point(64, 40);
+            lblDiamond.Name = "lblDiamond";
+            lblDiamond.Size = new Size(38, 15);
+            lblDiamond.TabIndex = 22;
+            lblDiamond.Text = "label4";
+            // 
+            // lblGold
+            // 
+            lblGold.AutoSize = true;
+            lblGold.Location = new Point(64, 10);
+            lblGold.Name = "lblGold";
+            lblGold.Size = new Size(38, 15);
+            lblGold.TabIndex = 21;
+            lblGold.Text = "label3";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(15, 40);
+            label2.Name = "label2";
+            label2.Size = new Size(21, 15);
+            label2.TabIndex = 21;
+            label2.Text = "KC";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(15, 10);
+            label1.Name = "label1";
+            label1.Size = new Size(33, 15);
+            label1.TabIndex = 21;
+            label1.Text = "Vàng";
+            // 
+            // fileSystemWatcher1
+            // 
+            fileSystemWatcher1.EnableRaisingEvents = true;
+            fileSystemWatcher1.SynchronizingObject = this;
             // 
             // MainForm
             // 
@@ -683,6 +746,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveBorder;
             ClientSize = new Size(1584, 861);
+            Controls.Add(panel1);
             Controls.Add(lblTurnCount);
             Controls.Add(lblMessage);
             Controls.Add(pnlEnemy4);
@@ -700,7 +764,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "MainForm";
-            Text = "Text-Based Game";
+            Text = "Rectangle Rampage";
             FormClosing += MainForm_FormClosing;
             FormClosed += MainForm_FormClosed;
             Load += MainForm_Load;
@@ -725,6 +789,9 @@
             pnlEnemy5.PerformLayout();
             pnlEnemy4.ResumeLayout(false);
             pnlEnemy4.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)fileSystemWatcher1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -791,5 +858,11 @@
         private System.Windows.Forms.Timer messageTimer;
         private Button btnDungeon;
         private Label lblTurnCount;
+        private Panel panel1;
+        private Label lblDiamond;
+        private Label lblGold;
+        private Label label2;
+        private Label label1;
+        private FileSystemWatcher fileSystemWatcher1;
     }
 }

@@ -18,6 +18,7 @@ namespace View
         private Enemy enemy1, enemy2, enemy3, enemy4, enemy5;
         private List<Item> items;
         private EquipmentControllercs equipmentControllercs = new EquipmentControllercs();
+        private ResourceController resourceController = new ResourceController();
         private System.Windows.Forms.Timer moveTimer;
         private Panel playerPanel;
         private Panel targetPanel;
@@ -28,17 +29,19 @@ namespace View
         private InventoryForm inventoryForm;
         private SettingsForm settingsForm;
         private SkillsForm skillForm;
-        private DungeonForm dungeonForm;
+        private ShopForm dungeonForm;
         private int turnCount = 1;
         private Enemy boss;
+        private Resource resources;
 
-        public MainForm(List<Player> playerTeam, List<Enemy> enemyTeam, List<Item> items)
+        public MainForm(List<Player> playerTeam, List<Enemy> enemyTeam, List<Item> items, Resource resource)
         {
             InitializeComponent();
 
             this.playerTeam = playerTeam;
             this.enemyTeam = enemyTeam;
             this.items = items;
+            this.resources = resource;
 
             timer = new System.Windows.Forms.Timer();
             timer.Interval = tickInterval;
@@ -61,9 +64,19 @@ namespace View
             // Hiển thị thông tin người chơi và kẻ địch
             UpdatePlayerInfo();
             UpdateEnemyInfo();
+            UpdateResourceInfo();
 
             // Bắt đầu đếm ngược để tấn công tự động
             timer.Start();
+        }
+
+        private void UpdateResourceInfo()
+        {
+            if (resources != null)
+            {
+                lblGold.Text = resources.Gold.ToString();
+                lblDiamond.Text = resources.Diamond.ToString();
+            }
         }
 
         private void MovePlayerToTarget(Panel playerpanel, Point originalPlayerPosition, Point targetPosition)
@@ -161,7 +174,7 @@ namespace View
                     if (count > 5) break;
                 }
                 Point targetPosition = new Point();
-                if (targetEnemy.name.Contains('1'))
+                if (targetEnemy.name.Contains('1') || targetEnemy.name.Equals("Boss"))
                 {
                     targetPosition = pnlEnemy1.Location;
                 }
@@ -458,14 +471,31 @@ namespace View
                 {
                     player.curHealth = player.maxHealth;
                 }
+                if (enemyTeam[0].name.Equals("Boss"))
+                {
+                    enemyTeam = new List<Enemy>();
+                    enemy1 = new Enemy("Enemy1", boss.level, 100 + boss.level * 50, 100 + boss.level * 50, 8 + boss.level * 2, 5 + boss.level, 5);
+                    enemy2 = new Enemy("Enemy2", enemy1.level, enemy1.curHealth, enemy1.maxHealth, enemy1.damage, enemy1.armor, 5);
+                    enemy3 = new Enemy("Enemy3", enemy1.level, enemy1.curHealth, enemy1.maxHealth, enemy1.damage, enemy1.armor, 5);
+                    enemy4 = new Enemy("Enemy4", enemy1.level, enemy1.curHealth, enemy1.maxHealth, enemy1.damage, enemy1.armor, 5);
+                    enemy5 = new Enemy("Enemy5", enemy1.level, enemy1.curHealth, enemy1.maxHealth, enemy1.damage, enemy1.armor, 5);
+                }
+                foreach (Enemy enemy in enemyTeam)
+                {
+                    enemy.curHealth = enemy.maxHealth;
+                }
+                turnCount = 1;
             }
             else if (!enemyTeamAlive && boss == null)
             {
 
                 string currentDirectory = Directory.GetCurrentDirectory();
                 string imagePath = Path.GetFullPath(Path.Combine(currentDirectory, "..\\..\\..\\..\\Text-BasedGame\\Utilities\\Data\\equipment.txt"));
-                Equipment equipment = equipmentControllercs.LoadEquipmentFromFile(imagePath, enemy2);
+                Equipment equipment = equipmentControllercs.LoadEquipmentFromFile(imagePath, enemyTeam[0]);
                 items.Add(equipment);
+                Resource resource = resourceController.DropResourceFormEnemy(enemyTeam[0]);
+                resources.Gold += resource.Gold;
+                resources.Diamond += resource.Diamond;
                 if (turnCount < 5)
                 {
                     foreach (Enemy enemy in enemyTeam)
@@ -481,19 +511,24 @@ namespace View
                     enemyTeam = new List<Enemy>();
                     enemyTeam.Add(boss);
                 }
-                lblTurnCount.Text = $"{turnCount} / 10";
+                lblTurnCount.Text = $"{turnCount} / 5";
                 lblMessage.Visible = true;
-                lblMessage.Text = "Bạn đã chiến thắng! Bạn nhận được một trang bị mới:\n" + equipment.Name.ToString();
+                lblMessage.Text = "Bạn đã chiến thắng! Bạn nhận được phần thưởng: \n" + equipment.Name.ToString() + ", " + resource.Gold.ToString() + " vàng và " + resource.Diamond.ToString() + " kim cương!";
 
             }
             else if (!enemyTeamAlive && boss != null)
             {
                 string currentDirectory = Directory.GetCurrentDirectory();
                 string imagePath = Path.GetFullPath(Path.Combine(currentDirectory, "..\\..\\..\\..\\Text-BasedGame\\Utilities\\Data\\equipment.txt"));
-                Equipment equipment = equipmentControllercs.LoadEquipmentFromFile(imagePath, enemy2);
+                Equipment equipment = equipmentControllercs.LoadEquipmentFromFile(imagePath, enemyTeam[0]);
                 items.Add(equipment);
+                Resource resource = resourceController.DropResourceFormEnemy(enemyTeam[0]);
+                resources.Gold += resource.Gold;
+                resources.Diamond += resource.Diamond;
+
                 enemyTeam = new List<Enemy>();
-                enemy1 = new Enemy("Enemy1", boss.level + 1, 100 + boss.level * 50, 100 + boss.level * 50, 8 + boss.level * 2, 5 + boss.level, 5);
+                int level = boss.level + 1;
+                enemy1 = new Enemy("Enemy1", level, 100 + level * 50, 100 + level * 50, 8 + level * 2, 5 + level, 5);
                 enemy2 = new Enemy("Enemy2", enemy1.level, enemy1.curHealth, enemy1.maxHealth, enemy1.damage, enemy1.armor, 5);
                 enemy3 = new Enemy("Enemy3", enemy1.level, enemy1.curHealth, enemy1.maxHealth, enemy1.damage, enemy1.armor, 5);
                 enemy4 = new Enemy("Enemy4", enemy1.level, enemy1.curHealth, enemy1.maxHealth, enemy1.damage, enemy1.armor, 5);
@@ -510,8 +545,13 @@ namespace View
                 turnCount = 1;
                 lblTurnCount.Text = $"{turnCount} / 10";
                 lblMessage.Visible = true;
-                lblMessage.Text = "Bạn đã chiến thắng! Bạn nhận được một trang bị mới:\n" + equipment.Name.ToString();
+                lblMessage.Text = "Bạn đã chiến thắng Boss! Bạn nhận được phần thưởng: \n" + equipment.Name.ToString() + ", " + resource.Gold.ToString() + " vàng và " + resource.Diamond.ToString() + " kim cương!";
+                foreach (Player player in playerTeam)
+                {
+                    player.curHealth = player.maxHealth;
+                }
             }
+            UpdateResourceInfo();
         }
 
         private void UpdateInventory(List<Item> items)
@@ -527,7 +567,7 @@ namespace View
             if (characterForm == null || characterForm.IsDisposed)
             {
                 // Tạo một instance mới của CharacterForm và truyền danh sách người chơi vào constructor
-                characterForm = new CharacterForm(playerTeam, items);
+                characterForm = new CharacterForm(playerTeam, items, resources);
             }
 
             // Hiển thị CharacterForm
@@ -566,7 +606,7 @@ namespace View
             if (dungeonForm == null || dungeonForm.IsDisposed)
             {
                 // Tạo một instance mới của InventoryForm và truyền danh sách vật phẩm và đội ngũ người chơi vào constructor
-                dungeonForm = new DungeonForm();
+                dungeonForm = new ShopForm();
             }
 
             // Hiển thị InventoryForm
@@ -579,7 +619,7 @@ namespace View
             if (settingsForm == null || settingsForm.IsDisposed)
             {
                 // Tạo một instance mới của SettingsForm
-                settingsForm = new SettingsForm(playerTeam, enemyTeam, items);
+                settingsForm = new SettingsForm(playerTeam, enemyTeam, items, resources);
                 settingsForm.StartPosition = FormStartPosition.Manual;
 
                 // Tính toán vị trí hiển thị
@@ -597,16 +637,11 @@ namespace View
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Bạn có chắc muốn thoát?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            // Đóng ứng dụng hoặc xử lý tắt trò chơi ở đây
+            //Application.Exit(); // Đóng ứng dụng
 
-            if (result == DialogResult.Yes)
-            {
-                // Đóng ứng dụng hoặc xử lý tắt trò chơi ở đây
-                //Application.Exit(); // Đóng ứng dụng
-
-                // Hoặc
-                this.Close(); // Đóng cửa sổ chứa trò chơi
-            }
+            // Hoặc
+            this.Close(); // Đóng cửa sổ chứa trò chơi
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -622,7 +657,7 @@ namespace View
                 // Xử lý khi người dùng bấm nút "X" trên thanh tiêu đề
 
                 // Hiển thị hộp thoại xác nhận hoặc lưu dữ liệu trước khi tắt chương trình
-                DialogResult result = MessageBox.Show("Bạn có muốn thoát chương trình?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show("Bạn có chắc muốn thoát?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.No)
                 {
                     e.Cancel = true; // Hủy sự kiện đóng cửa sổ

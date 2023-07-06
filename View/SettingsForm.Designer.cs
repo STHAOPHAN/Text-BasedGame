@@ -34,9 +34,10 @@
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(44, 29);
+            btnSave.Location = new Point(38, 22);
+            btnSave.Margin = new Padding(3, 2, 3, 2);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(152, 39);
+            btnSave.Size = new Size(133, 29);
             btnSave.TabIndex = 1;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
@@ -44,25 +45,28 @@
             // 
             // btnLoad
             // 
-            btnLoad.Location = new Point(44, 84);
+            btnLoad.Location = new Point(38, 63);
+            btnLoad.Margin = new Padding(3, 2, 3, 2);
             btnLoad.Name = "btnLoad";
-            btnLoad.Size = new Size(152, 39);
+            btnLoad.Size = new Size(133, 29);
             btnLoad.TabIndex = 2;
             btnLoad.Text = "Load";
             btnLoad.UseVisualStyleBackColor = true;
+            btnLoad.Click += btnLoad_Click;
             // 
             // SettingsForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(239, 154);
+            ClientSize = new Size(209, 116);
             Controls.Add(btnLoad);
             Controls.Add(btnSave);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "SettingsForm";
-            Text = "Settings";
+            Text = "Cài Đặt";
             ResumeLayout(false);
         }
 

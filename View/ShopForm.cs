@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace View
 {
-    public partial class DungeonForm : Form
+    public partial class ShopForm : Form
     {
-        public DungeonForm()
+        public ShopForm()
         {
             InitializeComponent();
         }

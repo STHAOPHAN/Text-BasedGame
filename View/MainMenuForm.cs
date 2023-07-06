@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,6 +18,8 @@ namespace View
         private List<Player> playerTeam = new List<Player>();
         private List<Enemy> enemyTeam = new List<Enemy>();
         private List<Item> items = new List<Item>();
+        private List<Equipment> equipments = new List<Equipment>();
+        private Resource resources = new Resource();
         public MainMenuForm()
         {
             InitializeComponent();
@@ -26,11 +29,11 @@ namespace View
         {
 
             // Thêm người chơi vào đội hình
-            playerTeam.Add(new Player("Player1", 1, 100, 100, 100, 10, 5, 0, 5));//Name, Max Health, Current Health, Damage, Armor, Attack Speed, Mana
-            playerTeam.Add(new Player("Player2", 1, 100, 100, 100, 10, 5, 0, 5));
-            playerTeam.Add(new Player("Player3", 1, 100, 100, 100, 10, 5, 0, 5));
-            playerTeam.Add(new Player("Player4", 1, 100, 100, 100, 10, 5, 0, 5));
-            playerTeam.Add(new Player("Player5", 1, 100, 100, 100, 10, 5, 0, 5));
+            playerTeam.Add(new Player("Player1", 1, 100, 100, 20, 10, 4, 0, 5));//Name, Max Health, Current Health, Damage, Armor, Attack Speed, Mana
+            playerTeam.Add(new Player("Player2", 1, 100, 100, 20, 10, 4, 0, 5));
+            playerTeam.Add(new Player("Player3", 1, 100, 100, 20, 10, 4, 0, 5));
+            playerTeam.Add(new Player("Player4", 1, 100, 100, 20, 10, 4, 0, 5));
+            playerTeam.Add(new Player("Player5", 1, 100, 100, 20, 10, 4, 0, 5));
 
             // Thêm kẻ địch vào đội hình
             enemyTeam.Add(new Enemy("Enemy1", 5, 100, 100, 8, 5, 5));//Name, Max Health, Current Health, Damage, Armor, Attack Speed
@@ -39,8 +42,11 @@ namespace View
             enemyTeam.Add(new Enemy("Enemy4", 5, 100, 100, 8, 5, 5));
             enemyTeam.Add(new Enemy("Enemy5", 5, 100, 100, 8, 5, 5));
 
+            // Khởi tạo tài nguyên ban đầu
+            resources = new Resource(0, 0);
+
             // Khởi tạo và chạy form MainForm
-            MainForm mainForm = new MainForm(playerTeam, enemyTeam, items);
+            MainForm mainForm = new MainForm(playerTeam, enemyTeam, items, resources);
             mainForm.Show();
             this.Hide(); // Ẩn form MainMenuForm
         }
@@ -104,8 +110,14 @@ namespace View
                 playerTeam = gameSaveData.Players;
                 enemyTeam = gameSaveData.Enemies;
                 items = gameSaveData.Items;
+                equipments = gameSaveData.Equipments;
+                foreach ( var equipment in equipments ) 
+                { 
+                    items.Add( equipment );
+                }
+                resources = gameSaveData.Resource;
                 // Khởi tạo và chạy form MainForm
-                MainForm mainForm = new MainForm(playerTeam, enemyTeam, items);
+                MainForm mainForm = new MainForm(playerTeam, enemyTeam, items, resources);
                 mainForm.Show();
                 this.Hide(); // Ẩn form MainMenuForm
             }

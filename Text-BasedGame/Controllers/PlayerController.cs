@@ -58,14 +58,20 @@ namespace Text_BasedGame.Controllers
             }
         }
 
+        public void LevelUp(Player player)
+        {
+            player.level += 1; // Tăng 1 damage
+            player.statPoints += 5;
+        }
+
         public void ResetStatPoint(Player player)
         {
             player.statPoints = player.level * 5;
             player.level = 1;
             player.curHealth = 100;
             player.maxHealth = 100;
-            player.damage = 10;
-            player.attackSpeed = 5;
+            player.damage = 20;
+            player.attackSpeed = 4;
             player.armor = 5;
         }
     }

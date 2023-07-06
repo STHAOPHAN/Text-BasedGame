@@ -61,6 +61,8 @@
             lblMana = new Label();
             lblHealth = new Label();
             panel14 = new Panel();
+            lblNecessaryGold = new Label();
+            btnLevelUp = new Button();
             btnUndoIncreaseStat = new Button();
             btnIncreaseArmor = new Button();
             btnIncreaseAttackSpeed = new Button();
@@ -75,6 +77,7 @@
             label4 = new Label();
             label1 = new Label();
             label2 = new Label();
+            lblMessage = new Label();
             pnlHelmet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ptbHelmet).BeginInit();
             pnlChestArmor.SuspendLayout();
@@ -429,7 +432,7 @@
             // lblDamage
             // 
             lblDamage.AutoSize = true;
-            lblDamage.Location = new Point(73, 85);
+            lblDamage.Location = new Point(83, 85);
             lblDamage.Name = "lblDamage";
             lblDamage.Size = new Size(38, 15);
             lblDamage.TabIndex = 8;
@@ -438,7 +441,7 @@
             // lblAttackSpeed
             // 
             lblAttackSpeed.AutoSize = true;
-            lblAttackSpeed.Location = new Point(73, 107);
+            lblAttackSpeed.Location = new Point(83, 107);
             lblAttackSpeed.Name = "lblAttackSpeed";
             lblAttackSpeed.Size = new Size(38, 15);
             lblAttackSpeed.TabIndex = 7;
@@ -447,7 +450,7 @@
             // lblArmor
             // 
             lblArmor.AutoSize = true;
-            lblArmor.Location = new Point(73, 131);
+            lblArmor.Location = new Point(83, 131);
             lblArmor.Name = "lblArmor";
             lblArmor.Size = new Size(38, 15);
             lblArmor.TabIndex = 6;
@@ -456,7 +459,7 @@
             // lblMana
             // 
             lblMana.AutoSize = true;
-            lblMana.Location = new Point(73, 62);
+            lblMana.Location = new Point(83, 62);
             lblMana.Name = "lblMana";
             lblMana.Size = new Size(38, 15);
             lblMana.TabIndex = 23;
@@ -465,7 +468,7 @@
             // lblHealth
             // 
             lblHealth.AutoSize = true;
-            lblHealth.Location = new Point(73, 38);
+            lblHealth.Location = new Point(83, 38);
             lblHealth.Name = "lblHealth";
             lblHealth.Size = new Size(38, 15);
             lblHealth.TabIndex = 5;
@@ -475,6 +478,8 @@
             // 
             panel14.BackColor = SystemColors.Window;
             panel14.BorderStyle = BorderStyle.FixedSingle;
+            panel14.Controls.Add(lblNecessaryGold);
+            panel14.Controls.Add(btnLevelUp);
             panel14.Controls.Add(btnUndoIncreaseStat);
             panel14.Controls.Add(btnIncreaseArmor);
             panel14.Controls.Add(btnIncreaseAttackSpeed);
@@ -496,12 +501,31 @@
             panel14.Controls.Add(lblAttackSpeed);
             panel14.Location = new Point(559, 27);
             panel14.Name = "panel14";
-            panel14.Size = new Size(200, 194);
+            panel14.Size = new Size(200, 223);
             panel14.TabIndex = 24;
+            // 
+            // lblNecessaryGold
+            // 
+            lblNecessaryGold.AutoSize = true;
+            lblNecessaryGold.Location = new Point(83, 190);
+            lblNecessaryGold.Name = "lblNecessaryGold";
+            lblNecessaryGold.Size = new Size(38, 15);
+            lblNecessaryGold.TabIndex = 30;
+            lblNecessaryGold.Text = "label7";
+            // 
+            // btnLevelUp
+            // 
+            btnLevelUp.Location = new Point(14, 186);
+            btnLevelUp.Name = "btnLevelUp";
+            btnLevelUp.Size = new Size(64, 23);
+            btnLevelUp.TabIndex = 27;
+            btnLevelUp.Text = "Level Up";
+            btnLevelUp.UseVisualStyleBackColor = true;
+            btnLevelUp.Click += btnLevelUp_Click;
             // 
             // btnUndoIncreaseStat
             // 
-            btnUndoIncreaseStat.Location = new Point(117, 152);
+            btnUndoIncreaseStat.Location = new Point(127, 152);
             btnUndoIncreaseStat.Name = "btnUndoIncreaseStat";
             btnUndoIncreaseStat.Size = new Size(52, 23);
             btnUndoIncreaseStat.TabIndex = 29;
@@ -511,7 +535,7 @@
             // 
             // btnIncreaseArmor
             // 
-            btnIncreaseArmor.Location = new Point(133, 127);
+            btnIncreaseArmor.Location = new Point(143, 127);
             btnIncreaseArmor.Name = "btnIncreaseArmor";
             btnIncreaseArmor.Size = new Size(23, 23);
             btnIncreaseArmor.TabIndex = 28;
@@ -521,7 +545,7 @@
             // 
             // btnIncreaseAttackSpeed
             // 
-            btnIncreaseAttackSpeed.Location = new Point(133, 103);
+            btnIncreaseAttackSpeed.Location = new Point(143, 103);
             btnIncreaseAttackSpeed.Name = "btnIncreaseAttackSpeed";
             btnIncreaseAttackSpeed.Size = new Size(23, 23);
             btnIncreaseAttackSpeed.TabIndex = 29;
@@ -531,7 +555,7 @@
             // 
             // btnIncreaseHealth
             // 
-            btnIncreaseHealth.Location = new Point(133, 34);
+            btnIncreaseHealth.Location = new Point(143, 34);
             btnIncreaseHealth.Name = "btnIncreaseHealth";
             btnIncreaseHealth.Size = new Size(23, 23);
             btnIncreaseHealth.TabIndex = 26;
@@ -541,7 +565,7 @@
             // 
             // btnIncreaseDamege
             // 
-            btnIncreaseDamege.Location = new Point(133, 81);
+            btnIncreaseDamege.Location = new Point(143, 81);
             btnIncreaseDamege.Name = "btnIncreaseDamege";
             btnIncreaseDamege.Size = new Size(23, 23);
             btnIncreaseDamege.TabIndex = 25;
@@ -552,7 +576,7 @@
             // lblStatPoints
             // 
             lblStatPoints.AutoSize = true;
-            lblStatPoints.Location = new Point(73, 156);
+            lblStatPoints.Location = new Point(83, 156);
             lblStatPoints.Name = "lblStatPoints";
             lblStatPoints.Size = new Size(38, 15);
             lblStatPoints.TabIndex = 25;
@@ -570,7 +594,7 @@
             // lblLevel
             // 
             lblLevel.AutoSize = true;
-            lblLevel.Location = new Point(73, 13);
+            lblLevel.Location = new Point(83, 13);
             lblLevel.Name = "lblLevel";
             lblLevel.Size = new Size(38, 15);
             lblLevel.TabIndex = 25;
@@ -630,12 +654,24 @@
             label2.TabIndex = 26;
             label2.Text = "HP";
             // 
+            // lblMessage
+            // 
+            lblMessage.AutoSize = true;
+            lblMessage.ForeColor = Color.Red;
+            lblMessage.Location = new Point(574, 259);
+            lblMessage.Name = "lblMessage";
+            lblMessage.Size = new Size(38, 15);
+            lblMessage.TabIndex = 25;
+            lblMessage.Text = "label7";
+            lblMessage.Visible = false;
+            // 
             // CharacterForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveBorder;
             ClientSize = new Size(800, 450);
+            Controls.Add(lblMessage);
             Controls.Add(panel14);
             Controls.Add(pnlNecklace);
             Controls.Add(pnlArtifact);
@@ -688,6 +724,7 @@
             panel14.ResumeLayout(false);
             panel14.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -739,5 +776,8 @@
         private PictureBox ptbBracelet;
         private PictureBox ptbArtifact;
         private PictureBox ptbNecklace;
+        private Label lblNecessaryGold;
+        private Button btnLevelUp;
+        private Label lblMessage;
     }
 }

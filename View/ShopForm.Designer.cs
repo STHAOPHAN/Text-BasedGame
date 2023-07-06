@@ -1,6 +1,6 @@
 ﻿namespace View
 {
-    partial class DungeonForm
+    partial class ShopForm
     {
         /// <summary>
         /// Required designer variable.

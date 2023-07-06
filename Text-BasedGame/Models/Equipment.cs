@@ -10,22 +10,16 @@ namespace Text_BasedGame.Models
     public class Equipment : Item
     {
         // Các thuộc tính của lớp Equipment
-        [JsonProperty("Level")]
         public int Level { get; set; }
 
-        [JsonProperty("Quality")]
         public string Quality { get; set; }
 
-        [JsonProperty("HP")]
         public int HP { get; set; }
 
-        [JsonProperty("Damage")]
         public int Damage { get; set; }
 
-        [JsonProperty("AttackSpeed")]
         public int AttackSpeed { get; set; }
 
-        [JsonProperty("Armor")]
         public int Armor { get; set; }
 
         [JsonConstructor]

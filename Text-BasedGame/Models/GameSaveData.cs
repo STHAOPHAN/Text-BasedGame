@@ -13,11 +13,17 @@ namespace Text_BasedGame.Models
         public List<Enemy> Enemies { get; set; }
         public List<Item> Items { get; set; }
 
-        public GameSaveData(List<Player> players, List<Enemy> enemies, List<Item> items)
+        public List<Equipment> Equipments { get; set; }
+
+        public Resource Resource { get; set; }
+
+        public GameSaveData(List<Player> players, List<Enemy> enemies, List<Item> items, List<Equipment> equipments, Resource resource)
         {
             Players = players;
             Enemies = enemies;
             Items = items;
+            Equipments = equipments;
+            Resource = resource;
         }
 
         public string ToJson()

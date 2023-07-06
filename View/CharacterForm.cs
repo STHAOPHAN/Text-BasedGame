@@ -22,15 +22,30 @@ namespace View
         private PlayerController playerController = new PlayerController();
         private List<Player> players;
         private List<Item> items;
-        private CharacterForm characterForm;
         private InventoryForm inventoryForm;
         private Form tooltipForm;
+        private Resource resources = new Resource();
+        long necessaryGold = 0;
 
         public CharacterForm(List<Player> players, List<Item> items)
         {
             InitializeComponent();
             this.players = players;
             this.items = items;
+
+            // Hiển thị danh sách người chơi
+            foreach (var player in players)
+            {
+                playerListBox.Items.Add(player.name);
+            }
+        }
+
+        public CharacterForm(List<Player> players, List<Item> items, Resource resource)
+        {
+            InitializeComponent();
+            this.players = players;
+            this.items = items;
+            this.resources = resource;
 
             // Hiển thị danh sách người chơi
             foreach (var player in players)
@@ -57,6 +72,8 @@ namespace View
             ptbBracelet.BackColor = Color.White;
             ptbNecklace.BackColor = Color.White;
             ptbArtifact.BackColor = Color.White;
+            // Ẩn nút tăng stat khi hết điểm
+            HideBtnIncrease(selectedPlayer);
             // Hiển thị chỉ số của nhân vật
             UpdatePlayerInfo(selectedPlayer);
             // Hiển thị các chỉ số khác của nhân vật
@@ -70,6 +87,9 @@ namespace View
                 // Hiển thị thông tin của người chơi đầu tiên
                 playerListBox.SelectedIndex = 0;
             }
+            var selectedPlayer = players[playerListBox.SelectedIndex];
+            // Ẩn nút tăng stat khi hết điểm
+            HideBtnIncrease(selectedPlayer);
         }
 
         private void UpdatePlayerInfo(Player player)
@@ -83,6 +103,8 @@ namespace View
             if (player.attackSpeed < 1) lblAttackSpeed.Text = "1";
             else lblAttackSpeed.Text = player.attackSpeed.ToString();
             lblStatPoints.Text = player.statPoints.ToString();
+            necessaryGold = 100 * (player.level + 1);
+            lblNecessaryGold.Text = $"{necessaryGold} Vàng";
         }
 
         private void HideBtnIncrease(Player player)
@@ -102,6 +124,27 @@ namespace View
                 btnIncreaseArmor.Enabled = true;
             }
         }
+
+        private void btnLevelUp_Click(object sender, EventArgs e)
+        {
+            var selectedPlayer = players[playerListBox.SelectedIndex];
+
+            // Số lượng vàng dùng để lên cấp
+            necessaryGold = 100 * (selectedPlayer.level + 1);
+            if (necessaryGold > resources.Gold)
+            {
+                lblMessage.Visible = true;
+                lblMessage.Text = "Bạn không đủ tiền để lên cấp.";
+            } else
+            {
+                resources.Gold -= necessaryGold;
+                playerController.LevelUp(selectedPlayer);
+                lblMessage.Visible = false;
+            }
+            // Cập nhật thông tin người chơi
+            UpdatePlayerInfo(selectedPlayer);
+        }
+
         private void btnIncreaseHealth_Click(object sender, EventArgs e)
         {
             var selectedPlayer = players[playerListBox.SelectedIndex];
@@ -804,10 +847,10 @@ namespace View
 
         private void GetBackColor(Equipment equipment, PictureBox pictureBox)
         {
-                if (equipment.Quality.Equals("Common")) pictureBox.BackColor = Color.White;
-                else if (equipment.Quality.Equals("Rare")) pictureBox.BackColor = Color.Aqua;
-                else if (equipment.Quality.Equals("Elite")) pictureBox.BackColor = Color.Violet;
-                else if (equipment.Quality.Equals("Legendary")) pictureBox.BackColor = Color.Orange;
+            if (equipment.Quality.Equals("Common")) pictureBox.BackColor = Color.White;
+            else if (equipment.Quality.Equals("Rare")) pictureBox.BackColor = Color.Aqua;
+            else if (equipment.Quality.Equals("Elite")) pictureBox.BackColor = Color.Violet;
+            else if (equipment.Quality.Equals("Legendary")) pictureBox.BackColor = Color.Orange;
         }
 
         private void RefreshCharacterForm()
