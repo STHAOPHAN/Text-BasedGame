@@ -26,8 +26,13 @@ namespace Text_BasedGame.Models
         {
         }
 
-
-        // Thêm các thuộc tính khác tùy theo yêu cầu của trò chơi
-
+        public override bool Equals(object? obj)
+        {
+            return obj is Item item &&
+                   Name == item.Name &&
+                   Type == item.Type &&
+                   Description == item.Description &&
+                   Image == item.Image;
+        }
     }
 }

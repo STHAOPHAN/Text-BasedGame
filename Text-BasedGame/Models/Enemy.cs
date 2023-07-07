@@ -28,5 +28,17 @@ namespace Text_BasedGame.Models
             // Các logic tấn công đặc biệt cho Player
             // ...
         }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Enemy enemy &&
+                   name == enemy.name &&
+                   level == enemy.level &&
+                   maxHealth == enemy.maxHealth &&
+                   curHealth == enemy.curHealth &&
+                   damage == enemy.damage &&
+                   armor == enemy.armor &&
+                   attackSpeed == enemy.attackSpeed;
+        }
     }
 }

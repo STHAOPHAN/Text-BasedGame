@@ -17,7 +17,7 @@ namespace View
         private Player player1, player2, player3, player4, player5;
         private Enemy enemy1, enemy2, enemy3, enemy4, enemy5;
         private List<Item> items;
-        private EquipmentControllercs equipmentControllercs = new EquipmentControllercs();
+        private EquipmentController equipmentControllercs = new EquipmentController();
         private ResourceController resourceController = new ResourceController();
         private System.Windows.Forms.Timer moveTimer;
         private Panel playerPanel;
@@ -490,8 +490,8 @@ namespace View
             {
 
                 string currentDirectory = Directory.GetCurrentDirectory();
-                string imagePath = Path.GetFullPath(Path.Combine(currentDirectory, "..\\..\\..\\..\\Text-BasedGame\\Utilities\\Data\\equipment.txt"));
-                Equipment equipment = equipmentControllercs.LoadEquipmentFromFile(imagePath, enemyTeam[0]);
+                string filePath = Path.GetFullPath(Path.Combine(currentDirectory, "..\\..\\..\\..\\Text-BasedGame\\Utilities\\Data\\equipment.txt"));
+                Equipment equipment = equipmentControllercs.LoadEquipmentFromFile(filePath, enemyTeam[0]);
                 items.Add(equipment);
                 Resource resource = resourceController.DropResourceFormEnemy(enemyTeam[0]);
                 resources.Gold += resource.Gold;
@@ -519,8 +519,8 @@ namespace View
             else if (!enemyTeamAlive && boss != null)
             {
                 string currentDirectory = Directory.GetCurrentDirectory();
-                string imagePath = Path.GetFullPath(Path.Combine(currentDirectory, "..\\..\\..\\..\\Text-BasedGame\\Utilities\\Data\\equipment.txt"));
-                Equipment equipment = equipmentControllercs.LoadEquipmentFromFile(imagePath, enemyTeam[0]);
+                string filePath = Path.GetFullPath(Path.Combine(currentDirectory, "..\\..\\..\\..\\Text-BasedGame\\Utilities\\Data\\equipment.txt"));
+                Equipment equipment = equipmentControllercs.LoadEquipmentFromFile(filePath, enemyTeam[0]);
                 items.Add(equipment);
                 Resource resource = resourceController.DropResourceFormEnemy(enemyTeam[0]);
                 resources.Gold += resource.Gold;

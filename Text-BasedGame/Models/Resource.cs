@@ -18,5 +18,12 @@ namespace Text_BasedGame.Models
             Gold = gold;
             Diamond = diamond;
         }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Resource resource &&
+                   Gold == resource.Gold &&
+                   Diamond == resource.Diamond;
+        }
     }
 }

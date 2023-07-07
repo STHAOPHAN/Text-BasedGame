@@ -8,10 +8,10 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace Text_BasedGame.Controllers
 {
-    public class EquipmentControllercs
+    public class EquipmentController
     {
         List<Equipment> equipmentList = new List<Equipment>();
-        public EquipmentControllercs() { }
+        public EquipmentController() { }
         public Equipment LoadEquipmentFromFile(string filePath, Enemy enemy)
         {
             try

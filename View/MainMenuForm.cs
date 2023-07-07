@@ -20,6 +20,7 @@ namespace View
         private List<Item> items = new List<Item>();
         private List<Equipment> equipments = new List<Equipment>();
         private Resource resources = new Resource();
+        private StatsPoint statsPoint = new StatsPoint(0, 0, 0, 0);
         public MainMenuForm()
         {
             InitializeComponent();
@@ -29,11 +30,11 @@ namespace View
         {
 
             // Thêm người chơi vào đội hình
-            playerTeam.Add(new Player("Player1", 1, 100, 100, 20, 10, 4, 0, 5));//Name, Max Health, Current Health, Damage, Armor, Attack Speed, Mana
-            playerTeam.Add(new Player("Player2", 1, 100, 100, 20, 10, 4, 0, 5));
-            playerTeam.Add(new Player("Player3", 1, 100, 100, 20, 10, 4, 0, 5));
-            playerTeam.Add(new Player("Player4", 1, 100, 100, 20, 10, 4, 0, 5));
-            playerTeam.Add(new Player("Player5", 1, 100, 100, 20, 10, 4, 0, 5));
+            playerTeam.Add(new Player("Player1", 1, 100, 100, 20, 10, 4, 0, 5, statsPoint));//Name, Max Health, Current Health, Damage, Armor, Attack Speed, Mana, statspoint
+            playerTeam.Add(new Player("Player2", 1, 100, 100, 20, 10, 4, 0, 5, statsPoint));
+            playerTeam.Add(new Player("Player3", 1, 100, 100, 20, 10, 4, 0, 5, statsPoint));
+            playerTeam.Add(new Player("Player4", 1, 100, 100, 20, 10, 4, 0, 5, statsPoint));
+            playerTeam.Add(new Player("Player5", 1, 100, 100, 20, 10, 4, 0, 5, statsPoint));
 
             // Thêm kẻ địch vào đội hình
             enemyTeam.Add(new Enemy("Enemy1", 5, 100, 100, 8, 5, 5));//Name, Max Health, Current Health, Damage, Armor, Attack Speed

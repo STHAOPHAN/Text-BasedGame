@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Text-BasedGame", "Text-Base
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "View", "View\View.csproj", "{394EFAB4-1C42-47E8-8A14-7A5B099F2016}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Text-BasedGame.Test", "Text-BasedGame.Test\Text-BasedGame.Test.csproj", "{0654B71B-EEF6-4FAB-86D8-6EEB0A430294}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Text-BasedGame.Test", "Text-BasedGame.Test\Text-BasedGame.Test.csproj", "{F3591A7D-5977-4B84-A3C2-DBF3C0A52A88}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{394EFAB4-1C42-47E8-8A14-7A5B099F2016}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{394EFAB4-1C42-47E8-8A14-7A5B099F2016}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{394EFAB4-1C42-47E8-8A14-7A5B099F2016}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0654B71B-EEF6-4FAB-86D8-6EEB0A430294}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0654B71B-EEF6-4FAB-86D8-6EEB0A430294}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0654B71B-EEF6-4FAB-86D8-6EEB0A430294}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0654B71B-EEF6-4FAB-86D8-6EEB0A430294}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3591A7D-5977-4B84-A3C2-DBF3C0A52A88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3591A7D-5977-4B84-A3C2-DBF3C0A52A88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3591A7D-5977-4B84-A3C2-DBF3C0A52A88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3591A7D-5977-4B84-A3C2-DBF3C0A52A88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

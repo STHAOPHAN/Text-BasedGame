@@ -36,5 +36,9 @@ namespace Text_BasedGame.Models
         {
             return JsonConvert.DeserializeObject<GameSaveData>(json);
         }
+
+        public GameSaveData()
+        {
+        }
     }
 }

@@ -370,7 +370,7 @@ namespace View
             inventoryForm.UpdateItems(items);
 
             // Giảm chỉ số theo trang bị
-            DecreasePlayerStats(player, equipment);
+            playerController.DecreasePlayerStats(player, equipment);
 
             UpdatePlayerStats();
 
@@ -386,79 +386,79 @@ namespace View
             {
                 selectedPlayer.Weapon = equipment;
                 // Tăng chỉ số theo trang bị
-                IncreasePlayerStats(selectedPlayer, equipment);
+                playerController.IncreasePlayerStats(selectedPlayer, equipment);
             }
             else if (panel == pnlSecondaryWeapon && equipment.Type.Equals("Secondary Weapon"))
             {
                 selectedPlayer.SecondaryWeapon = equipment;
                 // Tăng chỉ số theo trang bị
-                IncreasePlayerStats(selectedPlayer, equipment);
+                playerController.IncreasePlayerStats(selectedPlayer, equipment);
             }
             else if (panel == pnlHelmet && equipment.Type.Equals("Helmet"))
             {
                 selectedPlayer.Helmet = equipment;
                 // Tăng chỉ số theo trang bị
-                IncreasePlayerStats(selectedPlayer, equipment);
+                playerController.IncreasePlayerStats(selectedPlayer, equipment);
             }
             else if (panel == pnlChestArmor && equipment.Type.Equals("Chest Armor"))
             {
                 selectedPlayer.ChestArmor = equipment;
                 // Tăng chỉ số theo trang bị
-                IncreasePlayerStats(selectedPlayer, equipment);
+                playerController.IncreasePlayerStats(selectedPlayer, equipment);
             }
             else if (panel == pnlArmArmor && equipment.Type.Equals("Arm Armor"))
             {
                 selectedPlayer.ArmArmor = equipment;
                 // Tăng chỉ số theo trang bị
-                IncreasePlayerStats(selectedPlayer, equipment);
+                playerController.IncreasePlayerStats(selectedPlayer, equipment);
             }
             else if (panel == pnlGlove && equipment.Type.Equals("Glove"))
             {
                 selectedPlayer.Glove = equipment;
                 // Tăng chỉ số theo trang bị
-                IncreasePlayerStats(selectedPlayer, equipment);
+                playerController.IncreasePlayerStats(selectedPlayer, equipment);
             }
             else if (panel == pnlBelt && equipment.Type.Equals("Belt"))
             {
                 selectedPlayer.Belt = equipment;
                 // Tăng chỉ số theo trang bị
-                IncreasePlayerStats(selectedPlayer, equipment);
+                playerController.IncreasePlayerStats(selectedPlayer, equipment);
             }
             else if (panel == pnlPants && equipment.Type.Equals("Pants"))
             {
                 selectedPlayer.Pants = equipment;
                 // Tăng chỉ số theo trang bị
-                IncreasePlayerStats(selectedPlayer, equipment);
+                playerController.IncreasePlayerStats(selectedPlayer, equipment);
             }
             else if (panel == pnlBoots && equipment.Type.Equals("Boots"))
             {
                 selectedPlayer.Boots = equipment;
                 // Tăng chỉ số theo trang bị
-                IncreasePlayerStats(selectedPlayer, equipment);
+                playerController.IncreasePlayerStats(selectedPlayer, equipment);
             }
             else if (panel == pnlNecklace && equipment.Type.Equals("Necklace"))
             {
                 selectedPlayer.Necklace = equipment;
                 // Tăng chỉ số theo trang bị
-                IncreasePlayerStats(selectedPlayer, equipment);
+                playerController.IncreasePlayerStats(selectedPlayer, equipment);
             }
             else if (panel == pnlRing && equipment.Type.Equals("Ring"))
             {
                 selectedPlayer.Ring = equipment;
                 // Tăng chỉ số theo trang bị
-                IncreasePlayerStats(selectedPlayer, equipment);
+                playerController.IncreasePlayerStats(selectedPlayer, equipment);
             }
-            else if (panel == pnlBracelet && equipment.Type.Equals("Ring"))
+            else if (panel == pnlBracelet && equipment.Type.Equals("Bracelet"))
             {
                 selectedPlayer.Bracelet = equipment;
                 // Tăng chỉ số theo trang bị
-                IncreasePlayerStats(selectedPlayer, equipment);
+                playerController.IncreasePlayerStats(selectedPlayer, equipment);
             }
             else if (panel == pnlArtifact && equipment.Type.Equals("Artifact"))
             {
                 selectedPlayer.Artifact = equipment;
                 // Tăng chỉ số theo trang bị
-                IncreasePlayerStats(selectedPlayer, equipment);
+                playerController.IncreasePlayerStats(selectedPlayer, equipment);
             }
             UpdatePlayerStats();
             RefreshCharacterForm();
@@ -471,15 +471,15 @@ namespace View
                 {
                     selectedPlayer.Weapon = equipment;
                     // Tăng chỉ số theo trang bị
-                    IncreasePlayerStats(selectedPlayer, equipment);
+                    playerController.IncreasePlayerStats(selectedPlayer, equipment);
                     return null;
                 }
                 else
                 {
                     Equipment returnEquipment = selectedPlayer.Weapon;
-                    DecreasePlayerStats(selectedPlayer, returnEquipment);
+                    playerController.DecreasePlayerStats(selectedPlayer, returnEquipment);
                     selectedPlayer.Weapon = equipment;
-                    IncreasePlayerStats(selectedPlayer, equipment);
+                    playerController.IncreasePlayerStats(selectedPlayer, equipment);
                     return returnEquipment;
                 }
             }
@@ -489,15 +489,15 @@ namespace View
                 {
                     selectedPlayer.SecondaryWeapon = equipment;
                     // Tăng chỉ số theo trang bị
-                    IncreasePlayerStats(selectedPlayer, equipment);
+                    playerController.IncreasePlayerStats(selectedPlayer, equipment);
                     return null;
                 }
                 else
                 {
                     Equipment returnEquipment = selectedPlayer.SecondaryWeapon;
-                    DecreasePlayerStats(selectedPlayer, returnEquipment);
+                    playerController.DecreasePlayerStats(selectedPlayer, returnEquipment);
                     selectedPlayer.SecondaryWeapon = equipment;
-                    IncreasePlayerStats(selectedPlayer, equipment);
+                    playerController.IncreasePlayerStats(selectedPlayer, equipment);
                     return returnEquipment;
                 }
             }
@@ -507,15 +507,15 @@ namespace View
                 {
                     selectedPlayer.Helmet = equipment;
                     // Tăng chỉ số theo trang bị
-                    IncreasePlayerStats(selectedPlayer, equipment);
+                    playerController.IncreasePlayerStats(selectedPlayer, equipment);
                     return null;
                 }
                 else
                 {
                     Equipment returnEquipment = selectedPlayer.Helmet;
-                    DecreasePlayerStats(selectedPlayer, returnEquipment);
+                    playerController.DecreasePlayerStats(selectedPlayer, returnEquipment);
                     selectedPlayer.Helmet = equipment;
-                    IncreasePlayerStats(selectedPlayer, equipment);
+                    playerController.IncreasePlayerStats(selectedPlayer, equipment);
                     return returnEquipment;
                 }
             }
@@ -525,15 +525,15 @@ namespace View
                 {
                     selectedPlayer.ChestArmor = equipment;
                     // Tăng chỉ số theo trang bị
-                    IncreasePlayerStats(selectedPlayer, equipment);
+                    playerController.IncreasePlayerStats(selectedPlayer, equipment);
                     return null;
                 }
                 else
                 {
                     Equipment returnEquipment = selectedPlayer.ChestArmor;
-                    DecreasePlayerStats(selectedPlayer, returnEquipment);
+                    playerController.DecreasePlayerStats(selectedPlayer, returnEquipment);
                     selectedPlayer.ChestArmor = equipment;
-                    IncreasePlayerStats(selectedPlayer, equipment);
+                    playerController.IncreasePlayerStats(selectedPlayer, equipment);
                     return returnEquipment;
                 }
             }
@@ -543,15 +543,15 @@ namespace View
                 {
                     selectedPlayer.ArmArmor = equipment;
                     // Tăng chỉ số theo trang bị
-                    IncreasePlayerStats(selectedPlayer, equipment);
+                    playerController.IncreasePlayerStats(selectedPlayer, equipment);
                     return null;
                 }
                 else
                 {
                     Equipment returnEquipment = selectedPlayer.ArmArmor;
-                    DecreasePlayerStats(selectedPlayer, returnEquipment);
+                    playerController.DecreasePlayerStats(selectedPlayer, returnEquipment);
                     selectedPlayer.ArmArmor = equipment;
-                    IncreasePlayerStats(selectedPlayer, equipment);
+                    playerController.IncreasePlayerStats(selectedPlayer, equipment);
                     return returnEquipment;
                 }
             }
@@ -561,15 +561,15 @@ namespace View
                 {
                     selectedPlayer.Glove = equipment;
                     // Tăng chỉ số theo trang bị
-                    IncreasePlayerStats(selectedPlayer, equipment);
+                    playerController.IncreasePlayerStats(selectedPlayer, equipment);
                     return null;
                 }
                 else
                 {
                     Equipment returnEquipment = selectedPlayer.Glove;
-                    DecreasePlayerStats(selectedPlayer, returnEquipment);
+                    playerController.DecreasePlayerStats(selectedPlayer, returnEquipment);
                     selectedPlayer.Glove = equipment;
-                    IncreasePlayerStats(selectedPlayer, equipment);
+                    playerController.IncreasePlayerStats(selectedPlayer, equipment);
                     return returnEquipment;
                 }
             }
@@ -579,15 +579,15 @@ namespace View
                 {
                     selectedPlayer.Belt = equipment;
                     // Tăng chỉ số theo trang bị
-                    IncreasePlayerStats(selectedPlayer, equipment);
+                    playerController.IncreasePlayerStats(selectedPlayer, equipment);
                     return null;
                 }
                 else
                 {
                     Equipment returnEquipment = selectedPlayer.Belt;
-                    DecreasePlayerStats(selectedPlayer, returnEquipment);
+                    playerController.DecreasePlayerStats(selectedPlayer, returnEquipment);
                     selectedPlayer.Belt = equipment;
-                    IncreasePlayerStats(selectedPlayer, equipment);
+                    playerController.IncreasePlayerStats(selectedPlayer, equipment);
                     return returnEquipment;
                 }
             }
@@ -597,15 +597,15 @@ namespace View
                 {
                     selectedPlayer.Pants = equipment;
                     // Tăng chỉ số theo trang bị
-                    IncreasePlayerStats(selectedPlayer, equipment);
+                    playerController.IncreasePlayerStats(selectedPlayer, equipment);
                     return null;
                 }
                 else
                 {
                     Equipment returnEquipment = selectedPlayer.Pants;
-                    DecreasePlayerStats(selectedPlayer, returnEquipment);
+                    playerController.DecreasePlayerStats(selectedPlayer, returnEquipment);
                     selectedPlayer.Pants = equipment;
-                    IncreasePlayerStats(selectedPlayer, equipment);
+                    playerController.IncreasePlayerStats(selectedPlayer, equipment);
                     return returnEquipment;
                 }
             }
@@ -615,15 +615,15 @@ namespace View
                 {
                     selectedPlayer.Boots = equipment;
                     // Tăng chỉ số theo trang bị
-                    IncreasePlayerStats(selectedPlayer, equipment);
+                    playerController.IncreasePlayerStats(selectedPlayer, equipment);
                     return null;
                 }
                 else
                 {
                     Equipment returnEquipment = selectedPlayer.Boots;
-                    DecreasePlayerStats(selectedPlayer, returnEquipment);
+                    playerController.DecreasePlayerStats(selectedPlayer, returnEquipment);
                     selectedPlayer.Boots = equipment;
-                    IncreasePlayerStats(selectedPlayer, equipment);
+                    playerController.IncreasePlayerStats(selectedPlayer, equipment);
                     return returnEquipment;
                 }
             }
@@ -633,15 +633,15 @@ namespace View
                 {
                     selectedPlayer.Necklace = equipment;
                     // Tăng chỉ số theo trang bị
-                    IncreasePlayerStats(selectedPlayer, equipment);
+                    playerController.IncreasePlayerStats(selectedPlayer, equipment);
                     return null;
                 }
                 else
                 {
                     Equipment returnEquipment = selectedPlayer.Necklace;
-                    DecreasePlayerStats(selectedPlayer, returnEquipment);
+                    playerController.DecreasePlayerStats(selectedPlayer, returnEquipment);
                     selectedPlayer.Necklace = equipment;
-                    IncreasePlayerStats(selectedPlayer, equipment);
+                    playerController.IncreasePlayerStats(selectedPlayer, equipment);
                     return returnEquipment;
                 }
             }
@@ -651,15 +651,15 @@ namespace View
                 {
                     selectedPlayer.Ring = equipment;
                     // Tăng chỉ số theo trang bị
-                    IncreasePlayerStats(selectedPlayer, equipment);
+                    playerController.IncreasePlayerStats(selectedPlayer, equipment);
                     return null;
                 }
                 else
                 {
                     Equipment returnEquipment = selectedPlayer.Ring;
-                    DecreasePlayerStats(selectedPlayer, returnEquipment);
+                    playerController.DecreasePlayerStats(selectedPlayer, returnEquipment);
                     selectedPlayer.Ring = equipment;
-                    IncreasePlayerStats(selectedPlayer, equipment);
+                    playerController.IncreasePlayerStats(selectedPlayer, equipment);
                     return returnEquipment;
                 }
             }
@@ -669,15 +669,15 @@ namespace View
                 {
                     selectedPlayer.Bracelet = equipment;
                     // Tăng chỉ số theo trang bị
-                    IncreasePlayerStats(selectedPlayer, equipment);
+                    playerController.IncreasePlayerStats(selectedPlayer, equipment);
                     return null;
                 }
                 else
                 {
                     Equipment returnEquipment = selectedPlayer.Bracelet;
-                    DecreasePlayerStats(selectedPlayer, returnEquipment);
+                    playerController.DecreasePlayerStats(selectedPlayer, returnEquipment);
                     selectedPlayer.Bracelet = equipment;
-                    IncreasePlayerStats(selectedPlayer, equipment);
+                    playerController.IncreasePlayerStats(selectedPlayer, equipment);
                     return returnEquipment;
                 }
             }
@@ -687,55 +687,19 @@ namespace View
                 {
                     selectedPlayer.Artifact = equipment;
                     // Tăng chỉ số theo trang bị
-                    IncreasePlayerStats(selectedPlayer, equipment);
+                    playerController.IncreasePlayerStats(selectedPlayer, equipment);
                     return null;
                 }
                 else
                 {
                     Equipment returnEquipment = selectedPlayer.Artifact;
-                    DecreasePlayerStats(selectedPlayer, returnEquipment);
+                    playerController.DecreasePlayerStats(selectedPlayer, returnEquipment);
                     selectedPlayer.Artifact = equipment;
-                    IncreasePlayerStats(selectedPlayer, equipment);
+                    playerController.IncreasePlayerStats(selectedPlayer, equipment);
                     return returnEquipment;
                 }
             }
             return null;
-        }
-
-        private void IncreasePlayerStats(Player player, Equipment item)
-        {
-            if (item is Equipment)
-            {
-                Equipment equipment = (Equipment)item;
-
-                player.curHealth += equipment.HP;
-                player.maxHealth += equipment.HP;
-                player.damage += equipment.Damage;
-                float attackspeed = equipment.AttackSpeed;
-                player.attackSpeed -= (attackspeed / 100);
-                player.armor += equipment.Armor;
-
-
-                // Cập nhật các chỉ số khác tùy thuộc vào trang bị
-            }
-        }
-
-        private void DecreasePlayerStats(Player player, Item item)
-        {
-            if (item is Equipment)
-            {
-                Equipment equipment = (Equipment)item;
-
-                player.curHealth -= equipment.HP;
-                player.maxHealth -= equipment.HP;
-                player.damage -= equipment.Damage;
-                float attackspeed = equipment.AttackSpeed;
-                player.attackSpeed += (attackspeed / 100);
-                player.armor -= equipment.Armor;
-
-
-                // Cập nhật các chỉ số khác tùy thuộc vào trang bị
-            }
         }
 
         private void UpdatePlayerStats()

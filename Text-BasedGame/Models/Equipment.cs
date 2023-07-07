@@ -36,5 +36,25 @@ namespace Text_BasedGame.Models
         public Equipment(string name, string type, string description, string image) : base(name, type, description, image)
         {
         }
+
+        public Equipment()
+        {
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Equipment equipment &&
+                   base.Equals(obj) &&
+                   Name == equipment.Name &&
+                   Type == equipment.Type &&
+                   Description == equipment.Description &&
+                   Image == equipment.Image &&
+                   Level == equipment.Level &&
+                   Quality == equipment.Quality &&
+                   HP == equipment.HP &&
+                   Damage == equipment.Damage &&
+                   AttackSpeed == equipment.AttackSpeed &&
+                   Armor == equipment.Armor;
+        }
     }
 }
