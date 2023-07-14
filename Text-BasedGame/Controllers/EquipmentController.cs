@@ -140,6 +140,14 @@ namespace Text_BasedGame.Controllers
             }
             return randomEquipment;
         }
+        public List<Equipment> GenerateRandomEquipmentList(string filepath ,Enemy enemy)
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                equipmentList.Add(LoadEquipmentFromFile(filepath, enemy));
+            }
+            return equipmentList;
+        }
 
     }
 }

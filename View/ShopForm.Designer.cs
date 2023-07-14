@@ -28,37 +28,59 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
+            flpEquipment = new FlowLayoutPanel();
+            btnRefreshShop = new Button();
+            lblGoldNesessaryToRefreshShop = new Label();
             SuspendLayout();
             // 
-            // label1
+            // flpEquipment
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 27.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.ForeColor = Color.Red;
-            label1.Location = new Point(261, 173);
-            label1.Name = "label1";
-            label1.Size = new Size(270, 50);
-            label1.TabIndex = 1;
-            label1.Text = "Coming Soon...";
+            flpEquipment.Location = new Point(10, 50);
+            flpEquipment.Name = "flpEquipment";
+            flpEquipment.Size = new Size(944, 549);
+            flpEquipment.TabIndex = 2;
             // 
-            // DungeonForm
+            // btnRefreshShop
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            btnRefreshShop.Location = new Point(12, 12);
+            btnRefreshShop.Name = "btnRefreshShop";
+            btnRefreshShop.Size = new Size(103, 32);
+            btnRefreshShop.TabIndex = 3;
+            btnRefreshShop.Text = "Đổi mới";
+            btnRefreshShop.UseVisualStyleBackColor = true;
+            btnRefreshShop.Click += btnRefreshShop_Click;
+            // 
+            // lblGoldNesessaryToRefreshShop
+            // 
+            lblGoldNesessaryToRefreshShop.AutoSize = true;
+            lblGoldNesessaryToRefreshShop.Location = new Point(121, 18);
+            lblGoldNesessaryToRefreshShop.Name = "lblGoldNesessaryToRefreshShop";
+            lblGoldNesessaryToRefreshShop.Size = new Size(50, 20);
+            lblGoldNesessaryToRefreshShop.TabIndex = 4;
+            lblGoldNesessaryToRefreshShop.Text = "label1";
+            // 
+            // ShopForm
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(label1);
+            ClientSize = new Size(966, 612);
+            Controls.Add(lblGoldNesessaryToRefreshShop);
+            Controls.Add(btnRefreshShop);
+            Controls.Add(flpEquipment);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MinimizeBox = false;
-            Name = "DungeonForm";
-            Text = "DungeonForm";
+            Name = "ShopForm";
+            Text = "Cửa Hàng";
+            Load += ShopForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Label label1;
+        private FlowLayoutPanel flpEquipment;
+        private Button btnRefreshShop;
+        private Label lblGoldNesessaryToRefreshShop;
     }
 }

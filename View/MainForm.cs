@@ -601,12 +601,12 @@ namespace View
             skillForm.Show();
         }
 
-        private void btnDungeon_Click(object sender, EventArgs e)
+        private void btnShop_Click(object sender, EventArgs e)
         {
             if (dungeonForm == null || dungeonForm.IsDisposed)
             {
                 // Tạo một instance mới của InventoryForm và truyền danh sách vật phẩm và đội ngũ người chơi vào constructor
-                dungeonForm = new ShopForm();
+                dungeonForm = new ShopForm(enemyTeam);
             }
 
             // Hiển thị InventoryForm

@@ -40,7 +40,7 @@
             enemyHealthProgressBar1 = new ProgressBar();
             lblEnemyName1 = new Label();
             bottomMenuPanel = new Panel();
-            btnDungeon = new Button();
+            btnShop = new Button();
             btnClose = new Button();
             btnSettings = new Button();
             btnSkill = new Button();
@@ -113,27 +113,29 @@
             // lblPlayerName1
             // 
             lblPlayerName1.AutoSize = true;
-            lblPlayerName1.Location = new Point(29, 5);
+            lblPlayerName1.Location = new Point(33, 7);
             lblPlayerName1.Name = "lblPlayerName1";
-            lblPlayerName1.Size = new Size(38, 15);
+            lblPlayerName1.Size = new Size(50, 20);
             lblPlayerName1.TabIndex = 0;
             lblPlayerName1.Text = "label1";
             // 
             // playerHealthProgressBar1
             // 
-            playerHealthProgressBar1.Location = new Point(0, 23);
+            playerHealthProgressBar1.Location = new Point(0, 31);
+            playerHealthProgressBar1.Margin = new Padding(3, 4, 3, 4);
             playerHealthProgressBar1.MarqueeAnimationSpeed = 0;
             playerHealthProgressBar1.Name = "playerHealthProgressBar1";
-            playerHealthProgressBar1.Size = new Size(174, 15);
+            playerHealthProgressBar1.Size = new Size(199, 20);
             playerHealthProgressBar1.Style = ProgressBarStyle.Continuous;
             playerHealthProgressBar1.TabIndex = 6;
             // 
             // playerTimerBar1
             // 
-            playerTimerBar1.Location = new Point(0, 42);
+            playerTimerBar1.Location = new Point(0, 56);
+            playerTimerBar1.Margin = new Padding(3, 4, 3, 4);
             playerTimerBar1.Maximum = 6000;
             playerTimerBar1.Name = "playerTimerBar1";
-            playerTimerBar1.Size = new Size(174, 15);
+            playerTimerBar1.Size = new Size(199, 20);
             playerTimerBar1.TabIndex = 7;
             // 
             // pnlPlayer1
@@ -143,18 +145,19 @@
             pnlPlayer1.Controls.Add(lblPlayerName1);
             pnlPlayer1.Controls.Add(playerHealthProgressBar1);
             pnlPlayer1.Controls.Add(playerTimerBar1);
-            pnlPlayer1.Location = new Point(541, 100);
+            pnlPlayer1.Location = new Point(618, 133);
+            pnlPlayer1.Margin = new Padding(3, 4, 3, 4);
             pnlPlayer1.Name = "pnlPlayer1";
-            pnlPlayer1.Size = new Size(175, 76);
+            pnlPlayer1.Size = new Size(200, 101);
             pnlPlayer1.TabIndex = 8;
             // 
             // lblPlayerHealth1
             // 
             lblPlayerHealth1.AutoSize = true;
             lblPlayerHealth1.BackColor = SystemColors.ActiveBorder;
-            lblPlayerHealth1.Location = new Point(66, 24);
+            lblPlayerHealth1.Location = new Point(75, 32);
             lblPlayerHealth1.Name = "lblPlayerHealth1";
-            lblPlayerHealth1.Size = new Size(38, 15);
+            lblPlayerHealth1.Size = new Size(50, 20);
             lblPlayerHealth1.TabIndex = 10;
             lblPlayerHealth1.Text = "label1";
             // 
@@ -165,76 +168,82 @@
             pnlEnemy1.Controls.Add(enemyTimerBar1);
             pnlEnemy1.Controls.Add(enemyHealthProgressBar1);
             pnlEnemy1.Controls.Add(lblEnemyName1);
-            pnlEnemy1.Location = new Point(888, 100);
+            pnlEnemy1.Location = new Point(1015, 133);
+            pnlEnemy1.Margin = new Padding(3, 4, 3, 4);
             pnlEnemy1.Name = "pnlEnemy1";
-            pnlEnemy1.Size = new Size(175, 76);
+            pnlEnemy1.Size = new Size(200, 101);
             pnlEnemy1.TabIndex = 9;
             // 
             // lblEnemyHealth1
             // 
             lblEnemyHealth1.AutoSize = true;
             lblEnemyHealth1.BackColor = SystemColors.ActiveBorder;
-            lblEnemyHealth1.Location = new Point(67, 25);
+            lblEnemyHealth1.Location = new Point(77, 33);
             lblEnemyHealth1.Name = "lblEnemyHealth1";
-            lblEnemyHealth1.Size = new Size(38, 15);
+            lblEnemyHealth1.Size = new Size(50, 20);
             lblEnemyHealth1.TabIndex = 11;
             lblEnemyHealth1.Text = "label1";
             // 
             // enemyTimerBar1
             // 
-            enemyTimerBar1.Location = new Point(0, 42);
+            enemyTimerBar1.Location = new Point(0, 56);
+            enemyTimerBar1.Margin = new Padding(3, 4, 3, 4);
             enemyTimerBar1.Maximum = 6000;
             enemyTimerBar1.Name = "enemyTimerBar1";
-            enemyTimerBar1.Size = new Size(174, 15);
+            enemyTimerBar1.Size = new Size(199, 20);
             enemyTimerBar1.TabIndex = 10;
             // 
             // enemyHealthProgressBar1
             // 
-            enemyHealthProgressBar1.Location = new Point(0, 23);
+            enemyHealthProgressBar1.Location = new Point(0, 31);
+            enemyHealthProgressBar1.Margin = new Padding(3, 4, 3, 4);
             enemyHealthProgressBar1.Name = "enemyHealthProgressBar1";
-            enemyHealthProgressBar1.Size = new Size(174, 15);
+            enemyHealthProgressBar1.Size = new Size(199, 20);
             enemyHealthProgressBar1.TabIndex = 6;
             // 
             // lblEnemyName1
             // 
             lblEnemyName1.AutoSize = true;
-            lblEnemyName1.Location = new Point(30, 5);
+            lblEnemyName1.Location = new Point(34, 7);
             lblEnemyName1.Name = "lblEnemyName1";
-            lblEnemyName1.Size = new Size(38, 15);
+            lblEnemyName1.Size = new Size(50, 20);
             lblEnemyName1.TabIndex = 1;
             lblEnemyName1.Text = "label1";
             // 
             // bottomMenuPanel
             // 
             bottomMenuPanel.BorderStyle = BorderStyle.FixedSingle;
-            bottomMenuPanel.Controls.Add(btnDungeon);
+            bottomMenuPanel.Controls.Add(btnShop);
             bottomMenuPanel.Controls.Add(btnClose);
             bottomMenuPanel.Controls.Add(btnSettings);
             bottomMenuPanel.Controls.Add(btnSkill);
             bottomMenuPanel.Controls.Add(btnInventory);
             bottomMenuPanel.Controls.Add(btnCharacter);
-            bottomMenuPanel.Location = new Point(12, 668);
+            bottomMenuPanel.Location = new Point(14, 891);
+            bottomMenuPanel.Margin = new Padding(3, 4, 3, 4);
             bottomMenuPanel.Name = "bottomMenuPanel";
-            bottomMenuPanel.Size = new Size(1560, 181);
+            bottomMenuPanel.Size = new Size(1783, 241);
             bottomMenuPanel.TabIndex = 10;
             // 
-            // btnDungeon
+            // btnShop
             // 
-            btnDungeon.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            btnDungeon.Location = new Point(806, 22);
-            btnDungeon.Name = "btnDungeon";
-            btnDungeon.Size = new Size(202, 137);
-            btnDungeon.TabIndex = 13;
-            btnDungeon.Text = "Cửa Hàng";
-            btnDungeon.UseVisualStyleBackColor = true;
-            btnDungeon.Click += btnDungeon_Click;
+            btnShop.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            btnShop.Location = new Point(921, 29);
+            btnShop.Margin = new Padding(3, 4, 3, 4);
+            btnShop.Name = "btnShop";
+            btnShop.Size = new Size(231, 183);
+            btnShop.TabIndex = 13;
+            btnShop.Text = "Cửa Hàng";
+            btnShop.UseVisualStyleBackColor = true;
+            btnShop.Click += btnShop_Click;
             // 
             // btnClose
             // 
             btnClose.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            btnClose.Location = new Point(1322, 22);
+            btnClose.Location = new Point(1511, 29);
+            btnClose.Margin = new Padding(3, 4, 3, 4);
             btnClose.Name = "btnClose";
-            btnClose.Size = new Size(202, 137);
+            btnClose.Size = new Size(231, 183);
             btnClose.TabIndex = 12;
             btnClose.Text = "Thoát";
             btnClose.UseVisualStyleBackColor = true;
@@ -243,9 +252,10 @@
             // btnSettings
             // 
             btnSettings.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            btnSettings.Location = new Point(1064, 22);
+            btnSettings.Location = new Point(1216, 29);
+            btnSettings.Margin = new Padding(3, 4, 3, 4);
             btnSettings.Name = "btnSettings";
-            btnSettings.Size = new Size(202, 137);
+            btnSettings.Size = new Size(231, 183);
             btnSettings.TabIndex = 12;
             btnSettings.Text = "Cài Đặt";
             btnSettings.UseVisualStyleBackColor = true;
@@ -254,9 +264,10 @@
             // btnSkill
             // 
             btnSkill.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            btnSkill.Location = new Point(549, 22);
+            btnSkill.Location = new Point(627, 29);
+            btnSkill.Margin = new Padding(3, 4, 3, 4);
             btnSkill.Name = "btnSkill";
-            btnSkill.Size = new Size(202, 137);
+            btnSkill.Size = new Size(231, 183);
             btnSkill.TabIndex = 12;
             btnSkill.Text = "Kĩ Năng";
             btnSkill.UseVisualStyleBackColor = true;
@@ -265,9 +276,10 @@
             // btnInventory
             // 
             btnInventory.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            btnInventory.Location = new Point(290, 22);
+            btnInventory.Location = new Point(331, 29);
+            btnInventory.Margin = new Padding(3, 4, 3, 4);
             btnInventory.Name = "btnInventory";
-            btnInventory.Size = new Size(202, 137);
+            btnInventory.Size = new Size(231, 183);
             btnInventory.TabIndex = 12;
             btnInventory.Text = "Kho Đồ";
             btnInventory.UseVisualStyleBackColor = true;
@@ -276,9 +288,10 @@
             // btnCharacter
             // 
             btnCharacter.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            btnCharacter.Location = new Point(35, 22);
+            btnCharacter.Location = new Point(40, 29);
+            btnCharacter.Margin = new Padding(3, 4, 3, 4);
             btnCharacter.Name = "btnCharacter";
-            btnCharacter.Size = new Size(202, 137);
+            btnCharacter.Size = new Size(231, 183);
             btnCharacter.TabIndex = 11;
             btnCharacter.Text = "Nhân Vật";
             btnCharacter.UseVisualStyleBackColor = true;
@@ -291,45 +304,48 @@
             pnlPlayer2.Controls.Add(lblPlayerName2);
             pnlPlayer2.Controls.Add(playerHealthProgressBar2);
             pnlPlayer2.Controls.Add(playerTimerBar2);
-            pnlPlayer2.Location = new Point(541, 194);
+            pnlPlayer2.Location = new Point(618, 259);
+            pnlPlayer2.Margin = new Padding(3, 4, 3, 4);
             pnlPlayer2.Name = "pnlPlayer2";
-            pnlPlayer2.Size = new Size(175, 76);
+            pnlPlayer2.Size = new Size(200, 101);
             pnlPlayer2.TabIndex = 11;
             // 
             // lblPlayerHealth2
             // 
             lblPlayerHealth2.AutoSize = true;
             lblPlayerHealth2.BackColor = SystemColors.ActiveBorder;
-            lblPlayerHealth2.Location = new Point(66, 24);
+            lblPlayerHealth2.Location = new Point(75, 32);
             lblPlayerHealth2.Name = "lblPlayerHealth2";
-            lblPlayerHealth2.Size = new Size(38, 15);
+            lblPlayerHealth2.Size = new Size(50, 20);
             lblPlayerHealth2.TabIndex = 10;
             lblPlayerHealth2.Text = "label1";
             // 
             // lblPlayerName2
             // 
             lblPlayerName2.AutoSize = true;
-            lblPlayerName2.Location = new Point(29, 5);
+            lblPlayerName2.Location = new Point(33, 7);
             lblPlayerName2.Name = "lblPlayerName2";
-            lblPlayerName2.Size = new Size(38, 15);
+            lblPlayerName2.Size = new Size(50, 20);
             lblPlayerName2.TabIndex = 0;
             lblPlayerName2.Text = "label1";
             // 
             // playerHealthProgressBar2
             // 
-            playerHealthProgressBar2.Location = new Point(0, 23);
+            playerHealthProgressBar2.Location = new Point(0, 31);
+            playerHealthProgressBar2.Margin = new Padding(3, 4, 3, 4);
             playerHealthProgressBar2.MarqueeAnimationSpeed = 0;
             playerHealthProgressBar2.Name = "playerHealthProgressBar2";
-            playerHealthProgressBar2.Size = new Size(174, 15);
+            playerHealthProgressBar2.Size = new Size(199, 20);
             playerHealthProgressBar2.Style = ProgressBarStyle.Continuous;
             playerHealthProgressBar2.TabIndex = 6;
             // 
             // playerTimerBar2
             // 
-            playerTimerBar2.Location = new Point(0, 42);
+            playerTimerBar2.Location = new Point(0, 56);
+            playerTimerBar2.Margin = new Padding(3, 4, 3, 4);
             playerTimerBar2.Maximum = 6000;
             playerTimerBar2.Name = "playerTimerBar2";
-            playerTimerBar2.Size = new Size(174, 15);
+            playerTimerBar2.Size = new Size(199, 20);
             playerTimerBar2.TabIndex = 7;
             // 
             // pnlPlayer3
@@ -339,45 +355,48 @@
             pnlPlayer3.Controls.Add(lblPlayerName3);
             pnlPlayer3.Controls.Add(playerHealthProgressBar3);
             pnlPlayer3.Controls.Add(playerTimerBar3);
-            pnlPlayer3.Location = new Point(541, 294);
+            pnlPlayer3.Location = new Point(618, 392);
+            pnlPlayer3.Margin = new Padding(3, 4, 3, 4);
             pnlPlayer3.Name = "pnlPlayer3";
-            pnlPlayer3.Size = new Size(175, 76);
+            pnlPlayer3.Size = new Size(200, 101);
             pnlPlayer3.TabIndex = 12;
             // 
             // lblPlayerHealth3
             // 
             lblPlayerHealth3.AutoSize = true;
             lblPlayerHealth3.BackColor = SystemColors.ActiveBorder;
-            lblPlayerHealth3.Location = new Point(66, 24);
+            lblPlayerHealth3.Location = new Point(75, 32);
             lblPlayerHealth3.Name = "lblPlayerHealth3";
-            lblPlayerHealth3.Size = new Size(38, 15);
+            lblPlayerHealth3.Size = new Size(50, 20);
             lblPlayerHealth3.TabIndex = 10;
             lblPlayerHealth3.Text = "label1";
             // 
             // lblPlayerName3
             // 
             lblPlayerName3.AutoSize = true;
-            lblPlayerName3.Location = new Point(29, 5);
+            lblPlayerName3.Location = new Point(33, 7);
             lblPlayerName3.Name = "lblPlayerName3";
-            lblPlayerName3.Size = new Size(38, 15);
+            lblPlayerName3.Size = new Size(50, 20);
             lblPlayerName3.TabIndex = 0;
             lblPlayerName3.Text = "label1";
             // 
             // playerHealthProgressBar3
             // 
-            playerHealthProgressBar3.Location = new Point(0, 23);
+            playerHealthProgressBar3.Location = new Point(0, 31);
+            playerHealthProgressBar3.Margin = new Padding(3, 4, 3, 4);
             playerHealthProgressBar3.MarqueeAnimationSpeed = 0;
             playerHealthProgressBar3.Name = "playerHealthProgressBar3";
-            playerHealthProgressBar3.Size = new Size(174, 15);
+            playerHealthProgressBar3.Size = new Size(199, 20);
             playerHealthProgressBar3.Style = ProgressBarStyle.Continuous;
             playerHealthProgressBar3.TabIndex = 6;
             // 
             // playerTimerBar3
             // 
-            playerTimerBar3.Location = new Point(0, 42);
+            playerTimerBar3.Location = new Point(0, 56);
+            playerTimerBar3.Margin = new Padding(3, 4, 3, 4);
             playerTimerBar3.Maximum = 6000;
             playerTimerBar3.Name = "playerTimerBar3";
-            playerTimerBar3.Size = new Size(174, 15);
+            playerTimerBar3.Size = new Size(199, 20);
             playerTimerBar3.TabIndex = 7;
             // 
             // pnlPlayer5
@@ -387,45 +406,48 @@
             pnlPlayer5.Controls.Add(lblPlayerName5);
             pnlPlayer5.Controls.Add(playerHealthProgressBar5);
             pnlPlayer5.Controls.Add(playerTimerBar5);
-            pnlPlayer5.Location = new Point(293, 259);
+            pnlPlayer5.Location = new Point(335, 345);
+            pnlPlayer5.Margin = new Padding(3, 4, 3, 4);
             pnlPlayer5.Name = "pnlPlayer5";
-            pnlPlayer5.Size = new Size(175, 76);
+            pnlPlayer5.Size = new Size(200, 101);
             pnlPlayer5.TabIndex = 13;
             // 
             // lblPlayerHealth5
             // 
             lblPlayerHealth5.AutoSize = true;
             lblPlayerHealth5.BackColor = SystemColors.ActiveBorder;
-            lblPlayerHealth5.Location = new Point(67, 25);
+            lblPlayerHealth5.Location = new Point(77, 33);
             lblPlayerHealth5.Name = "lblPlayerHealth5";
-            lblPlayerHealth5.Size = new Size(38, 15);
+            lblPlayerHealth5.Size = new Size(50, 20);
             lblPlayerHealth5.TabIndex = 10;
             lblPlayerHealth5.Text = "label1";
             // 
             // lblPlayerName5
             // 
             lblPlayerName5.AutoSize = true;
-            lblPlayerName5.Location = new Point(26, 6);
+            lblPlayerName5.Location = new Point(30, 8);
             lblPlayerName5.Name = "lblPlayerName5";
-            lblPlayerName5.Size = new Size(38, 15);
+            lblPlayerName5.Size = new Size(50, 20);
             lblPlayerName5.TabIndex = 0;
             lblPlayerName5.Text = "label1";
             // 
             // playerHealthProgressBar5
             // 
-            playerHealthProgressBar5.Location = new Point(0, 23);
+            playerHealthProgressBar5.Location = new Point(0, 31);
+            playerHealthProgressBar5.Margin = new Padding(3, 4, 3, 4);
             playerHealthProgressBar5.MarqueeAnimationSpeed = 0;
             playerHealthProgressBar5.Name = "playerHealthProgressBar5";
-            playerHealthProgressBar5.Size = new Size(174, 15);
+            playerHealthProgressBar5.Size = new Size(199, 20);
             playerHealthProgressBar5.Style = ProgressBarStyle.Continuous;
             playerHealthProgressBar5.TabIndex = 6;
             // 
             // playerTimerBar5
             // 
-            playerTimerBar5.Location = new Point(0, 42);
+            playerTimerBar5.Location = new Point(0, 56);
+            playerTimerBar5.Margin = new Padding(3, 4, 3, 4);
             playerTimerBar5.Maximum = 6000;
             playerTimerBar5.Name = "playerTimerBar5";
-            playerTimerBar5.Size = new Size(174, 15);
+            playerTimerBar5.Size = new Size(199, 20);
             playerTimerBar5.TabIndex = 7;
             // 
             // pnlPlayer4
@@ -435,45 +457,48 @@
             pnlPlayer4.Controls.Add(lblPlayerName4);
             pnlPlayer4.Controls.Add(playerHealthProgressBar4);
             pnlPlayer4.Controls.Add(playerTimerBar4);
-            pnlPlayer4.Location = new Point(294, 159);
+            pnlPlayer4.Location = new Point(336, 212);
+            pnlPlayer4.Margin = new Padding(3, 4, 3, 4);
             pnlPlayer4.Name = "pnlPlayer4";
-            pnlPlayer4.Size = new Size(175, 76);
+            pnlPlayer4.Size = new Size(200, 101);
             pnlPlayer4.TabIndex = 13;
             // 
             // lblPlayerHealth4
             // 
             lblPlayerHealth4.AutoSize = true;
             lblPlayerHealth4.BackColor = SystemColors.ActiveBorder;
-            lblPlayerHealth4.Location = new Point(66, 24);
+            lblPlayerHealth4.Location = new Point(75, 32);
             lblPlayerHealth4.Name = "lblPlayerHealth4";
-            lblPlayerHealth4.Size = new Size(38, 15);
+            lblPlayerHealth4.Size = new Size(50, 20);
             lblPlayerHealth4.TabIndex = 10;
             lblPlayerHealth4.Text = "label1";
             // 
             // lblPlayerName4
             // 
             lblPlayerName4.AutoSize = true;
-            lblPlayerName4.Location = new Point(25, 5);
+            lblPlayerName4.Location = new Point(29, 7);
             lblPlayerName4.Name = "lblPlayerName4";
-            lblPlayerName4.Size = new Size(38, 15);
+            lblPlayerName4.Size = new Size(50, 20);
             lblPlayerName4.TabIndex = 0;
             lblPlayerName4.Text = "label1";
             // 
             // playerHealthProgressBar4
             // 
-            playerHealthProgressBar4.Location = new Point(0, 23);
+            playerHealthProgressBar4.Location = new Point(0, 31);
+            playerHealthProgressBar4.Margin = new Padding(3, 4, 3, 4);
             playerHealthProgressBar4.MarqueeAnimationSpeed = 0;
             playerHealthProgressBar4.Name = "playerHealthProgressBar4";
-            playerHealthProgressBar4.Size = new Size(174, 15);
+            playerHealthProgressBar4.Size = new Size(199, 20);
             playerHealthProgressBar4.Style = ProgressBarStyle.Continuous;
             playerHealthProgressBar4.TabIndex = 6;
             // 
             // playerTimerBar4
             // 
-            playerTimerBar4.Location = new Point(0, 42);
+            playerTimerBar4.Location = new Point(0, 56);
+            playerTimerBar4.Margin = new Padding(3, 4, 3, 4);
             playerTimerBar4.Maximum = 6000;
             playerTimerBar4.Name = "playerTimerBar4";
-            playerTimerBar4.Size = new Size(174, 15);
+            playerTimerBar4.Size = new Size(199, 20);
             playerTimerBar4.TabIndex = 7;
             // 
             // pnlEnemy2
@@ -483,42 +508,45 @@
             pnlEnemy2.Controls.Add(enemyTimerBar2);
             pnlEnemy2.Controls.Add(enemyHealthProgressBar2);
             pnlEnemy2.Controls.Add(lblEnemyName2);
-            pnlEnemy2.Location = new Point(889, 194);
+            pnlEnemy2.Location = new Point(1016, 259);
+            pnlEnemy2.Margin = new Padding(3, 4, 3, 4);
             pnlEnemy2.Name = "pnlEnemy2";
-            pnlEnemy2.Size = new Size(175, 76);
+            pnlEnemy2.Size = new Size(200, 101);
             pnlEnemy2.TabIndex = 14;
             // 
             // lblEnemyHealth2
             // 
             lblEnemyHealth2.AutoSize = true;
             lblEnemyHealth2.BackColor = SystemColors.ActiveBorder;
-            lblEnemyHealth2.Location = new Point(66, 25);
+            lblEnemyHealth2.Location = new Point(75, 33);
             lblEnemyHealth2.Name = "lblEnemyHealth2";
-            lblEnemyHealth2.Size = new Size(38, 15);
+            lblEnemyHealth2.Size = new Size(50, 20);
             lblEnemyHealth2.TabIndex = 11;
             lblEnemyHealth2.Text = "label1";
             // 
             // enemyTimerBar2
             // 
-            enemyTimerBar2.Location = new Point(0, 42);
+            enemyTimerBar2.Location = new Point(0, 56);
+            enemyTimerBar2.Margin = new Padding(3, 4, 3, 4);
             enemyTimerBar2.Maximum = 6000;
             enemyTimerBar2.Name = "enemyTimerBar2";
-            enemyTimerBar2.Size = new Size(174, 15);
+            enemyTimerBar2.Size = new Size(199, 20);
             enemyTimerBar2.TabIndex = 10;
             // 
             // enemyHealthProgressBar2
             // 
-            enemyHealthProgressBar2.Location = new Point(0, 23);
+            enemyHealthProgressBar2.Location = new Point(0, 31);
+            enemyHealthProgressBar2.Margin = new Padding(3, 4, 3, 4);
             enemyHealthProgressBar2.Name = "enemyHealthProgressBar2";
-            enemyHealthProgressBar2.Size = new Size(174, 15);
+            enemyHealthProgressBar2.Size = new Size(199, 20);
             enemyHealthProgressBar2.TabIndex = 6;
             // 
             // lblEnemyName2
             // 
             lblEnemyName2.AutoSize = true;
-            lblEnemyName2.Location = new Point(29, 5);
+            lblEnemyName2.Location = new Point(33, 7);
             lblEnemyName2.Name = "lblEnemyName2";
-            lblEnemyName2.Size = new Size(38, 15);
+            lblEnemyName2.Size = new Size(50, 20);
             lblEnemyName2.TabIndex = 1;
             lblEnemyName2.Text = "label1";
             // 
@@ -529,42 +557,45 @@
             pnlEnemy3.Controls.Add(enemyTimerBar3);
             pnlEnemy3.Controls.Add(enemyHealthProgressBar3);
             pnlEnemy3.Controls.Add(lblEnemyName3);
-            pnlEnemy3.Location = new Point(889, 294);
+            pnlEnemy3.Location = new Point(1016, 392);
+            pnlEnemy3.Margin = new Padding(3, 4, 3, 4);
             pnlEnemy3.Name = "pnlEnemy3";
-            pnlEnemy3.Size = new Size(175, 76);
+            pnlEnemy3.Size = new Size(200, 101);
             pnlEnemy3.TabIndex = 15;
             // 
             // lblEnemyHealth3
             // 
             lblEnemyHealth3.AutoSize = true;
             lblEnemyHealth3.BackColor = SystemColors.ActiveBorder;
-            lblEnemyHealth3.Location = new Point(66, 25);
+            lblEnemyHealth3.Location = new Point(75, 33);
             lblEnemyHealth3.Name = "lblEnemyHealth3";
-            lblEnemyHealth3.Size = new Size(38, 15);
+            lblEnemyHealth3.Size = new Size(50, 20);
             lblEnemyHealth3.TabIndex = 11;
             lblEnemyHealth3.Text = "label1";
             // 
             // enemyTimerBar3
             // 
-            enemyTimerBar3.Location = new Point(0, 42);
+            enemyTimerBar3.Location = new Point(0, 56);
+            enemyTimerBar3.Margin = new Padding(3, 4, 3, 4);
             enemyTimerBar3.Maximum = 6000;
             enemyTimerBar3.Name = "enemyTimerBar3";
-            enemyTimerBar3.Size = new Size(174, 15);
+            enemyTimerBar3.Size = new Size(199, 20);
             enemyTimerBar3.TabIndex = 10;
             // 
             // enemyHealthProgressBar3
             // 
-            enemyHealthProgressBar3.Location = new Point(0, 23);
+            enemyHealthProgressBar3.Location = new Point(0, 31);
+            enemyHealthProgressBar3.Margin = new Padding(3, 4, 3, 4);
             enemyHealthProgressBar3.Name = "enemyHealthProgressBar3";
-            enemyHealthProgressBar3.Size = new Size(174, 15);
+            enemyHealthProgressBar3.Size = new Size(199, 20);
             enemyHealthProgressBar3.TabIndex = 6;
             // 
             // lblEnemyName3
             // 
             lblEnemyName3.AutoSize = true;
-            lblEnemyName3.Location = new Point(29, 7);
+            lblEnemyName3.Location = new Point(33, 9);
             lblEnemyName3.Name = "lblEnemyName3";
-            lblEnemyName3.Size = new Size(38, 15);
+            lblEnemyName3.Size = new Size(50, 20);
             lblEnemyName3.TabIndex = 1;
             lblEnemyName3.Text = "label1";
             // 
@@ -575,42 +606,45 @@
             pnlEnemy5.Controls.Add(enemyTimerBar5);
             pnlEnemy5.Controls.Add(enemyHealthProgressBar5);
             pnlEnemy5.Controls.Add(lblEnemyName5);
-            pnlEnemy5.Location = new Point(1137, 242);
+            pnlEnemy5.Location = new Point(1299, 323);
+            pnlEnemy5.Margin = new Padding(3, 4, 3, 4);
             pnlEnemy5.Name = "pnlEnemy5";
-            pnlEnemy5.Size = new Size(175, 76);
+            pnlEnemy5.Size = new Size(200, 101);
             pnlEnemy5.TabIndex = 16;
             // 
             // lblEnemyHealth5
             // 
             lblEnemyHealth5.AutoSize = true;
             lblEnemyHealth5.BackColor = SystemColors.ActiveBorder;
-            lblEnemyHealth5.Location = new Point(67, 25);
+            lblEnemyHealth5.Location = new Point(77, 33);
             lblEnemyHealth5.Name = "lblEnemyHealth5";
-            lblEnemyHealth5.Size = new Size(38, 15);
+            lblEnemyHealth5.Size = new Size(50, 20);
             lblEnemyHealth5.TabIndex = 11;
             lblEnemyHealth5.Text = "label1";
             // 
             // enemyTimerBar5
             // 
-            enemyTimerBar5.Location = new Point(0, 42);
+            enemyTimerBar5.Location = new Point(0, 56);
+            enemyTimerBar5.Margin = new Padding(3, 4, 3, 4);
             enemyTimerBar5.Maximum = 6000;
             enemyTimerBar5.Name = "enemyTimerBar5";
-            enemyTimerBar5.Size = new Size(174, 15);
+            enemyTimerBar5.Size = new Size(199, 20);
             enemyTimerBar5.TabIndex = 10;
             // 
             // enemyHealthProgressBar5
             // 
-            enemyHealthProgressBar5.Location = new Point(0, 23);
+            enemyHealthProgressBar5.Location = new Point(0, 31);
+            enemyHealthProgressBar5.Margin = new Padding(3, 4, 3, 4);
             enemyHealthProgressBar5.Name = "enemyHealthProgressBar5";
-            enemyHealthProgressBar5.Size = new Size(174, 15);
+            enemyHealthProgressBar5.Size = new Size(199, 20);
             enemyHealthProgressBar5.TabIndex = 6;
             // 
             // lblEnemyName5
             // 
             lblEnemyName5.AutoSize = true;
-            lblEnemyName5.Location = new Point(27, 5);
+            lblEnemyName5.Location = new Point(31, 7);
             lblEnemyName5.Name = "lblEnemyName5";
-            lblEnemyName5.Size = new Size(38, 15);
+            lblEnemyName5.Size = new Size(50, 20);
             lblEnemyName5.TabIndex = 1;
             lblEnemyName5.Text = "label1";
             // 
@@ -621,42 +655,45 @@
             pnlEnemy4.Controls.Add(enemyTimerBar4);
             pnlEnemy4.Controls.Add(enemyHealthProgressBar4);
             pnlEnemy4.Controls.Add(lblEnemyName4);
-            pnlEnemy4.Location = new Point(1137, 142);
+            pnlEnemy4.Location = new Point(1299, 189);
+            pnlEnemy4.Margin = new Padding(3, 4, 3, 4);
             pnlEnemy4.Name = "pnlEnemy4";
-            pnlEnemy4.Size = new Size(175, 76);
+            pnlEnemy4.Size = new Size(200, 101);
             pnlEnemy4.TabIndex = 17;
             // 
             // lblEnemyHealth4
             // 
             lblEnemyHealth4.AutoSize = true;
             lblEnemyHealth4.BackColor = SystemColors.ActiveBorder;
-            lblEnemyHealth4.Location = new Point(67, 25);
+            lblEnemyHealth4.Location = new Point(77, 33);
             lblEnemyHealth4.Name = "lblEnemyHealth4";
-            lblEnemyHealth4.Size = new Size(38, 15);
+            lblEnemyHealth4.Size = new Size(50, 20);
             lblEnemyHealth4.TabIndex = 11;
             lblEnemyHealth4.Text = "label1";
             // 
             // enemyTimerBar4
             // 
-            enemyTimerBar4.Location = new Point(0, 42);
+            enemyTimerBar4.Location = new Point(0, 56);
+            enemyTimerBar4.Margin = new Padding(3, 4, 3, 4);
             enemyTimerBar4.Maximum = 6000;
             enemyTimerBar4.Name = "enemyTimerBar4";
-            enemyTimerBar4.Size = new Size(174, 15);
+            enemyTimerBar4.Size = new Size(199, 20);
             enemyTimerBar4.TabIndex = 10;
             // 
             // enemyHealthProgressBar4
             // 
-            enemyHealthProgressBar4.Location = new Point(0, 23);
+            enemyHealthProgressBar4.Location = new Point(0, 31);
+            enemyHealthProgressBar4.Margin = new Padding(3, 4, 3, 4);
             enemyHealthProgressBar4.Name = "enemyHealthProgressBar4";
-            enemyHealthProgressBar4.Size = new Size(174, 15);
+            enemyHealthProgressBar4.Size = new Size(199, 20);
             enemyHealthProgressBar4.TabIndex = 6;
             // 
             // lblEnemyName4
             // 
             lblEnemyName4.AutoSize = true;
-            lblEnemyName4.Location = new Point(27, 5);
+            lblEnemyName4.Location = new Point(31, 7);
             lblEnemyName4.Name = "lblEnemyName4";
-            lblEnemyName4.Size = new Size(38, 15);
+            lblEnemyName4.Size = new Size(50, 20);
             lblEnemyName4.TabIndex = 1;
             lblEnemyName4.Text = "label1";
             // 
@@ -666,9 +703,9 @@
             lblMessage.AutoSize = true;
             lblMessage.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
             lblMessage.ForeColor = Color.Yellow;
-            lblMessage.Location = new Point(562, 9);
+            lblMessage.Location = new Point(642, 12);
             lblMessage.Name = "lblMessage";
-            lblMessage.Size = new Size(122, 30);
+            lblMessage.Size = new Size(156, 38);
             lblMessage.TabIndex = 18;
             lblMessage.Text = "lblMessage";
             lblMessage.TextAlign = ContentAlignment.MiddleCenter;
@@ -678,9 +715,9 @@
             // 
             lblTurnCount.AutoSize = true;
             lblTurnCount.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            lblTurnCount.Location = new Point(1458, 20);
+            lblTurnCount.Location = new Point(1666, 27);
             lblTurnCount.Name = "lblTurnCount";
-            lblTurnCount.Size = new Size(63, 32);
+            lblTurnCount.Size = new Size(78, 41);
             lblTurnCount.TabIndex = 19;
             lblTurnCount.Tag = "";
             lblTurnCount.Text = "1 / 5";
@@ -694,44 +731,45 @@
             panel1.Controls.Add(lblGold);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(label1);
-            panel1.Location = new Point(48, 577);
+            panel1.Location = new Point(55, 769);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(202, 69);
+            panel1.Size = new Size(231, 91);
             panel1.TabIndex = 20;
             // 
             // lblDiamond
             // 
             lblDiamond.AutoSize = true;
-            lblDiamond.Location = new Point(64, 40);
+            lblDiamond.Location = new Point(73, 53);
             lblDiamond.Name = "lblDiamond";
-            lblDiamond.Size = new Size(38, 15);
+            lblDiamond.Size = new Size(50, 20);
             lblDiamond.TabIndex = 22;
             lblDiamond.Text = "label4";
             // 
             // lblGold
             // 
             lblGold.AutoSize = true;
-            lblGold.Location = new Point(64, 10);
+            lblGold.Location = new Point(73, 13);
             lblGold.Name = "lblGold";
-            lblGold.Size = new Size(38, 15);
+            lblGold.Size = new Size(50, 20);
             lblGold.TabIndex = 21;
             lblGold.Text = "label3";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(15, 40);
+            label2.Location = new Point(17, 53);
             label2.Name = "label2";
-            label2.Size = new Size(21, 15);
+            label2.Size = new Size(26, 20);
             label2.TabIndex = 21;
             label2.Text = "KC";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(15, 10);
+            label1.Location = new Point(17, 13);
             label1.Name = "label1";
-            label1.Size = new Size(33, 15);
+            label1.Size = new Size(42, 20);
             label1.TabIndex = 21;
             label1.Text = "Vàng";
             // 
@@ -742,10 +780,10 @@
             // 
             // MainForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveBorder;
-            ClientSize = new Size(1584, 861);
+            ClientSize = new Size(1810, 1055);
             Controls.Add(panel1);
             Controls.Add(lblTurnCount);
             Controls.Add(lblMessage);
@@ -761,7 +799,7 @@
             Controls.Add(pnlEnemy1);
             Controls.Add(pnlPlayer1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            MaximizeBox = false;
+            Margin = new Padding(3, 4, 3, 4);
             MinimizeBox = false;
             Name = "MainForm";
             Text = "Rectangle Rampage";
@@ -856,7 +894,7 @@
         private Label lblEnemyName4;
         private Label lblMessage;
         private System.Windows.Forms.Timer messageTimer;
-        private Button btnDungeon;
+        private Button btnShop;
         private Label lblTurnCount;
         private Panel panel1;
         private Label lblDiamond;
