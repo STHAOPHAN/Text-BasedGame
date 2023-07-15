@@ -42,7 +42,7 @@ namespace Text_BasedGame.Test
             itemList = new List<Item>();
             equipList = new List<Equipment>
             {
-                new Equipment("Belt", "Belt", "", "", 1, "Common", 0, 0, 0, 10)
+                new Equipment("Belt", "Belt", "", "", 100, 10, 1, "Common", 0, 0, 0, 10)
             };
             resources = new Resource(1000, 200);
 

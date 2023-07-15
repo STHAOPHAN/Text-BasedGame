@@ -37,7 +37,7 @@
             // 
             flpEquipment.Location = new Point(10, 50);
             flpEquipment.Name = "flpEquipment";
-            flpEquipment.Size = new Size(944, 549);
+            flpEquipment.Size = new Size(944, 688);
             flpEquipment.TabIndex = 2;
             // 
             // btnRefreshShop
@@ -63,7 +63,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(966, 612);
+            ClientSize = new Size(966, 750);
             Controls.Add(lblGoldNesessaryToRefreshShop);
             Controls.Add(btnRefreshShop);
             Controls.Add(flpEquipment);

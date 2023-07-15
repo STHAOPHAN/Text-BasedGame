@@ -44,7 +44,7 @@ namespace View
             enemyTeam.Add(new Enemy("Enemy5", 5, 100, 100, 8, 5, 5));
 
             // Khởi tạo tài nguyên ban đầu
-            resources = new Resource(0, 0);
+            resources = new Resource(1500, 0);
 
             // Khởi tạo và chạy form MainForm
             MainForm mainForm = new MainForm(playerTeam, enemyTeam, items, resources);

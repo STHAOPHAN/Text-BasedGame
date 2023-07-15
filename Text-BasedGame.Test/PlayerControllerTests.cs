@@ -18,7 +18,7 @@ namespace Text_BasedGame.Test
         {
             playerController = new PlayerController();
             player = new Player("Player1", 1, 100, 100, 20, 10, 4, 0, 5, statsPoint);
-            equipment = new Equipment("Sword", "Weapon", "A powerful sword", "sword.png", 1, "Legendary", 100, 10, 20, 5);
+            equipment = new Equipment("Sword", "Weapon", "A powerful sword", "sword.png", 100, 10, 1, "Legendary", 100, 10, 20, 5);
         }
 
         [Test]

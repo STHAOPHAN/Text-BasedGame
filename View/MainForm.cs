@@ -33,6 +33,7 @@ namespace View
         private int turnCount = 1;
         private Enemy boss;
         private Resource resources;
+        private bool isGameOverMessageShown = false;
 
         public MainForm(List<Player> playerTeam, List<Enemy> enemyTeam, List<Item> items, Resource resource)
         {
@@ -42,7 +43,8 @@ namespace View
             this.enemyTeam = enemyTeam;
             this.items = items;
             this.resources = resource;
-
+            isGameOverMessageShown = false;
+            if (enemyTeam[0].name.Equals("Boss")) boss = enemyTeam[0];
             timer = new System.Windows.Forms.Timer();
             timer.Interval = tickInterval;
             timer.Tick += Timer_Tick;
@@ -234,10 +236,13 @@ namespace View
 
                 // Lựa chọn ngẫu nhiên một đối thủ từ danh sách đồng minh
                 Player targetPlayer = GetRandomPlayer();
+                int count = 0;
                 while (targetPlayer.curHealth <= 0)
                 {
                     // Đối thủ đã chết, chọn một đối thủ khác
                     targetPlayer = GetRandomPlayer();
+                    count++;
+                    if (count > 5) break;
                 }
                 // Thực hiện hành động tấn công của địch lên đồng minh được chọn
                 enemy.Attack(targetPlayer);
@@ -449,7 +454,9 @@ namespace View
         private Enemy GetRandomEnemy()
         {
             int randomIndex = random.Next(enemyTeam.Count);
-            return enemyTeam[randomIndex];
+            if (enemyTeam[randomIndex] == null) return null;
+            else
+                return enemyTeam[randomIndex];
         }
 
         private Player GetRandomPlayer()
@@ -464,27 +471,42 @@ namespace View
             bool enemyTeamAlive = enemyTeam.Any(enemy => enemy.curHealth > 0);
             if (!playerTeamAlive)
             {
-                // Ví dụ: Hiển thị thông báo chiến thắng
-                MessageBox.Show("Bạn đã thua!", "Thông báo");
-                // Hồi máu đầy cho các nhân vật người chơi
-                foreach (Player player in playerTeam)
+                if (!isGameOverMessageShown)
                 {
-                    player.curHealth = player.maxHealth;
+                    isGameOverMessageShown = true;
+                    // Ví dụ: Hiển thị thông báo chiến thắng
+                    DialogResult result = MessageBox.Show("Bạn đã thua!", "Thông báo", MessageBoxButtons.OK);
+                    // Kiểm tra nếu người dùng đã bấm OK
+                    if (result == DialogResult.OK)
+                    {
+                        // Hồi máu đầy cho các nhân vật người chơi
+                        foreach (Player player in playerTeam)
+                        {
+                            player.curHealth = player.maxHealth;
+                        }
+                        if (enemyTeam[0].name.Equals("Boss"))
+                        {
+                            enemyTeam = new List<Enemy>
+                            {
+                                new Enemy("Enemy1", boss.level, 100 + boss.level * 50, 100 + boss.level * 50, 8 + boss.level * 2, 5 + boss.level, 5),
+                                new Enemy("Enemy2", enemy1.level, enemy1.curHealth, enemy1.maxHealth, enemy1.damage, enemy1.armor, 5),
+                                new Enemy("Enemy3", enemy1.level, enemy1.curHealth, enemy1.maxHealth, enemy1.damage, enemy1.armor, 5),
+                                new Enemy("Enemy4", enemy1.level, enemy1.curHealth, enemy1.maxHealth, enemy1.damage, enemy1.armor, 5),
+                                new Enemy("Enemy5", enemy1.level, enemy1.curHealth, enemy1.maxHealth, enemy1.damage, enemy1.armor, 5),
+                            };
+                            ShowSlotEnemy(lblEnemyName2, enemyHealthProgressBar2, lblEnemyHealth2, enemyTimerBar2, pnlEnemy2);
+                            ShowSlotEnemy(lblEnemyName3, enemyHealthProgressBar3, lblEnemyHealth3, enemyTimerBar3, pnlEnemy3);
+                            ShowSlotEnemy(lblEnemyName4, enemyHealthProgressBar4, lblEnemyHealth4, enemyTimerBar4, pnlEnemy4);
+                            ShowSlotEnemy(lblEnemyName5, enemyHealthProgressBar5, lblEnemyHealth5, enemyTimerBar5, pnlEnemy5);
+                        }
+                        foreach (Enemy enemy in enemyTeam)
+                        {
+                            enemy.curHealth = enemy.maxHealth;
+                        }
+                        turnCount = 1;
+                        isGameOverMessageShown = false;
+                    }
                 }
-                if (enemyTeam[0].name.Equals("Boss"))
-                {
-                    enemyTeam = new List<Enemy>();
-                    enemy1 = new Enemy("Enemy1", boss.level, 100 + boss.level * 50, 100 + boss.level * 50, 8 + boss.level * 2, 5 + boss.level, 5);
-                    enemy2 = new Enemy("Enemy2", enemy1.level, enemy1.curHealth, enemy1.maxHealth, enemy1.damage, enemy1.armor, 5);
-                    enemy3 = new Enemy("Enemy3", enemy1.level, enemy1.curHealth, enemy1.maxHealth, enemy1.damage, enemy1.armor, 5);
-                    enemy4 = new Enemy("Enemy4", enemy1.level, enemy1.curHealth, enemy1.maxHealth, enemy1.damage, enemy1.armor, 5);
-                    enemy5 = new Enemy("Enemy5", enemy1.level, enemy1.curHealth, enemy1.maxHealth, enemy1.damage, enemy1.armor, 5);
-                }
-                foreach (Enemy enemy in enemyTeam)
-                {
-                    enemy.curHealth = enemy.maxHealth;
-                }
-                turnCount = 1;
             }
             else if (!enemyTeamAlive && boss == null)
             {
@@ -508,8 +530,10 @@ namespace View
                 {
                     enemy2.curHealth = enemy2.maxHealth;
                     boss = new Enemy("Boss", enemy2.level, enemy2.curHealth * 10, enemy2.maxHealth * 10, enemy2.damage * 10, enemy2.armor * 2, 5);
-                    enemyTeam = new List<Enemy>();
-                    enemyTeam.Add(boss);
+                    enemyTeam = new List<Enemy>
+                    {
+                        boss
+                    };
                 }
                 lblTurnCount.Text = $"{turnCount} / 5";
                 lblMessage.Visible = true;
@@ -606,7 +630,7 @@ namespace View
             if (dungeonForm == null || dungeonForm.IsDisposed)
             {
                 // Tạo một instance mới của InventoryForm và truyền danh sách vật phẩm và đội ngũ người chơi vào constructor
-                dungeonForm = new ShopForm(enemyTeam);
+                dungeonForm = new ShopForm(enemyTeam, resources);
             }
 
             // Hiển thị InventoryForm
@@ -641,11 +665,13 @@ namespace View
             //Application.Exit(); // Đóng ứng dụng
 
             // Hoặc
+            DeleteJsonFile();
             this.Close(); // Đóng cửa sổ chứa trò chơi
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
+            DeleteJsonFile();
             MainMenuForm mainMenuForm = new MainMenuForm();
             mainMenuForm.Show();
         }
@@ -661,6 +687,28 @@ namespace View
                 if (result == DialogResult.No)
                 {
                     e.Cancel = true; // Hủy sự kiện đóng cửa sổ
+                }
+            }
+        }
+
+        private void DeleteJsonFile()
+        {
+            string savesDirectory = "..\\..\\..\\..\\Text-BasedGame\\Utilities\\Data";
+            string[] saveFiles = Directory.GetFiles(savesDirectory, "ShopItemsList.json");
+
+            // Kiểm tra xem có tồn tại file JSON chứa danh sách trang bị không
+            if (saveFiles.Length > 0)
+            {
+                string saveFilePath = saveFiles[0];
+
+                try
+                {
+                    // Xóa file JSON
+                    File.Delete(saveFilePath);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error deleting JSON file: " + ex.Message);
                 }
             }
         }

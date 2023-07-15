@@ -14,12 +14,21 @@ namespace Text_BasedGame.Models
         public string Description { get; set; }
         public string Image { get; set; }
 
+        public int pricebuy { get; set; }
+        public int pricesell { get; set; }
+
         public Item(string name, string type, string description, string image)
         {
             Name = name;
             Type = type;
             Description = description;
             Image = image;
+        }
+
+        public Item(string name, string type, string description, string image, int pricebuy, int pricesell) : this(name, type, description, image)
+        {
+            this.pricebuy = pricebuy;
+            this.pricesell = pricesell;
         }
 
         public Item()

@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Text_BasedGame.Models;
 using static System.Net.Mime.MediaTypeNames;
@@ -101,18 +103,26 @@ namespace Text_BasedGame.Controllers
             if (randomEquipment.Quality.Equals("Common"))
             {
                 weight = enemy.level;
+                randomEquipment.pricebuy = 100 * enemy.level;
+                randomEquipment.pricesell = 25 * enemy.level;
             }
             else if (randomEquipment.Quality.Equals("Rare"))
             {
                 weight = enemy.level * 2;
+                randomEquipment.pricebuy = 100 * enemy.level * 2;
+                randomEquipment.pricesell = 25 * enemy.level * 2;
             }
             else if (randomEquipment.Quality.Equals("Elite"))
             {
                 weight = enemy.level * 3;
+                randomEquipment.pricebuy = 100 * enemy.level * 3;
+                randomEquipment.pricesell = 25 * enemy.level * 3;
             }
             else if (randomEquipment.Quality.Equals("Legendary"))
             {
                 weight = enemy.level * 5;
+                randomEquipment.pricebuy = 100 * enemy.level * 5;
+                randomEquipment.pricesell = 25 * enemy.level * 5;
             }
 
             foreach (string stat in selectedStats)
@@ -142,12 +152,81 @@ namespace Text_BasedGame.Controllers
         }
         public List<Equipment> GenerateRandomEquipmentList(string filepath ,Enemy enemy)
         {
-            for (int i = 0; i < 8; i++)
+            List<Equipment> list = new List<Equipment>();
+            if (enemy.name.Equals("Boss")) 
             {
-                equipmentList.Add(LoadEquipmentFromFile(filepath, enemy));
+                enemy.name = "";
+                for (int i = 0; i < 8; i++)
+                {
+                    list.Add(LoadEquipmentFromFile(filepath, enemy));
+                }
+                enemy.name = "Boss";
             }
-            return equipmentList;
+            else { 
+                for (int i = 0; i < 8; i++)
+                {
+                    list.Add(LoadEquipmentFromFile(filepath, enemy));
+                }
+            }
+            SaveEquipmentListToJson(list);
+            return list;
         }
 
+        public void SaveEquipmentListToJson(List<Equipment> equipmentList)
+        {
+            string directoryPath = "..\\..\\..\\..\\Text-BasedGame\\Utilities\\Data"; // Đường dẫn thư mục lưu file save
+            string fileName = "ShopItemsList.json"; // Phần mở rộng của file save
+
+            // Tạo thư mục lưu file save nếu chưa tồn tại
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+
+            // Kết hợp đường dẫn thư mục và tên file save để tạo đường dẫn đầy đủ
+            string saveFilePath = Path.Combine(directoryPath, fileName);
+            // Chuyển danh sách trang bị thành chuỗi JSON
+            string json = JsonConvert.SerializeObject(equipmentList);
+
+            try
+            {
+                // Ghi chuỗi JSON vào file
+                File.WriteAllText(saveFilePath, json);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error(s): " + e.Message);
+                throw;
+            }
+        }
+
+        public List<Equipment> LoadEquipmentListFormJson()
+        {
+            List<Equipment> list = new List<Equipment>();
+            string savesDirectory = "..\\..\\..\\..\\Text-BasedGame\\Utilities\\Data";
+            string[] saveFiles = Directory.GetFiles(savesDirectory, "ShopItemsList.json");
+
+            // Kiểm tra xem có tồn tại file JSON chứa danh sách trang bị không
+            if (saveFiles.Length > 0)
+            {
+                string saveFilePath = saveFiles[0];
+
+                try
+                {
+                    // Đọc nội dung file JSON
+                    string json = File.ReadAllText(saveFilePath);
+
+                    // Chuyển chuỗi JSON thành danh sách trang bị
+                    list = JsonConvert.DeserializeObject<List<Equipment>>(json);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Error loading equipment list from file: " + e.Message);
+                    throw;
+                }
+            }
+
+            return list;
+        }
     }
 }

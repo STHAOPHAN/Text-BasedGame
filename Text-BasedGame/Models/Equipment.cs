@@ -23,7 +23,7 @@ namespace Text_BasedGame.Models
         public int Armor { get; set; }
 
         [JsonConstructor]
-        public Equipment(string name, string type, string description, string image, int level, string quality, int hP, int damage, int attackSpeed, int armor) : base(name, type, description, image)
+        public Equipment(string name, string type, string description, string image, int pricebuy, int pricesell, int level, string quality, int hP, int damage, int attackSpeed, int armor) : base(name, type, description, image, pricebuy, pricesell)
         {
             Level = level;
             Quality = quality;
@@ -32,6 +32,8 @@ namespace Text_BasedGame.Models
             AttackSpeed = attackSpeed;
             Armor = armor;
         }
+
+
 
         public Equipment(string name, string type, string description, string image) : base(name, type, description, image)
         {
